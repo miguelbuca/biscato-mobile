@@ -2,30 +2,39 @@ import { theme } from "@/tailwind.config";
 import React from "react";
 import { Tabs } from "expo-router";
 
-import AntDesign from "react-native-vector-icons/AntDesign";
+import HomeSvg from "@/src/assets/svg/home.svg";
+import MapPinSvg from "@/src/assets/svg/map-pin.svg";
+import JobSvg from "@/src/assets/svg/job.svg";
+import UserSvg from "@/src/assets/svg/user.svg";
 
 const Layout = () => {
+  const SUB_VALUE = 5;
+
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: "#000000",
         tabBarInactiveTintColor: "#cccccc",
         tabBarLabelStyle: {
-          fontWeight: "800",
+          fontWeight: "700",
         },
       }}
     >
       <Tabs.Screen
         options={{
           title: "Home",
-          tabBarIcon: (props) => <AntDesign name={`home`} {...props} />,
+          tabBarIcon: ({ color, size }) => (
+            <HomeSvg height={size - SUB_VALUE} fill={color} />
+          ),
         }}
         name="Home"
       />
       <Tabs.Screen
         options={{
           title: "Nearby",
-          /*tabBarIcon: (props) => <AntDesign name={`pin-map`} {...props} />,*/
+          tabBarIcon: ({ color, size }) => (
+            <MapPinSvg height={size - SUB_VALUE} fill={color} />
+          ),
         }}
         name="Nearby"
       />
@@ -33,13 +42,18 @@ const Layout = () => {
       <Tabs.Screen
         options={{
           title: "Applied",
+          tabBarIcon: ({ color, size }) => (
+            <JobSvg height={size - SUB_VALUE} fill={color} />
+          ),
         }}
         name="Applied"
       />
       <Tabs.Screen
         options={{
           title: "Account",
-          tabBarIcon: (props) => <AntDesign name={`user`} {...props} />,
+          tabBarIcon: ({ color, size }) => (
+            <UserSvg height={size - SUB_VALUE} fill={color} />
+          ),
         }}
         name="Account"
       />
