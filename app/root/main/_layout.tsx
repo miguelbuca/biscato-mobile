@@ -5,8 +5,11 @@ import HomeSvg from "@/src/assets/svg/home.svg";
 import MapPinSvg from "@/src/assets/svg/map-pin.svg";
 import JobSvg from "@/src/assets/svg/job.svg";
 import BellSvg from "@/src/assets/svg/bell.svg";
-import { Header } from "@/src/components";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
+
+import SearchSvg from "@/src/assets/svg/search.svg";
+import LogoFontSvg from "@/src/assets/svg/logo-font.svg";
+import MenuSvg from "@/src/assets/svg/menu.svg";
 
 const Layout = () => {
   const SUB_VALUE = 5;
@@ -16,16 +19,30 @@ const Layout = () => {
       screenOptions={{
         tabBarActiveTintColor: "#000000",
         tabBarInactiveTintColor: "#cccccc",
-        header: (props) => <Header {...props} />,
-        tabBarLabelStyle: {
-          fontWeight: "700",
-        },
+        headerLeft: () => (
+          <TouchableOpacity>
+            <View className="relative flex items-start justify-center p-4">
+              <MenuSvg height={22} fill={"black"} />
+            </View>
+          </TouchableOpacity>
+        ),
+        headerTitle: () => (
+          <View className="flex items-center justify-center flex-1">
+            {<LogoFontSvg height={25} fill={"black"} />}
+          </View>
+        ),
+        headerRight: () => (
+          <TouchableOpacity>
+            <View className="relative flex items-start justify-center p-4">
+              <SearchSvg height={22} fill={"black"} />
+            </View>
+          </TouchableOpacity>
+        ),
       }}
     >
       <Tabs.Screen
         options={{
           title: "Home",
-
           tabBarIcon: ({ color, size }) => (
             <HomeSvg height={size - SUB_VALUE} fill={color} />
           ),
