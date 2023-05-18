@@ -3,7 +3,7 @@ import React from "react";
 
 const Home = () => {
   return (
-    <ScrollView className="flex-1 flex">
+    <ScrollView className="flex-1 flex bg-white">
       <Text>ola</Text>
       <Text>ola</Text>
     </ScrollView>

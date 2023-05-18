@@ -1,5 +1,5 @@
 import React from "react";
-import { Tabs } from "expo-router";
+import { Link, Tabs } from "expo-router";
 
 import HomeSvg from "@/src/assets/svg/home.svg";
 import MapPinSvg from "@/src/assets/svg/map-pin.svg";
@@ -19,6 +19,10 @@ const Layout = () => {
       screenOptions={{
         tabBarActiveTintColor: "#000000",
         tabBarInactiveTintColor: "#cccccc",
+        headerTitleAlign: "center",
+        tabBarLabelStyle: {
+          fontWeight: "800",
+        },
         headerLeft: () => (
           <TouchableOpacity>
             <View className="relative flex items-start justify-center p-4">
@@ -32,11 +36,11 @@ const Layout = () => {
           </View>
         ),
         headerRight: () => (
-          <TouchableOpacity>
+          <Link href={"../Find-job"}>
             <View className="relative flex items-start justify-center p-4">
               <SearchSvg height={22} fill={"black"} />
             </View>
-          </TouchableOpacity>
+          </Link>
         ),
       }}
     >
