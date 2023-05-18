@@ -46,7 +46,7 @@ const Layout = () => {
     >
       <Tabs.Screen
         options={{
-          title: "Home",
+          title: "Início",
           tabBarIcon: ({ color, size }) => (
             <HomeSvg height={size - SUB_VALUE} fill={color} />
           ),
@@ -55,7 +55,7 @@ const Layout = () => {
       />
       <Tabs.Screen
         options={{
-          title: "Nearby",
+          title: "Arredores",
           tabBarIcon: ({ color, size }) => (
             <MapPinSvg height={size - SUB_VALUE} fill={color} />
           ),
@@ -65,7 +65,7 @@ const Layout = () => {
 
       <Tabs.Screen
         options={{
-          title: "Applied",
+          title: "Candidaturas",
           tabBarIcon: ({ color, size }) => (
             <JobSvg height={size - SUB_VALUE} fill={color} />
           ),
@@ -74,7 +74,7 @@ const Layout = () => {
       />
       <Tabs.Screen
         options={{
-          title: "Notification",
+          title: "notificações",
           tabBarIcon: ({ color, size }) => (
             <View className="relative">
               <BellSvg height={size - SUB_VALUE} fill={color} />
