@@ -9,7 +9,7 @@ export const JobCard = () => {
     <Pressable>
       <View className="flex flex-col border-b py-4 border-[#f8f8f8]">
         <View className="flex flex-row mb-5">
-          <View className="flex items-center justify-center bg-blue-950 w-12 h-12 rounded-lg">
+          <View className="flex items-center justify-center bg-blue-950 w-14 h-14 rounded-lg">
             <Text className="text-white">svg</Text>
           </View>
           <View className="flex flex-col flex-1">
@@ -36,7 +36,9 @@ export const JobCard = () => {
             <Text className="text-xs font-semibold text-gray-500">Mensal</Text>
           </View>
           <View className="flex flex-row items-center">
-            <Text className="text-xs font-semibold text-gray-500">3d</Text>
+            <Text className="text-xs font-semibold text-gray-500">
+              {" • "}3d
+            </Text>
           </View>
         </View>
       </View>

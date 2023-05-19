@@ -56,6 +56,7 @@ export default function Layout() {
         />
         <Drawer.Screen
           options={{
+            headerShown: false,
             drawerItemStyle: {
               display: "none",
             },
