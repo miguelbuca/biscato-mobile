@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Tabs } from "expo-router";
+import { Link, Tabs, useNavigation } from "expo-router";
 
 import HomeSvg from "@/src/assets/svg/home.svg";
 import MapPinSvg from "@/src/assets/svg/map-pin.svg";
@@ -13,6 +13,7 @@ import MenuSvg from "@/src/assets/svg/menu.svg";
 
 const Layout = () => {
   const SUB_VALUE = 5;
+  const navigation = useNavigation();
 
   return (
     <Tabs
@@ -24,7 +25,7 @@ const Layout = () => {
           fontWeight: "800",
         },
         headerLeft: () => (
-          <TouchableOpacity>
+          <TouchableOpacity onPress={(navigation as any).toggleDrawer}>
             <View className="relative flex items-start justify-center p-4">
               <MenuSvg height={22} fill={"black"} />
             </View>
