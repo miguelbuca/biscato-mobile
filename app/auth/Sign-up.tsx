@@ -43,7 +43,7 @@ const SignUp = () => {
             email: "",
             password: "",
           }}
-          onSubmit={(values) => Api.auth().signUp(values)}
+          onSubmit={Api.auth().signUp}
         >
           {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
             <View className="m-4 pb-8 border-b border-b-[#eeeeee]">

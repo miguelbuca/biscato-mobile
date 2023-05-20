@@ -10,7 +10,7 @@ import React from "react";
 import BgSvg from "@/src/assets/svg/bg.svg";
 import { Button, Input, OAuthButtons } from "@/src/components";
 import { Formik } from "formik";
-import { SignUpValidationSchema } from "@/src/validations";
+import { SignInValidationSchema } from "@/src/validations";
 import { Api } from "@/src/api";
 import { useNavigation } from "expo-router";
 
@@ -36,12 +36,12 @@ const SignIn = () => {
         }}
       >
         <Formik
-          validationSchema={SignUpValidationSchema}
+          validationSchema={SignInValidationSchema}
           initialValues={{
             email: "",
             password: "",
           }}
-          onSubmit={(values) => Api.auth().signIn(values)}
+          onSubmit={Api.auth().signIn}
         >
           {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
             <View className="m-4 pb-8 border-b border-b-[#eeeeee]">
