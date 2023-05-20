@@ -41,7 +41,7 @@ const SignIn = () => {
             email: "",
             password: "",
           }}
-          onSubmit={(values) => Api.user(values).create()}
+          onSubmit={(values) => Api.auth().signIn(values)}
         >
           {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
             <View className="m-4 pb-8 border-b border-b-[#eeeeee]">

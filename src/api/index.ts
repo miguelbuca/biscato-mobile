@@ -1,5 +1,6 @@
-import { UserFunction } from "./functions";
+import { AuthFunction, UserFunction } from "./functions";
 
 export const Api = {
+  auth: AuthFunction,
   user: UserFunction,
 };
