@@ -17,7 +17,7 @@ import { useNavigation } from "expo-router";
 const SignIn = () => {
   const { navigate } = useNavigation();
   return (
-    <ScrollView className="relative flex-1 bg-[#f5f5f5]">
+    <ScrollView className="relative flex-1 bg-[#f5f5f5] pb-6">
       <View className="absolute min-w-full min-h-full">
         <BgSvg fill={"rgba(0,0,0,0.5))"} />
       </View>

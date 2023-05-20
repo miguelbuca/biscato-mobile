@@ -1,5 +1,5 @@
 import { useBetterState } from "@/src/hooks/useBetterState";
-import { Link, useNavigation } from "expo-router";
+import { Link, Redirect, useNavigation } from "expo-router";
 import {
   Image,
   StyleSheet,
@@ -12,11 +12,12 @@ import AppIntroSlider from "react-native-app-intro-slider";
 
 import { theme } from "@/tailwind.config";
 
-const { width } = Dimensions.get("screen");
-
 import Slide1 from "@/src/assets/svg/intro/undraw_coffee_break_h3uu.svg";
 import Slide2 from "@/src/assets/svg/intro/undraw_time_management_re_tk5w.svg";
 import Slide3 from "@/src/assets/svg/intro/undraw_under_construction_-46-pa.svg";
+import { useEffect } from "react";
+
+import { save, getValueFor } from "@/src/helper/storage";
 
 export default function Page() {
   const showRealApp = useBetterState<boolean>(false);
@@ -42,7 +43,16 @@ export default function Page() {
     },
   ];
 
-  return !showRealApp.value ? (
+  useEffect(() => {
+    getValueFor("AppIntroSlider").then((res) => {
+      if (!res) save("AppIntroSlider", "true");
+      else showRealApp.value = true;
+    });
+  }, []);
+
+  if (showRealApp.value) return <Redirect href="auth/Sign-up" />;
+
+  return (
     <AppIntroSlider
       style={StyleSheet.absoluteFill}
       renderItem={({ item: { title, text, image } }) => {
@@ -92,7 +102,5 @@ export default function Page() {
         </TouchableOpacity>
       )}
     />
-  ) : (
-    <Text>ola mundo</Text>
   );
 }
