@@ -13,9 +13,13 @@ import { AuthSelectors } from "@/src/reduxStore/slices/auth";
 import MenuSvg from "@/src/assets/svg/menu.svg";
 import { Api } from "@/src/api";
 import { useRouter } from "expo-router";
+import { User } from "@/src/interfaces";
+import { Avatar } from "@/src/components";
 
 export default function Layout() {
   const { replace } = useRouter();
+
+  const user: User = useSelector(AuthSelectors)?.user;
 
   const signOut = () => {
     Api.auth.signOut();
@@ -43,8 +47,24 @@ export default function Layout() {
         drawerContent={(props) => {
           return (
             <View className="flex-1">
-              <View className="flex min-h-[200px] bg-primary">
-                <SafeAreaView className="flex flex-col justify-center flex-1 px-[18px]"></SafeAreaView>
+              <View className="flex min-h-[250px] bg-primary">
+                <SafeAreaView className="flex flex-col items-center justify-center flex-1 px-[18px]">
+                  <View className="mb-2">
+                    <Avatar
+                      letters={`${user.firstName?.[0] && user.firstName?.[0]} ${
+                        user.lastName?.[0] && user.lastName?.[0]
+                      }`}
+                    />
+                  </View>
+                  <View
+                    style={{
+                      backgroundColor: "rgba(255,255,255,0.3)",
+                    }}
+                    className="px-4 py-2 my-4 rounded-full"
+                  >
+                    <Text className="text-white font-semibold">{`${user.firstName} ${user.lastName}`}</Text>
+                  </View>
+                </SafeAreaView>
               </View>
               <DrawerContentScrollView {...props}>
                 <DrawerItemList {...props} />

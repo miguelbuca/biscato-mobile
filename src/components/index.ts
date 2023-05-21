@@ -5,3 +5,4 @@ export * from "./input";
 export * from "./Button";
 export * from "./OAuthButtons";
 export * from "./SplashScreen";
+export * from "./Avatar";
