@@ -1,7 +1,7 @@
 import { User } from "@/src/interfaces";
 import { AxiosStatic } from "axios";
 
-import { save, getValueFor } from "@/src/helper/storage";
+import { save, getValueFor, remove } from "@/src/helper/storage";
 
 export const AuthFunction = (axios: AxiosStatic) => {
   const signIn = async (credentials: Pick<User, "email" | "password">) => {
@@ -26,8 +26,12 @@ export const AuthFunction = (axios: AxiosStatic) => {
     ] = `Bearer ${data.access_token}`;
     return data;
   };
+  const signOut = async () => {
+    return remove("access_token");
+  };
   return {
     signIn,
     signUp,
+    signOut,
   };
 };

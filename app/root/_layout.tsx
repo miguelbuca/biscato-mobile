@@ -7,10 +7,21 @@ import { StatusBar } from "expo-status-bar";
 import { Text, View, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { theme } from "@/tailwind.config";
+import { useSelector } from "react-redux";
+import { AuthSelectors } from "@/src/reduxStore/slices/auth";
 
 import MenuSvg from "@/src/assets/svg/menu.svg";
+import { Api } from "@/src/api";
+import { useRouter } from "expo-router";
 
 export default function Layout() {
+  const { replace } = useRouter();
+
+  const signOut = () => {
+    Api.auth.signOut();
+    replace("/auth/Sign-in");
+  };
+
   return (
     <>
       <Drawer
@@ -37,7 +48,7 @@ export default function Layout() {
               </View>
               <DrawerContentScrollView {...props}>
                 <DrawerItemList {...props} />
-                <TouchableOpacity>
+                <TouchableOpacity onPress={signOut}>
                   <View className="m-2 p-3 rounded-md">
                     <Text className="font-semibold text-gray-500">Sair</Text>
                   </View>

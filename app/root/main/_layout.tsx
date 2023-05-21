@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Link, Tabs, useNavigation } from "expo-router";
 
 import HomeSvg from "@/src/assets/svg/home.svg";
@@ -11,15 +11,10 @@ import SearchSvg from "@/src/assets/svg/search.svg";
 import LogoFontSvg from "@/src/assets/svg/logo-font.svg";
 import MenuSvg from "@/src/assets/svg/menu.svg";
 import ChatSvg from "@/src/assets/svg/chat.svg";
-import { useSelector } from "react-redux";
-import { AuthSelectors } from "@/src/reduxStore/slices/auth";
-import { User } from "@/src/interfaces";
 
 const Layout = () => {
   const SUB_VALUE = 5;
   const navigation = useNavigation();
-
-  const auth = useSelector(AuthSelectors);
 
   return (
     <Tabs
