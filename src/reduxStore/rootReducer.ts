@@ -1,15 +1,15 @@
 import { combineReducers } from "redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import auth from "./slices/auth";
+import authSlice from "./slices/auth";
 
 const rootPersistConfig = {
   key: "root",
   storage: AsyncStorage,
-  whitelist: ["contacts", "session"],
+  whitelist: ["Auth"],
 };
 
 const rootReducer = combineReducers({
-  auth,
+  Auth: authSlice,
 });
 
 export { rootPersistConfig, rootReducer };

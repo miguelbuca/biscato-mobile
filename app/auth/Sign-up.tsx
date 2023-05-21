@@ -21,7 +21,7 @@ const SignUp = () => {
 
   const handler = useCallback((values: User) => {
     try {
-      Api.auth.signIn(values).then(({ access_token }) => {
+      Api.auth.signUp(values).then(({ access_token }) => {
         if (access_token) {
           replace("../root/main");
         }
