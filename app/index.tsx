@@ -1,13 +1,5 @@
-import { useBetterState } from "@/src/hooks/useBetterState";
-import { Link, Redirect, useNavigation } from "expo-router";
-import {
-  Image,
-  StyleSheet,
-  Text,
-  View,
-  Dimensions,
-  TouchableOpacity,
-} from "react-native";
+import { useNavigation, useRouter } from "expo-router";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
 
 import { theme } from "@/tailwind.config";
@@ -15,13 +7,20 @@ import { theme } from "@/tailwind.config";
 import Slide1 from "@/src/assets/svg/intro/undraw_coffee_break_h3uu.svg";
 import Slide2 from "@/src/assets/svg/intro/undraw_time_management_re_tk5w.svg";
 import Slide3 from "@/src/assets/svg/intro/undraw_under_construction_-46-pa.svg";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 import { save, getValueFor } from "@/src/helper/storage";
+import { Api } from "@/src/api";
+import { useBetterState } from "@/src/hooks/useBetterState";
+import { SplashScreen } from "@/src/components";
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "@/src/reduxStore/slices/auth";
 
 export default function Page() {
-  const showRealApp = useBetterState<boolean>(false);
+  const isReady = useBetterState<boolean>(false);
   const { navigate } = useNavigation();
+  const { replace } = useRouter();
+  const dispatch = useDispatch();
   const slides = [
     {
       key: 1,
@@ -43,17 +42,37 @@ export default function Page() {
     },
   ];
 
-  useEffect(() => {
-    getValueFor("AppIntroSlider").then((res) => {
-      if (!res) save("AppIntroSlider", "true");
-      else showRealApp.value = true;
-    });
+  const load = useCallback(async () => {
+    const [access_token, appIntroSlider] = await Promise.all([
+      getValueFor("access_token"),
+      getValueFor("AppIntroSlider"),
+    ]);
+
+    if (access_token) {
+      try {
+        const { data } = await Api.user.me();
+        dispatch(setCurrentUser(data));
+        replace("root/main");
+      } catch (error) {
+        replace("auth/Sign-in");
+      }
+    } else {
+      if (!appIntroSlider) save("AppIntroSlider", "true");
+      else replace("auth/Sign-up");
+    }
   }, []);
 
-  if (showRealApp.value) return <Redirect href="auth/Sign-up" />;
+  useEffect(() => {
+    setTimeout(() => {
+      isReady.value = true;
+    }, 1000);
+  }, []);
 
-  return (
+  return isReady ? (
+    <SplashScreen onLayout={load} />
+  ) : (
     <AppIntroSlider
+      onLayout={load}
       style={StyleSheet.absoluteFill}
       renderItem={({ item: { title, text, image } }) => {
         return (

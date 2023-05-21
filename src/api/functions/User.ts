@@ -1,12 +1,14 @@
-import { User } from "@/src/interfaces";
+import { AxiosStatic } from "axios";
+import { getValueFor } from "@/src/helper/storage";
 
-export const UserFunction = (user: User) => {
-  const create = async () => {
-    console.log("api", user);
+export const UserFunction = (axios: AxiosStatic) => {
+  const me = async () => {
+    const access_token = await getValueFor("access_token");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
+
+    return await axios.get("/users/me");
   };
-  const update = async () => {};
   return {
-    create,
-    update,
+    me,
   };
 };

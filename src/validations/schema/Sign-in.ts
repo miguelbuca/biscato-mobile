@@ -8,8 +8,5 @@ export const SignInValidationSchema = yup
       .string()
       .email("Please enter valid email")
       .required("É necessário um endereço de e-mail"),
-    password: yup
-      .string()
-      .min(8, ({ min }) => `A senha deve ser pelo menos ${min} letras`)
-      .required("Senha requerida"),
+    password: yup.string().required("Senha requerida"),
   });
