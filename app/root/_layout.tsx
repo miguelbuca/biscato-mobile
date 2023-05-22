@@ -87,18 +87,19 @@ export default function Layout() {
         />
         <Drawer.Screen
           options={{
+            title: "Minha conta",
+          }}
+          name="Account"
+        />
+        <Drawer.Screen
+          options={{
+            title: "Tipos de trabalho",
             headerShown: false,
             drawerItemStyle: {
               display: "none",
             },
           }}
           name="Find-job"
-        />
-        <Drawer.Screen
-          options={{
-            title: "Minha conta",
-          }}
-          name="Account"
         />
         <Drawer.Screen
           options={{

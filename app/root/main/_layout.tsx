@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { Link, Tabs, useNavigation } from "expo-router";
 
 import HomeSvg from "@/src/assets/svg/home.svg";
@@ -11,10 +11,27 @@ import SearchSvg from "@/src/assets/svg/search.svg";
 import LogoFontSvg from "@/src/assets/svg/logo-font.svg";
 import MenuSvg from "@/src/assets/svg/menu.svg";
 import ChatSvg from "@/src/assets/svg/chat.svg";
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "@/src/reduxStore/slices/auth";
+import { Api } from "@/src/api";
 
 const Layout = () => {
   const SUB_VALUE = 5;
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const load = useCallback(async () => {
+    try {
+      const { data } = await Api.user.me();
+      dispatch(setCurrentUser(data));
+    } catch (error) {
+      console.log({ error });
+    }
+  }, []);
+
+  useEffect(() => {
+    load();
+  }, []);
 
   return (
     <Tabs
