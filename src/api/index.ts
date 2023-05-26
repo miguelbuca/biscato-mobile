@@ -1,4 +1,10 @@
-import { AuthFunction, UserFunction } from "./functions";
+import {
+  AuthFunction,
+  SkillFunction,
+  SkillTypeFunction,
+  UserFunction,
+  WorkFunction,
+} from "./functions";
 
 import axios from "axios";
 
@@ -10,4 +16,7 @@ axios.defaults.headers.common["Content-Type"] = "application/json";
 export const Api = {
   user: UserFunction(axios),
   auth: AuthFunction(axios),
+  skillType: SkillTypeFunction(axios),
+  skill: SkillFunction(axios),
+  work: WorkFunction(axios),
 };

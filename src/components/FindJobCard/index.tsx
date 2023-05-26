@@ -5,7 +5,7 @@ import { useBetterState } from "@/src/hooks/useBetterState";
 import tailwind from "@/tailwind.config";
 
 export interface FindJobCardProps {
-  name: string;
+  name?: string;
   image?: JSX.Element;
   isChecked?: boolean;
 }

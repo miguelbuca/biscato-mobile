@@ -15,16 +15,10 @@ import { Api } from "@/src/api";
 import { useRouter } from "expo-router";
 import { User } from "@/src/interfaces";
 import { Avatar } from "@/src/components";
+import { useLayoutController } from "./controller";
 
 export default function Layout() {
-  const { replace } = useRouter();
-
-  const user: User = useSelector(AuthSelectors)?.user;
-
-  const signOut = () => {
-    Api.auth.signOut();
-    replace("/auth/Sign-in");
-  };
+  const { signOut, user } = useLayoutController();
 
   return (
     <>
@@ -66,7 +60,12 @@ export default function Layout() {
                   </View>
                 </SafeAreaView>
               </View>
-              <DrawerContentScrollView {...props}>
+              <DrawerContentScrollView
+                contentContainerStyle={{
+                  marginTop: 0,
+                }}
+                {...props}
+              >
                 <DrawerItemList {...props} />
                 <TouchableOpacity onPress={signOut}>
                   <View className="m-2 p-3 rounded-md">
@@ -90,16 +89,6 @@ export default function Layout() {
             title: "Minha conta",
           }}
           name="Account"
-        />
-        <Drawer.Screen
-          options={{
-            title: "Tipos de trabalho",
-            headerShown: false,
-            drawerItemStyle: {
-              display: "none",
-            },
-          }}
-          name="Find-job"
         />
         <Drawer.Screen
           options={{

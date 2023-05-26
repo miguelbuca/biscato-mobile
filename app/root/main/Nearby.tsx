@@ -1,17 +1,10 @@
 import { View, Text, StyleSheet } from "react-native";
-import React, { useEffect } from "react";
+import React from "react";
 import MapView, { Callout, Marker } from "react-native-maps";
-import { requestLocationPermission } from "@/src/helper/location";
-import { useBetterState } from "@/src/hooks/useBetterState";
-import { LocationObject } from "expo-location";
+import { useNearbyController } from "./controller";
 
 const Nearby = () => {
-  const location = useBetterState<LocationObject | null>(null);
-  useEffect(() => {
-    requestLocationPermission((res) => {
-      location.value = res;
-    });
-  }, []);
+  const { location } = useNearbyController();
 
   return (
     <View className="flex-1">

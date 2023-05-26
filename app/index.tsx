@@ -15,58 +15,31 @@ import { useBetterState } from "@/src/hooks/useBetterState";
 import { SplashScreen } from "@/src/components";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "@/src/reduxStore/slices/auth";
+import { usePageController } from "./controller";
+
+const slides = [
+  {
+    key: 1,
+    title: "Despertando sua Coragem e Potencial",
+    text: "Seja corajoso e ousado ao buscar o seu biscato! Lembre-se de que cada grande jornada começa com um pequeno passo. Permita que sua paixão e sua determinação guiem você pelo caminho da realização. Não tenha medo de arriscar, de tentar algo novo e de sair da sua zona de conforto",
+    image: <Slide1 />,
+  },
+  {
+    key: 2,
+    title: "Economize tempo",
+    text: "Não perca mais tempo procurando por um profissional qualificado. Com o nosso aplicativo de biscato, você pode encontrar facilmente um trabalhador independente para qualquer tarefa, em poucos minutos",
+    image: <Slide2 />,
+  },
+  {
+    key: 3,
+    title: "Encontre seu Biscateiro dos Sonhos!",
+    text: "Precisa de ajuda para resolver aquele problema em casa? Seja qual for a sua necessidade, há um biscateiro esperando para trazer sua expertise e habilidades para o seu projeto.",
+    image: <Slide3 />,
+  },
+];
 
 export default function Page() {
-  const isReady = useBetterState<boolean>(false);
-  const { navigate } = useNavigation();
-  const { replace } = useRouter();
-  const dispatch = useDispatch();
-  const slides = [
-    {
-      key: 1,
-      title: "Despertando sua Coragem e Potencial",
-      text: "Seja corajoso e ousado ao buscar o seu biscato! Lembre-se de que cada grande jornada começa com um pequeno passo. Permita que sua paixão e sua determinação guiem você pelo caminho da realização. Não tenha medo de arriscar, de tentar algo novo e de sair da sua zona de conforto",
-      image: <Slide1 />,
-    },
-    {
-      key: 2,
-      title: "Economize tempo",
-      text: "Não perca mais tempo procurando por um profissional qualificado. Com o nosso aplicativo de biscato, você pode encontrar facilmente um trabalhador independente para qualquer tarefa, em poucos minutos",
-      image: <Slide2 />,
-    },
-    {
-      key: 3,
-      title: "Encontre seu Biscateiro dos Sonhos!",
-      text: "Precisa de ajuda para resolver aquele problema em casa? Seja qual for a sua necessidade, há um biscateiro esperando para trazer sua expertise e habilidades para o seu projeto.",
-      image: <Slide3 />,
-    },
-  ];
-
-  const load = useCallback(async () => {
-    const [access_token, appIntroSlider] = await Promise.all([
-      getValueFor("access_token"),
-      getValueFor("AppIntroSlider"),
-    ]);
-
-    if (access_token) {
-      try {
-        const { data } = await Api.user.me();
-        dispatch(setCurrentUser(data));
-        replace("root/main");
-      } catch (error) {
-        replace("auth/Sign-in");
-      }
-    } else {
-      if (!appIntroSlider) save("AppIntroSlider", "true");
-      else replace("auth/Sign-up");
-    }
-  }, []);
-
-  useEffect(() => {
-    setTimeout(() => {
-      isReady.value = true;
-    }, 1000);
-  }, []);
+  const { isReady, navigate, load } = usePageController();
 
   return isReady ? (
     <SplashScreen onLayout={load} />

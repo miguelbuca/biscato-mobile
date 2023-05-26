@@ -9,55 +9,14 @@ import {
 import React from "react";
 import { FindJobCard } from "@/src/components";
 import { SvgXml } from "react-native-svg";
+import { useFindJobController } from "./root/controller";
 
 const FindJob = () => {
-  const setoresTrabalhoInformal = [
-    "Vendas ambulantes",
-    "Serviços domésticos",
-    "Artesanato",
-    "Reciclagem e coleta de resíduos",
-    "Transporte informal",
-    "Serviços de entrega",
-    "Serviços de construção",
-    "Cuidadores de animais de estimação",
-    "Serviços de beleza",
-    "Serviços de alimentação",
-    "Serviços de costura e ajustes",
-    "Serviços de limpeza de veículos",
-    "Serviços de jardinagem",
-    "Serviços de eletricista e encanador",
-    "Serviços de informática",
-    "Venda de produtos artesanais",
-    "Serviços de tradução e interpretação",
-    "Serviços de fotografia",
-    "Serviços de treinamento pessoal",
-    "Serviços de eventos",
-    "Corte de cabelo e barbearia",
-    "Serviços de limpeza residencial e comercial",
-    "Organização de festas e eventos",
-    "Venda de roupas e acessórios usados",
-    "Reparos e consertos de eletrodomésticos",
-    "Aulas particulares e tutoria",
-    "Serviços de paisagismo e jardinagem",
-    "Revenda de produtos importados ou de segunda mão",
-    "Serviços de marcenaria e carpintaria",
-    "Fabricação e venda de produtos alimentícios caseiros",
-    "Serviços de pintura residencial",
-    "Montagem e reparo de móveis",
-    "Serviços de limpeza de escritórios e empresas",
-    "Serviços de lavanderia e passadoria",
-    "Aluguel de equipamentos e ferramentas",
-    "Guias turísticos independentes",
-    "Venda de artigos de decoração",
-    "Serviços de consultoria em diversas áreas",
-    "Produção e venda de produtos agrícolas",
-    "Serviços de organização e arrumação de ambientes",
-  ];
-
+  const { skilltypes } = useFindJobController();
   return (
     <View className="h-full bg-white">
       <FlatList
-        data={setoresTrabalhoInformal}
+        data={skilltypes.value}
         numColumns={2}
         className="py-12 px-4"
         renderItem={({ item, index }) => (
@@ -82,7 +41,7 @@ const FindJob = () => {
 `}
                 />
               }
-              name={item}
+              name={item?.name}
             />
           </View>
         )}

@@ -5,31 +5,16 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import React, { useCallback } from "react";
+import React from "react";
 
 import BgSvg from "@/src/assets/svg/bg.svg";
 import { Button, Input, OAuthButtons } from "@/src/components";
 import { Formik } from "formik";
 import { SignInValidationSchema } from "@/src/validations";
-import { Api } from "@/src/api";
-import { useNavigation, useRouter } from "expo-router";
-import { User } from "@/src/interfaces";
+import { useSignInController } from "./controller";
 
 const SignIn = () => {
-  const { navigate } = useNavigation();
-  const { replace } = useRouter();
-
-  const handler = useCallback((values: User) => {
-    try {
-      Api.auth.signIn(values).then(({ access_token }) => {
-        if (access_token) {
-          replace("../root/main");
-        }
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+  const { handler, navigate } = useSignInController();
 
   return (
     <ScrollView className="relative flex-1 bg-[#f5f5f5] pb-6">

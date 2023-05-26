@@ -4,23 +4,12 @@ import { JobCard } from "@/src/components";
 
 import FilterSvg from "@/src/assets/svg/filter.svg";
 import MegaphoneSvg from "@/src/assets/svg/megaphone.svg";
+import { useHomeController } from "./controller";
+import { Link } from "expo-router";
 
 const Home = () => {
-  /**
-   * Somente as marcadas em pesquisa
-   */
-  const setoresTrabalhoInformal = [
-    "Todas",
-    "Vendas ambulantes",
-    "Serviços domésticos",
-    "Artesanato",
-    "Reciclagem e coleta de resíduos",
-    "Transporte informal",
-    "Serviços de entrega",
-    "Serviços de construção",
-    "Cuidadores de animais de estimação",
-    "Serviços de beleza",
-  ];
+  const { userSkills } = useHomeController();
+
   return (
     <ScrollView className="flex-1 flex flex-col gap-3 pt-5 bg-[#fafafa]">
       <ScrollView className="bg-white" horizontal>
@@ -28,7 +17,7 @@ const Home = () => {
           <View className="flex items-center justify-center border border-[#f8f8f8] rounded-lg p-2">
             <FilterSvg height={20} fill={"rgb(107,114,128)"} />
           </View>
-          {setoresTrabalhoInformal.map((name, index) => (
+          {userSkills.value.map(({ name, skillType }, index) => (
             <View
               className={`flex items-center justify-center mx-2 py-3 px-4 rounded-lg ${
                 index === 0 ? `bg-primary` : `bg-[#f8f8f8]`
@@ -36,7 +25,7 @@ const Home = () => {
               key={index}
             >
               <Text className={` font-[500] ${index === 0 && `text-white`}`}>
-                {name}
+                {skillType?.name}
               </Text>
             </View>
           ))}
@@ -48,14 +37,15 @@ const Home = () => {
           <Text className="text-[16px]">Queres um biscateiro?</Text>
         </View>
         <View>
-          <TouchableOpacity>
+          <Link href={"/Publication"}>
             <View className="flex flex-row items-center justify-center rounded-full bg-black  px-5 h-[42px]">
               <View className="mr-3">
                 <MegaphoneSvg width={16} fill={"#ffffff"} />
               </View>
+
               <Text className="font-bold text-xs text-white">Publicar</Text>
             </View>
-          </TouchableOpacity>
+          </Link>
         </View>
       </View>
 
