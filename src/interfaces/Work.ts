@@ -1,15 +1,17 @@
 import { Address } from "./Address";
 
 export interface Work {
-  costPerHour: number;
+  costPerHour?: number;
 
-  description: string;
+  description?: string;
 
-  totalTime: number;
+  totalTime?: number;
 
-  time: "HOUR" | "DAY" | "WEEK" | "MONTH" | "YEAR";
+  time?: "HOUR" | "DAY" | "WEEK" | "MONTH" | "YEAR";
 
-  term: string;
+  term?: string;
 
   address?: Address;
+
+  skillTypeId?: number | string;
 }

@@ -1,5 +1,11 @@
 import { useNavigation, useRouter } from "expo-router";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
 
 import { theme } from "@/tailwind.config";
@@ -7,14 +13,6 @@ import { theme } from "@/tailwind.config";
 import Slide1 from "@/src/assets/svg/intro/undraw_coffee_break_h3uu.svg";
 import Slide2 from "@/src/assets/svg/intro/undraw_time_management_re_tk5w.svg";
 import Slide3 from "@/src/assets/svg/intro/undraw_under_construction_-46-pa.svg";
-import { useCallback, useEffect } from "react";
-
-import { save, getValueFor } from "@/src/helper/storage";
-import { Api } from "@/src/api";
-import { useBetterState } from "@/src/hooks/useBetterState";
-import { SplashScreen } from "@/src/components";
-import { useDispatch } from "react-redux";
-import { setCurrentUser } from "@/src/reduxStore/slices/auth";
 import { usePageController } from "./controller";
 
 const slides = [
@@ -42,7 +40,9 @@ export default function Page() {
   const { isReady, navigate, load } = usePageController();
 
   return isReady ? (
-    <SplashScreen onLayout={load} />
+    <View className="flex items-center justify-center flex-1">
+      <ActivityIndicator size={"small"} onLayout={load} />
+    </View>
   ) : (
     <AppIntroSlider
       onLayout={load}

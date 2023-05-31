@@ -7,8 +7,8 @@ export interface InputProps extends TextInputProps {
 export const Input = ({ leftElement, errorMessage, ...args }: InputProps) => {
   return (
     <>
-      <View className="bg-[#f8f8f8] my-2 flex flex-row items-center">
-        {leftElement}
+      <View className="bg-[#f8f8f8] my-2 flex flex-row items-center border border-transparent focus:border focus:rounded-lg focus:border-primary">
+        {leftElement ? <View className="ml-2">{leftElement}</View> : null}
         <TextInput
           placeholderTextColor={"#aeaeae"}
           className="h-12 px-4 w-full rounded-lg"

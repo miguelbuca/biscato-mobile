@@ -10,4 +10,5 @@ export const WorkValidationSchema = yup
     time: yup.string().required("Nome é necessário"),
     term: yup.string().required("Nome é necessário"),
     address: yup.object().required("Nome é necessário"),
+    skillTypeId: yup.number().required("Nome é necessário"),
   });

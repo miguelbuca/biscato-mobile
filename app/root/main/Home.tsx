@@ -17,16 +17,19 @@ const Home = () => {
           <View className="flex items-center justify-center border border-[#f8f8f8] rounded-lg p-2">
             <FilterSvg height={20} fill={"rgb(107,114,128)"} />
           </View>
+          <View
+            className={`flex items-center justify-center ml-2 py-3 px-4 rounded-lg 
+            bg-primary
+            `}
+          >
+            <Text className={` font-[500] text-white`}>Todos</Text>
+          </View>
           {userSkills.value.map(({ name, skillType }, index) => (
             <View
-              className={`flex items-center justify-center mx-2 py-3 px-4 rounded-lg ${
-                index === 0 ? `bg-primary` : `bg-[#f8f8f8]`
-              }`}
+              className={`flex items-center justify-center mx-2 py-3 px-4 rounded-lg bg-[#f8f8f8]`}
               key={index}
             >
-              <Text className={` font-[500] ${index === 0 && `text-white`}`}>
-                {skillType?.name}
-              </Text>
+              <Text className={` font-[500] `}>{skillType?.name}</Text>
             </View>
           ))}
         </View>

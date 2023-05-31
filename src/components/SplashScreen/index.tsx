@@ -1,10 +1,21 @@
-import { View, Text, ViewProps } from "react-native";
+import {
+  View,
+  Text,
+  ImageBackgroundProps,
+  ImageBackground,
+} from "react-native";
 import React from "react";
 
-export const SplashScreen = ({ ...args }: ViewProps) => {
+export const SplashScreen = ({
+  ...args
+}: Omit<ImageBackgroundProps, "source">) => {
   return (
-    <View className="flex flex-1 items-center justify-center" {...args}>
-      <Text>SplashScreen</Text>
-    </View>
+    <ImageBackground
+      source={require("@/src/assets/splash.png")}
+      style={{
+        flex: 1,
+      }}
+      {...args}
+    />
   );
 };
