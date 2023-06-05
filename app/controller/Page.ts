@@ -39,6 +39,7 @@ export const usePageController = () => {
       isReady.value = true;
     }, 1000);
   }, []);
+
   return {
     navigate,
     load,

@@ -39,7 +39,7 @@ const slides = [
 export default function Page() {
   const { isReady, navigate, load } = usePageController();
 
-  return isReady.value ? (
+  return !isReady.value ? (
     <View className="flex items-center justify-center flex-1">
       <ActivityIndicator size={"small"} onLayout={load} />
     </View>

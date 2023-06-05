@@ -1,4 +1,10 @@
-import { View, Text, ScrollView, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  RefreshControl,
+} from "react-native";
 import React from "react";
 import { JobCard } from "@/src/components";
 
@@ -8,10 +14,15 @@ import { useHomeController } from "./controller";
 import { Link } from "expo-router";
 
 const Home = () => {
-  const { userSkills } = useHomeController();
+  const { userSkills, works, refreshing, load } = useHomeController();
 
   return (
-    <ScrollView className="flex-1 flex flex-col gap-3 pt-5 bg-[#fafafa]">
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={refreshing.value} onRefresh={load} />
+      }
+      className="flex-1 flex flex-col gap-3 pt-5 bg-[#fafafa]"
+    >
       <ScrollView className="bg-white" horizontal>
         <View className="flex flex-row p-4">
           <View className="flex items-center justify-center border border-[#f8f8f8] rounded-lg p-2">
@@ -59,8 +70,12 @@ const Home = () => {
           </Text>
         </View>
         <View>
-          {["", "", "", ""].map((_, index) => (
-            <JobCard key={index} />
+          {works.value.map((item, index, arr) => (
+            <JobCard
+              key={index}
+              data={item}
+              isLastChild={index + 1 === arr.length}
+            />
           ))}
         </View>
       </View>
