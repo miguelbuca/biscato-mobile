@@ -1,10 +1,4 @@
-import {
-  View,
-  Text,
-  ScrollView,
-  KeyboardAvoidingView,
-  Platform,
-} from "react-native";
+import { View, Text } from "react-native";
 import React from "react";
 import { usePublicationController } from "./controller/Publication";
 import { Formik } from "formik";
@@ -14,27 +8,29 @@ import { Button, Input, Select } from "@/src/components";
 import PencilSvg from "@/src/assets/svg/form/pencil.svg";
 import CostPorHourSvg from "@/src/assets/svg/form/coins.svg";
 import ClockSvg from "@/src/assets/svg/form/clock.svg";
+import UserClockSvg from "@/src/assets/svg/form/user-clock.svg";
 import SkillSvg from "@/src/assets/svg/form/skill.svg";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Publication() {
-  const { skillTypes, handlerCreateWork } = usePublicationController();
+  const { skillTypes, selectedTime, handlerCreateWork } =
+    usePublicationController();
   return (
     <KeyboardAwareScrollView className="flex-1 flex px-2 flex-col gap-3 pt-5 bg-[#fafafa]">
       <View>
         <Formik
-          validationSchema={WorkValidationSchema}
+          //validationSchema={WorkValidationSchema}
           initialValues={{
             costPerHour: undefined,
             description: undefined,
             term: undefined,
-            time: undefined,
+            time: "HOUR",
             totalTime: undefined,
             address: undefined,
             skillTypeId: undefined,
           }}
-          onSubmit={(values) => console.log({ values })}
+          onSubmit={handlerCreateWork}
         >
           {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
             <View>
@@ -54,7 +50,7 @@ export default function Publication() {
                 />
                 <Select
                   placeholder="Habilidade"
-                  value={values.skillTypeId}
+                  value={values.skillTypeId?.toString()}
                   onChange={(value) => {
                     const tm = handleChange("skillTypeId");
 
@@ -96,13 +92,25 @@ export default function Publication() {
                   leftElement={
                     <ClockSvg width={15} height={15} fill={"#aeaeae"} />
                   }
+                  getSelectedLabel={(title) => (selectedTime.value = title)}
                   data={[
-                    { value: "Hora", id: "HOUR" },
-                    { value: "Dia", id: "DAY" },
-                    { value: "Semana", id: "WEEK" },
-                    { value: "Mês", id: "MONTH" },
-                    { value: "Ano", id: "YEAR" },
+                    { value: "Horas", id: "HOUR" },
+                    { value: "Dias", id: "DAY" },
+                    { value: "Semanas", id: "WEEK" },
+                    { value: "Meses", id: "MONTH" },
+                    { value: "Anos", id: "YEAR" },
                   ]}
+                />
+                <Input
+                  placeholder={`Total de ${selectedTime.value}`}
+                  onChangeText={handleChange("totalTime")}
+                  onBlur={handleBlur("totalTime")}
+                  value={`${values?.totalTime || ""}`}
+                  keyboardType="numeric"
+                  errorMessage={errors.totalTime}
+                  leftElement={
+                    <UserClockSvg width={15} height={15} fill={"#aeaeae"} />
+                  }
                 />
               </View>
               <View className="flex flex-col bg-white p-4">

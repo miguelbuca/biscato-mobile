@@ -6,7 +6,7 @@ import {
   Dimensions,
   TextInput,
 } from "react-native";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { Modalize } from "react-native-modalize";
 import { useBetterState } from "@/src/hooks/useBetterState";
 const { height } = Dimensions.get("screen");
@@ -22,10 +22,12 @@ export interface SelectInputProps extends Omit<TextInputProps, "onChange"> {
    */
   fields?: string[];
   keyAsNumber?: boolean;
+  getSelectedLabel?: (title: string) => void;
 }
 export const Select = ({
   leftElement,
   onChange,
+  getSelectedLabel,
   errorMessage,
   selectedId,
   fields = ["id", "value"],
@@ -39,13 +41,21 @@ export const Select = ({
     modalizeRef.current?.open();
   };
 
-  const _value =
-    value &&
-    data.find((item) => {
-      if (!keyAsNumber) {
-        return item?.[fields?.[0]] === value;
-      } else return item?.[fields?.[0]] === parseInt(value);
-    })?.[fields?.[1]];
+  const _value = useMemo(() => {
+    const vl =
+      value &&
+      data.find((item) => {
+        if (!keyAsNumber) {
+          return item?.[fields?.[0]] === value;
+        } else return item?.[fields?.[0]] === parseInt(value);
+      })?.[fields?.[1]];
+
+    return vl;
+  }, [data, value, fields]);
+
+  useEffect(() => {
+    getSelectedLabel?.(value ? _value : value);
+  }, [value, _value]);
 
   return (
     <TouchableOpacity onPress={onOpen}>

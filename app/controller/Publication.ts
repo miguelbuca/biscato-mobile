@@ -5,11 +5,15 @@ import { useCallback, useEffect } from "react";
 
 export const usePublicationController = () => {
   const skillTypes = useBetterState<SkillType[]>([]);
+  const selectedTime = useBetterState<string>("");
   const handlerCreateWork = useCallback(async (values: Work) => {
     try {
-      const { data } = await Api.work.create(values);
-
-      console.log(data);
+      const { data } = await Api.work.create({
+        ...values,
+        costPerHour: parseFloat(`${values.costPerHour}`),
+        skillTypeId: parseInt(`${values.skillTypeId}`),
+        totalTime: parseInt(`${values.totalTime}`),
+      });
     } catch (error) {
       console.log({ error });
     }
@@ -32,6 +36,7 @@ export const usePublicationController = () => {
 
   return {
     skillTypes,
+    selectedTime,
     handlerCreateWork,
   };
 };

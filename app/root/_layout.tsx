@@ -45,9 +45,9 @@ export default function Layout() {
                 <SafeAreaView className="flex flex-col items-center justify-center flex-1 px-[18px]">
                   <View className="mb-2">
                     <Avatar
-                      letters={`${user.firstName?.[0] && user.firstName?.[0]} ${
-                        user.lastName?.[0] && user.lastName?.[0]
-                      }`}
+                      letters={`${
+                        user?.firstName?.[0] && user?.firstName?.[0]
+                      } ${user?.lastName?.[0] && user?.lastName?.[0]}`}
                     />
                   </View>
                   <View
@@ -56,7 +56,7 @@ export default function Layout() {
                     }}
                     className="px-4 py-2 my-4 rounded-full"
                   >
-                    <Text className="text-white font-semibold">{`${user.firstName} ${user.lastName}`}</Text>
+                    <Text className="text-white font-semibold">{`${user?.firstName} ${user?.lastName}`}</Text>
                   </View>
                 </SafeAreaView>
               </View>
