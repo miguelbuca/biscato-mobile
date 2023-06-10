@@ -1,3 +1,5 @@
+import { checkAndConvertColor } from "./colors";
+
 export const format = () => {
   const amount = (value: number) => {
     const options = {
@@ -26,7 +28,10 @@ export const format = () => {
     }[value];
   };
 
+  const colorHex = (value: string) => checkAndConvertColor(value);
+
   return {
+    colorHex,
     time,
     amount,
   };

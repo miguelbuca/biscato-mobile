@@ -7,6 +7,7 @@ import ClockSvg from "@/src/assets/svg/clock.svg";
 import { SkillType, Work } from "@/src/interfaces";
 import { SvgXml } from "react-native-svg";
 import { format } from "@/src/helper/format";
+import { useNavigation } from "expo-router";
 
 export interface JobCardProps {
   data: Work & { skillType?: SkillType };
@@ -14,8 +15,15 @@ export interface JobCardProps {
 }
 
 export const JobCard = ({ data, isLastChild }: JobCardProps) => {
+  const { navigate }: any = useNavigation();
   return (
-    <Pressable>
+    <Pressable
+      onPress={() =>
+        navigate("Work", {
+          ...data,
+        })
+      }
+    >
       <View
         className={`flex flex-col  py-4 ${
           !isLastChild && "border-b border-[#f8f8f8]"
@@ -47,7 +55,7 @@ export const JobCard = ({ data, isLastChild }: JobCardProps) => {
                   <Text className="text-xs">{data.skillType?.name}</Text>
                 </TouchableOpacity>
                 <Text className="text-primary font-semibold">
-                  {format().amount(data.costPerHour || 0)}/hrs
+                  {format().amount(data.costPerHour || 0)}/hr
                 </Text>
               </View>
             </View>

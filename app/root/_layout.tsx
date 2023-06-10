@@ -7,13 +7,8 @@ import { StatusBar } from "expo-status-bar";
 import { Text, View, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { theme } from "@/tailwind.config";
-import { useSelector } from "react-redux";
-import { AuthSelectors } from "@/src/reduxStore/slices/auth";
 
 import MenuSvg from "@/src/assets/svg/menu.svg";
-import { Api } from "@/src/api";
-import { useRouter } from "expo-router";
-import { User } from "@/src/interfaces";
 import { Avatar } from "@/src/components";
 import { useLayoutController } from "./controller";
 

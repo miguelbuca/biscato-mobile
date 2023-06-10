@@ -9,7 +9,7 @@ import { Api } from "@/src/api";
 
 export const usePageController = () => {
   const isReady = useBetterState<boolean>(false);
-  const { navigate } = useNavigation();
+  const { navigate }: any = useNavigation();
   const { replace } = useRouter();
   const dispatch = useDispatch();
 

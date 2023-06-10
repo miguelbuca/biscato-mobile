@@ -18,6 +18,13 @@ export default function Layout() {
           }}
           name="Publication"
         />
+        <Stack.Screen
+          options={{
+            title: "Publicar trabalho",
+            headerShown: true,
+          }}
+          name="Work"
+        />
       </Stack>
       <StatusBar style="dark" />
     </Provider>
