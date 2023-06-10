@@ -4,11 +4,12 @@ import * as yup from "yup";
 export const WorkValidationSchema = yup
   .object()
   .shape<Record<keyof Work, yup.AnySchema>>({
-    costPerHour: yup.number().required("Nome é necessário"),
-    description: yup.string().required("Nome é necessário"),
-    totalTime: yup.number().required("Nome é necessário"),
-    time: yup.string().required("Nome é necessário"),
-    term: yup.string().required("Nome é necessário"),
-    address: yup.object().required("Nome é necessário"),
-    skillTypeId: yup.number().required("Nome é necessário"),
+    title: yup.string().required("Título é necessário"),
+    costPerHour: yup.number().required("Custo por hora é necessário"),
+    description: yup.string(),
+    totalTime: yup.number().required("Tempo total é necessário"),
+    time: yup.string().required("Duração é necessário"),
+    term: yup.string(),
+    address: yup.object(),
+    skillTypeId: yup.number().required("Habilidade é necessário"),
   });

@@ -1,6 +1,8 @@
 import { Address } from "./Address";
 
 export interface Work {
+  title?: string;
+
   costPerHour?: number;
 
   description?: string;

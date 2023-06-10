@@ -20,8 +20,9 @@ export default function Publication() {
     <KeyboardAwareScrollView className="flex-1 flex px-2 flex-col gap-3 pt-5 bg-[#fafafa]">
       <View>
         <Formik
-          //validationSchema={WorkValidationSchema}
+          validationSchema={WorkValidationSchema}
           initialValues={{
+            title: undefined,
             costPerHour: undefined,
             description: undefined,
             term: undefined,
@@ -35,15 +36,15 @@ export default function Publication() {
           {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
             <View>
               <View className="flex flex-col bg-white mt-2 p-4 mb-8">
-                {/*<Text className="text-base font-semibold text-gray-500 mb-5">
-                Dados
-              </Text>*/}
+                <Text className="text-base font-semibold text-gray-500 mb-5">
+                  Dados
+                </Text>
                 <Input
                   placeholder="Título, nome..."
-                  onChangeText={handleChange("description")}
-                  onBlur={handleBlur("description")}
-                  value={`${values?.description || ""}`}
-                  errorMessage={errors.description}
+                  onChangeText={handleChange("title")}
+                  onBlur={handleBlur("title")}
+                  value={`${values?.title || ""}`}
+                  errorMessage={errors.title}
                   leftElement={
                     <PencilSvg width={15} height={15} fill={"#aeaeae"} />
                   }
@@ -111,6 +112,19 @@ export default function Publication() {
                   leftElement={
                     <UserClockSvg width={15} height={15} fill={"#aeaeae"} />
                   }
+                />
+              </View>
+              <View className="flex flex-col bg-white p-4">
+                <Text className="text-base font-semibold text-gray-500 mb-5">
+                  Descrição
+                </Text>
+                <Input
+                  placeholder="Escrever..."
+                  onChangeText={handleChange("description")}
+                  onBlur={handleBlur("description")}
+                  value={`${values?.description || ""}`}
+                  multiline
+                  className="min-h-[200px] py-4"
                 />
               </View>
               <View className="flex flex-col bg-white p-4">
