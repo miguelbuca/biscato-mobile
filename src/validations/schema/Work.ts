@@ -5,7 +5,7 @@ export const WorkValidationSchema = yup
   .object()
   .shape<Record<keyof Work, yup.AnySchema>>({
     title: yup.string().required("Título é necessário"),
-    costPerHour: yup.number().required("Custo por hora é necessário"),
+    costPerHour: yup.string().required("Custo por hora é necessário"),
     description: yup.string(),
     totalTime: yup.number().required("Tempo total é necessário"),
     time: yup.string().required("Duração é necessário"),

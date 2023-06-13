@@ -75,11 +75,25 @@ export default function Publication() {
                 />
                 <Input
                   placeholder="Valor por hora"
-                  onChangeText={handleChange("costPerHour")}
-                  onBlur={handleBlur("costPerHour")}
-                  value={`${values?.costPerHour || ""}`}
-                  keyboardType="numeric"
                   errorMessage={errors.costPerHour}
+                  currencyProps={{
+                    value: parseFloat(values?.costPerHour?.toString() || "0"),
+                    onBlur: handleBlur("costPerHour"),
+                    onChangeValue: (value) => {
+                      if (!value) return;
+                      const fn = handleChange("costPerHour");
+                      try {
+                        fn(value?.toString());
+                      } catch (error) {
+                        console.log(error);
+                      }
+                    },
+                    suffix: " Kz",
+                    delimiter: ".",
+                    separator: ",",
+                    precision: 2,
+                    minValue: 0,
+                  }}
                   leftElement={
                     <CostPorHourSvg width={15} height={15} fill={"#aeaeae"} />
                   }
