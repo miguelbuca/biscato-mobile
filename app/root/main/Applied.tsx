@@ -14,10 +14,12 @@ const Applied = () => {
             Publicações ({works.state.value.length})
           </Text>
         </View>
-        <ScrollView className="flex flex-row py-4 px-2" horizontal>
-          {works.state.value.map((item, index) => (
-            <PostCard key={index} data={item} />
-          ))}
+        <ScrollView horizontal>
+          <View className="flex flex-row py-4 px-2">
+            {works.state.value.map((item, index) => (
+              <PostCard key={index} data={item} />
+            ))}
+          </View>
         </ScrollView>
       </View>
 

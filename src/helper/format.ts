@@ -28,11 +28,37 @@ export const format = () => {
     }[value];
   };
 
+  const state = (value?: string) => {
+    if (!value) return;
+    return {
+      ACTIVE: "ATIVO",
+      INACTIVE: "INATIVO",
+      AWAY: "AUSENTE",
+      AVAILABLE: "DISPONÍVEL",
+      BUSY: "OCUPADO",
+      OFFLINE: "OFFLINE",
+      ONLINE: "ONLINE",
+      ON_HOLD: "ONLINE",
+      IN_PROGRESS: "EM ANDAMENTO",
+      COMPLETED: "CONCLUÍDO",
+      PENDING: "PENDENTE",
+      PAUSED: "PAUSADO",
+      UNDECIDED: "INDECISO",
+      IN_PROCESS: "EM PROCESSO",
+      UNDER_REVIEW: "EM REVISÃO",
+      CANCELED: "CANCELADO",
+      BLOCKED: "BLOQUEADO",
+      RELEASED: "LIBERADO",
+      UNDER_MAINTENANCE: "EM MANUTENÇÃO",
+    }[value];
+  };
+
   const colorHex = (value: string) => checkAndConvertColor(value);
 
   return {
     colorHex,
     time,
+    state,
     amount,
   };
 };

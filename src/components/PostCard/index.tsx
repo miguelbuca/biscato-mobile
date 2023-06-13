@@ -44,12 +44,12 @@ export const PostCard = ({ data }: PostCardProps) => {
           <View className="flex flex-row gap-x-3 my-1">
             <Text className="font-semibold">Estado</Text>
             <Text
-              className="font-semibold"
+              className="font-semibold text-xs"
               style={{
                 color: data.status === "ACTIVE" ? "green" : "orangered",
               }}
             >
-              {data?.status}
+              {format().state(data?.status)}
             </Text>
           </View>
         </View>
