@@ -18,7 +18,7 @@ export default function Publication() {
   const { skillTypes, selectedTime, handlerCreateWork } =
     usePublicationController();
   return (
-    <KeyboardAwareScrollView className="flex-1 flex px-2 flex-col gap-3 pt-5 bg-[#fafafa]">
+    <KeyboardAwareScrollView className="flex-1 flex flex-col gap-3 pt-5 bg-[#fafafa]">
       <View>
         <Formik
           validationSchema={WorkValidationSchema}

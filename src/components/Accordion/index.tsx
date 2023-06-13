@@ -21,7 +21,7 @@ export const Accordion = ({
     <View className="flex flex-col bg-white" {...args}>
       <Pressable
         onPress={() => (display.value = !display.value)}
-        className="flex flex-row justify-between p-4"
+        className="flex flex-row justify-between p-4 px-6"
       >
         <Text className="text-base font-semibold text-gray-500 my-2">
           {title}
@@ -38,7 +38,7 @@ export const Accordion = ({
           )}
         </View>
       </Pressable>
-      {display.value && <View className="p-4 pt-0">{children}</View>}
+      {display.value && <View className="p-4 px-6 pt-0">{children}</View>}
     </View>
   );
 };

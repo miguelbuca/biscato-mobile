@@ -13,7 +13,7 @@ export default function Layout() {
       >
         <Stack.Screen
           options={{
-            title: "Publicar trabalho",
+            title: "Publicar biscato",
             headerShown: true,
           }}
           name="Publication"

@@ -1,12 +1,18 @@
-import { View, Text, ViewProps } from "react-native";
+import { View, Text, ViewProps, StyleProp, TextStyle } from "react-native";
 import React from "react";
 
 export interface AvatarProps extends ViewProps {
   letters: string;
   image?: string;
+  fontStyles?: StyleProp<TextStyle>;
 }
 
-export const Avatar = ({ image, letters, ...args }: AvatarProps) => {
+export const Avatar = ({
+  image,
+  fontStyles,
+  letters,
+  ...args
+}: AvatarProps) => {
   return (
     <View
       style={{
@@ -16,7 +22,9 @@ export const Avatar = ({ image, letters, ...args }: AvatarProps) => {
       {...args}
     >
       {!image ? (
-        <Text className="text-xl font-bold">{letters}</Text>
+        <Text style={fontStyles} className="text-xl font-bold">
+          {letters}
+        </Text>
       ) : (
         <Text>image</Text>
       )}

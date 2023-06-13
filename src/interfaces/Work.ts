@@ -1,4 +1,6 @@
 import { Address } from "./Address";
+import { Contract } from "./Contract";
+import { User } from "./User";
 
 export interface Work {
   title?: string;
@@ -16,4 +18,8 @@ export interface Work {
   address?: Address;
 
   skillTypeId?: number | string;
+
+  contract?: Contract;
+
+  user?: User;
 }

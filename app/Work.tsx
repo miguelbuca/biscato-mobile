@@ -1,26 +1,31 @@
-import { View, Text, Dimensions } from "react-native";
+import { View, Text, Dimensions, TouchableOpacity } from "react-native";
 import React from "react";
 import { useWorkController } from "./controller/Work";
 import { StatusBar } from "expo-status-bar";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import BgSvg from "@/src/assets/svg/bg.svg";
+import MapPinSvg from "@/src/assets/svg/map-pin.svg";
+import VerifiedSvg from "@/src/assets/svg/verified.svg";
+
 import { SvgXml } from "react-native-svg";
 import normalize from "@/src/helper/normalize";
 import { BlurView } from "expo-blur";
 import { format } from "@/src/helper/format";
-import { Button } from "@/src/components";
+import { Accordion, Button } from "@/src/components";
 
 const { width, height } = Dimensions.get("screen");
 
 export default function Work() {
-  const { params } = useWorkController();
+  const { params, scrollRef } = useWorkController();
+
   return (
     <>
       <StatusBar style="light" />
       <View className={`flex-1`}>
         <KeyboardAwareScrollView
           bounces={false}
+          ref={scrollRef}
           className="flex-1 flexflex-col"
         >
           <View
@@ -71,7 +76,7 @@ export default function Work() {
               </View>
             </View>
             <BlurView
-              className="flex flex-row items-center justify-between p-2"
+              className="flex flex-row items-center justify-between p-2 px-4"
               intensity={30}
               tint="dark"
             >
@@ -79,6 +84,9 @@ export default function Work() {
                 <Button
                   style={{
                     backgroundColor: "#fff",
+                  }}
+                  onPress={() => {
+                    scrollRef.current && scrollRef?.current.scrollToEnd(true);
                   }}
                 >
                   <Text
@@ -111,8 +119,89 @@ export default function Work() {
               </View>
             </BlurView>
           </View>
-          <View>
-            <Text>test</Text>
+          <View className="flex flex-col p-4 my-8">
+            <View className="flex flex-row items-center gap-x-3 mb-10">
+              <View className="flex-1 flex-col">
+                <View className="flex flex-row items-center">
+                  <Text className="font-bold text-[12px]">{`${params?.user?.firstName} ${params?.user?.lastName}`}</Text>
+                  <View className="flex items-center ml-1 rounded-full">
+                    <VerifiedSvg height={20} width={20} />
+                  </View>
+                </View>
+                <View>
+                  <Text className="text-xs text-gray-500">Contratante</Text>
+                </View>
+              </View>
+              <View>
+                <TouchableOpacity>
+                  <View
+                    style={{
+                      backgroundColor: "rgba(0,0,0,0.06)",
+                    }}
+                    className="flex flex-row items-center justify-center p-2 rounded-lg"
+                  >
+                    <View className="mr-1">
+                      <MapPinSvg
+                        height={12}
+                        width={12}
+                        fill={params.skillType?.background}
+                      />
+                    </View>
+                    <Text
+                      style={{
+                        color: params.skillType?.background,
+                      }}
+                      className="text-xs"
+                    >
+                      Mostrar endereço
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            </View>
+            {params.description && (
+              <Accordion
+                style={{
+                  borderRadius: normalize(8),
+                  marginBottom: normalize(15),
+                }}
+                title="Descrição"
+                isOpen
+              >
+                <Text>{params.description}</Text>
+              </Accordion>
+            )}
+            {params.term && (
+              <Accordion
+                style={{
+                  borderRadius: normalize(8),
+                  marginBottom: normalize(15),
+                }}
+                title="Termos e condições"
+              >
+                <Text>{params.term}</Text>
+              </Accordion>
+            )}
+            <View className="flex items-center justify- my-4">
+              <Text className="text-gray-400">(94) candidaturas</Text>
+            </View>
+            <View>
+              <Button
+                style={{
+                  backgroundColor: "#fff",
+                }}
+                onPress={() => {}}
+              >
+                <Text
+                  style={{
+                    color: params.skillType?.background,
+                  }}
+                  className="text-black text-base font-medium"
+                >
+                  Enviar candidatura
+                </Text>
+              </Button>
+            </View>
           </View>
         </KeyboardAwareScrollView>
       </View>
