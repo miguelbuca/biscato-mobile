@@ -1,5 +1,6 @@
 import { Address } from "./Address";
 import { Contract } from "./Contract";
+import { SkillType } from "./SkillType";
 import { User } from "./User";
 
 export interface Work {
@@ -22,4 +23,8 @@ export interface Work {
   contract?: Contract;
 
   user?: User;
+
+  skillType?: SkillType;
+
+  status?: StatusType;
 }

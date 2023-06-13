@@ -10,7 +10,7 @@ import { format } from "@/src/helper/format";
 import { useNavigation } from "expo-router";
 
 export interface JobCardProps {
-  data: Work & { skillType?: SkillType };
+  data: Work;
   isLastChild?: boolean;
 }
 
