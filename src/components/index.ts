@@ -7,3 +7,4 @@ export * from "./OAuthButtons";
 export * from "./SplashScreen";
 export * from "./Avatar";
 export * from "./Select";
+export * from "./Accordion";

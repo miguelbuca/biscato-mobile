@@ -3,7 +3,7 @@ import React from "react";
 import { usePublicationController } from "./controller/Publication";
 import { Formik } from "formik";
 import { WorkValidationSchema } from "@/src/validations";
-import { Button, Input, Select } from "@/src/components";
+import { Accordion, Button, Input, Select } from "@/src/components";
 
 import PencilSvg from "@/src/assets/svg/form/pencil.svg";
 import CostPorHourSvg from "@/src/assets/svg/form/coins.svg";
@@ -12,6 +12,7 @@ import UserClockSvg from "@/src/assets/svg/form/user-clock.svg";
 import SkillSvg from "@/src/assets/svg/form/skill.svg";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { SafeAreaView } from "react-native-safe-area-context";
+import normalize from "@/src/helper/normalize";
 
 export default function Publication() {
   const { skillTypes, selectedTime, handlerCreateWork } =
@@ -35,10 +36,13 @@ export default function Publication() {
         >
           {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
             <View>
-              <View className="flex flex-col bg-white mt-2 p-4 mb-8">
-                <Text className="text-base font-semibold text-gray-500 mb-5">
-                  Dados
-                </Text>
+              <Accordion
+                title="Dados"
+                isOpen={true}
+                style={{
+                  marginBottom: normalize(15),
+                }}
+              >
                 <Input
                   placeholder="Título, nome..."
                   onChangeText={handleChange("title")}
@@ -113,24 +117,24 @@ export default function Publication() {
                     <UserClockSvg width={15} height={15} fill={"#aeaeae"} />
                   }
                 />
-              </View>
-              <View className="flex flex-col bg-white p-4">
-                <Text className="text-base font-semibold text-gray-500 mb-5">
-                  Descrição
-                </Text>
+              </Accordion>
+
+              <Accordion
+                style={{
+                  marginBottom: normalize(15),
+                }}
+                title="Descrição"
+              >
                 <Input
                   placeholder="Escrever..."
                   onChangeText={handleChange("description")}
                   onBlur={handleBlur("description")}
                   value={`${values?.description || ""}`}
                   multiline
-                  className="min-h-[200px] py-4"
+                  className="min-h-[200px] py-2"
                 />
-              </View>
-              <View className="flex flex-col bg-white p-4">
-                <Text className="text-base font-semibold text-gray-500 mb-5">
-                  Termos e condições
-                </Text>
+              </Accordion>
+              <Accordion title="Termos e condições">
                 <Input
                   placeholder="Escrever..."
                   onChangeText={handleChange("term")}
@@ -139,7 +143,7 @@ export default function Publication() {
                   multiline
                   className="min-h-[200px] py-4"
                 />
-              </View>
+              </Accordion>
 
               <SafeAreaView className="px-4">
                 <Button

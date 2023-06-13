@@ -27,6 +27,8 @@ const Layout = () => {
           tabBarLabelStyle: {
             fontWeight: "800",
           },
+          unmountOnBlur: true,
+          freezeOnBlur: true,
           headerLeft: () => (
             <TouchableOpacity onPress={(navigation as any).toggleDrawer}>
               <View className="relative flex items-start justify-center p-4">

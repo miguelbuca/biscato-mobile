@@ -7,7 +7,7 @@
     "name": "biscato",
     "slug": "Biscato",
     "extra": {
-      "api": "http://192.168.1.102:3333"
+      "api": "http://192.168.1.100:3333"
     },
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
