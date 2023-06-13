@@ -138,7 +138,7 @@ export default function Work() {
                     style={{
                       backgroundColor: "rgba(0,0,0,0.06)",
                     }}
-                    className="flex flex-row items-center justify-center p-2 rounded-lg"
+                    className="flex flex-row items-center justify-center p-3 rounded-lg"
                   >
                     <View className="mr-1">
                       <MapPinSvg
