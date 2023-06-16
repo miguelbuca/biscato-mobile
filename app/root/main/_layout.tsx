@@ -83,12 +83,14 @@ const Layout = () => {
       <Tabs.Screen
         options={{
           title: "Candidaturas",
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ focused, color, size }) => (
             <View className="relative">
               <JobSvg height={size - SUB_VALUE} fill={color} />
-              <View className="absolute w-[15px] h-[15px] rounded-full items-center justify-center bg-primary -top-[5px] -right-1.5">
-                <Text className="text-[10px] text-white">2</Text>
-              </View>
+              {!focused && (
+                <View className="absolute w-[15px] h-[15px] rounded-full items-center justify-center bg-primary -top-[5px] -right-1.5">
+                  <Text className="text-[10px] text-white">2</Text>
+                </View>
+              )}
             </View>
           ),
         }}
