@@ -10,6 +10,7 @@ export interface ButtonProps extends TouchableOpacityProps {
   leftElement?: JSX.Element;
   className?: string;
   textClassName?: string;
+  shadow?: boolean;
 }
 export const Button = ({
   leftElement,
@@ -17,19 +18,24 @@ export const Button = ({
   style,
   className,
   textClassName,
+  shadow = true,
   title,
   ...args
 }: ButtonProps) => {
   return (
     <>
       <TouchableOpacity
-        style={{
-          shadowColor: "#000",
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.2,
-          shadowRadius: 2,
-          elevation: 2,
-        }}
+        style={
+          shadow
+            ? {
+                shadowColor: "#000",
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.2,
+                shadowRadius: 2,
+                elevation: 2,
+              }
+            : undefined
+        }
         {...args}
       >
         <View

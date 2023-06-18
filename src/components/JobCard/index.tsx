@@ -11,6 +11,7 @@ import { useNavigation } from "expo-router";
 import { Button } from "../Button";
 
 import TrashSvg from "@/src/assets/svg/trash.svg";
+import PhoneSvg from "@/src/assets/svg/phone.svg";
 
 export interface JobCardProps {
   data?: Work;
@@ -72,16 +73,23 @@ export const JobCard = ({ data, isLastChild, isApplied }: JobCardProps) => {
               <TrashSvg height={15} width={15} fill={"rgb(220,38,38)"} />
               <Text className="ml-1 text-red-600 font-bold">Excluir</Text>
             </Pressable>
-            <View>
-              <Button className="my-0  max-h-[40px]" title="Denunciar" />
-            </View>
-            <View className="ml-2">
+            <View className="mr-2">
               <Button
-                style={{
-                  backgroundColor: data?.skillType?.background,
-                }}
-                className="my-0  max-h-[40px]"
+                className="my-0 bg-white max-h-[40px]"
                 title="Chat"
+                textClassName="text-primary"
+              />
+            </View>
+            <View>
+              <Button
+                className="my-0 bg-white max-h-[40px]"
+                title="Denunciar"
+                textClassName="text-black"
+                leftElement={
+                  <View className="mr-1">
+                    <PhoneSvg height={12} width={12} fill={"black"} />
+                  </View>
+                }
               />
             </View>
           </View>

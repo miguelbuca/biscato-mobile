@@ -14,11 +14,7 @@ export const useWorkController = () => {
 
   const handlerCreateApplication = useCallback(async () => {
     try {
-      console.log("chegou", params.id, user.id, params.id === user.id);
-
-      if (!params.id || params.id === user.id) return;
-
-      console.log("chegou");
+      if (!params?.id || params.user?.id === user.id) return;
 
       const { data } = await Api.application.create({
         workId: params.id,

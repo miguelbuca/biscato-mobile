@@ -10,7 +10,7 @@ export interface PostCardProps {
 
 export const PostCard = ({ data }: PostCardProps) => {
   return (
-    <View className="flex flex-col border border-gray-100 rounded-lg p-4  min-h-[220px] min-w-[300px] mx-2">
+    <View className="flex flex-col border border-gray-100 rounded-lg p-4  min-h-[220px] w-[300px] mx-2">
       <View className="flex flex-col flex-1 pb-2">
         <View className="flex flex-row gap-x-3 items-center">
           <View>
@@ -25,7 +25,7 @@ export const PostCard = ({ data }: PostCardProps) => {
           </View>
           <View className="flex flex-col">
             <View>
-              <Text className="font-black">{data.title}</Text>
+              <Text className="font-black max-w-[200px]">{data.title}</Text>
             </View>
             <View>
               <Text className="text-xs mt-1">{data.skillType?.name}</Text>
