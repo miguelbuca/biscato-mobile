@@ -4,18 +4,23 @@ import React from "react";
 import MapPinSvg from "@/src/assets/svg/map-pin.svg";
 import JobSvg from "@/src/assets/svg/job.svg";
 import ClockSvg from "@/src/assets/svg/clock.svg";
-import { SkillType, Work } from "@/src/interfaces";
+import { Work } from "@/src/interfaces";
 import { SvgXml } from "react-native-svg";
 import { format } from "@/src/helper/format";
 import { useNavigation } from "expo-router";
+import { Button } from "../Button";
+
+import TrashSvg from "@/src/assets/svg/trash.svg";
 
 export interface JobCardProps {
-  data: Work;
+  data?: Work;
   isLastChild?: boolean;
+  isApplied?: boolean;
 }
 
-export const JobCard = ({ data, isLastChild }: JobCardProps) => {
+export const JobCard = ({ data, isLastChild, isApplied }: JobCardProps) => {
   const { navigate }: any = useNavigation();
+
   return (
     <Pressable
       onPress={() =>
@@ -32,13 +37,13 @@ export const JobCard = ({ data, isLastChild }: JobCardProps) => {
         <View className="flex flex-row mb-5">
           <View
             style={{
-              backgroundColor: data.skillType?.background,
+              backgroundColor: data?.skillType?.background,
             }}
             className="flex items-center justify-center w-14 h-14 rounded-lg"
           >
-            {data.skillType?.svgXml && (
+            {data?.skillType?.svgXml && (
               <SvgXml
-                xml={data.skillType.svgXml}
+                xml={data?.skillType.svgXml}
                 width={24}
                 height={24}
                 fill={"#ffffff"}
@@ -48,24 +53,44 @@ export const JobCard = ({ data, isLastChild }: JobCardProps) => {
           <View className="flex flex-col flex-1">
             <View className="ml-2 flex-1">
               <View className="flex justify-center flex-1">
-                <Text className="text-[16px] font-semibold">{data.title}</Text>
+                <Text className="text-[16px] font-semibold">{data?.title}</Text>
               </View>
               <View className="flex flex-row justify-between">
                 <TouchableOpacity>
-                  <Text className="text-xs">{data.skillType?.name}</Text>
+                  <Text className="text-xs">{data?.skillType?.name}</Text>
                 </TouchableOpacity>
                 <Text className="text-primary font-semibold">
-                  {format().amount(data.costPerHour || 0)}/hr
+                  {format().amount(data?.costPerHour || 0)}/hr
                 </Text>
               </View>
             </View>
           </View>
         </View>
+        {isApplied && (
+          <View className="flex items-center justify-end flex-row mb-4 px-2 rounded-lg pt-2 bg-[#f8f8f8]">
+            <Pressable className="flex-1 flex-row items-center">
+              <TrashSvg height={15} width={15} fill={"rgb(220,38,38)"} />
+              <Text className="ml-1 text-red-600 font-bold">Excluir</Text>
+            </Pressable>
+            <View>
+              <Button className="my-0  max-h-[40px]" title="Denunciar" />
+            </View>
+            <View className="ml-2">
+              <Button
+                style={{
+                  backgroundColor: data?.skillType?.background,
+                }}
+                className="my-0  max-h-[40px]"
+                title="Chat"
+              />
+            </View>
+          </View>
+        )}
         <View className="flex flex-row justify-between">
           <View className="flex flex-row items-center">
             <MapPinSvg height={14} fill={"rgb(107,114,128)"} />
             <Text className="text-xs font-semibold text-gray-500">
-              {data.address ? data.address.name : "Não definido"}
+              {data?.address ? data?.address.name : "Não definido"}
             </Text>
           </View>
           <View className="flex flex-row items-center">
@@ -77,7 +102,7 @@ export const JobCard = ({ data, isLastChild }: JobCardProps) => {
           <View className="flex flex-row items-center">
             <ClockSvg width={14} height={14} fill={"rgb(107,114,128)"} />
             <Text className="ml-2 text-xs font-semibold text-gray-500">
-              {data.totalTime}
+              {data?.totalTime}
             </Text>
           </View>
         </View>

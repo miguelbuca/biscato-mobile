@@ -1,17 +1,25 @@
 import { Api } from "@/src/api";
-import { SkillType, Work } from "@/src/interfaces";
+import { SkillType, User, Work } from "@/src/interfaces";
+import { AuthSelectors } from "@/src/reduxStore/slices/auth";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { useCallback, useEffect, useRef } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useSelector } from "react-redux";
 
 export const useWorkController = () => {
   const navigation = useNavigation();
+  const user: User = useSelector(AuthSelectors)?.user;
   const scrollRef = useRef<KeyboardAwareScrollView>(null);
   const params: Work & { skillType?: SkillType } = useLocalSearchParams();
 
   const handlerCreateApplication = useCallback(async () => {
     try {
-      if (!params.id) return;
+      console.log("chegou", params.id, user.id, params.id === user.id);
+
+      if (!params.id || params.id === user.id) return;
+
+      console.log("chegou");
+
       const { data } = await Api.application.create({
         workId: params.id,
       });

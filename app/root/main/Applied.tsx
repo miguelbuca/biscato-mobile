@@ -1,38 +1,50 @@
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, RefreshControl } from "react-native";
 import React from "react";
 import { JobCard, PostCard } from "@/src/components";
 import { useAppliedController } from "./controller/Applied";
 
 const Applied = () => {
-  const { works } = useAppliedController();
+  const { works, applications, refreshing, load } = useAppliedController();
 
   return (
-    <ScrollView className="flex-1 flex flex-col gap-3 pt-5 bg-[#fafafa]">
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={refreshing.value} onRefresh={load} />
+      }
+      className="flex-1 flex flex-col gap-3 pt-5 bg-[#fafafa]"
+    >
       <View className="flex flex-col bg-white">
         <View className="p-4">
           <Text className="text-base font-semibold text-gray-500">
             Publicações ({works.state.value.length})
           </Text>
         </View>
-        <ScrollView horizontal>
-          <View className="flex flex-row py-4 px-2">
-            {works.state.value.map((item, index) => (
-              <PostCard key={index} data={item} />
-            ))}
-          </View>
-        </ScrollView>
+        {works.state.value.length > 0 && (
+          <ScrollView horizontal>
+            <View className="flex flex-row py-4 px-2">
+              {works.state.value.map((item, index) => (
+                <PostCard key={index} data={item} />
+              ))}
+            </View>
+          </ScrollView>
+        )}
       </View>
 
       <View className="flex flex-col bg-white p-4 mb-8">
-        <View className="mb-5">
+        <View>
           <Text className="text-base font-semibold text-gray-500">
             Minhas candidaturas
           </Text>
         </View>
-        <View>
-          {/*["", "", ""].map((_, index) => (
-            <JobCard key={index} />
-          ))*/}
+        <View className="mb-t">
+          {applications.state.value.map((item, index, arr) => (
+            <JobCard
+              key={index}
+              data={item.work}
+              isLastChild={index + 1 === arr.length}
+              isApplied
+            />
+          ))}
         </View>
       </View>
     </ScrollView>
