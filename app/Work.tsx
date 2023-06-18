@@ -17,7 +17,7 @@ import { Accordion, Button } from "@/src/components";
 const { width, height } = Dimensions.get("screen");
 
 export default function Work() {
-  const { params, scrollRef } = useWorkController();
+  const { params, scrollRef, handlerCreateApplication } = useWorkController();
 
   return (
     <>
@@ -190,7 +190,7 @@ export default function Work() {
                 style={{
                   backgroundColor: "#fff",
                 }}
-                onPress={() => {}}
+                onPress={handlerCreateApplication}
               >
                 <Text
                   style={{

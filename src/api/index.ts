@@ -1,4 +1,5 @@
 import {
+  ApplicationFunction,
   AuthFunction,
   SkillFunction,
   SkillTypeFunction,
@@ -19,4 +20,5 @@ export const Api = {
   skillType: SkillTypeFunction(axios),
   skill: SkillFunction(axios),
   work: WorkFunction(axios),
+  application: ApplicationFunction(axios),
 };
