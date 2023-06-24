@@ -20,6 +20,13 @@ export default function Layout() {
         />
         <Stack.Screen
           options={{
+            title: "Localização",
+            headerShown: true,
+          }}
+          name="Location"
+        />
+        <Stack.Screen
+          options={{
             title: "Publicar trabalho",
             headerShown: true,
           }}

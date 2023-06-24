@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import React from "react";
 import { usePublicationController } from "./controller/Publication";
 import { Formik } from "formik";
@@ -15,8 +15,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import normalize from "@/src/helper/normalize";
 
 export default function Publication() {
-  const { skillTypes, selectedTime, handlerCreateWork } =
-    usePublicationController();
+  const { skillTypes, selectedTime, route } = usePublicationController();
   return (
     <KeyboardAwareScrollView className="flex-1 flex flex-col gap-3 pt-5 bg-[#fafafa]">
       <View>
@@ -32,7 +31,12 @@ export default function Publication() {
             address: undefined,
             skillTypeId: undefined,
           }}
-          onSubmit={handlerCreateWork}
+          onSubmit={(params) => {
+            route.push({
+              params,
+              pathname: "./Location",
+            });
+          }}
         >
           {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
             <View>
@@ -55,7 +59,7 @@ export default function Publication() {
                 />
                 <Select
                   placeholder="Habilidade"
-                  value={values.skillTypeId?.toString()}
+                  value={values.skillTypeId}
                   onChange={(value) => {
                     const tm = handleChange("skillTypeId");
 
@@ -77,7 +81,7 @@ export default function Publication() {
                   placeholder="Valor por hora"
                   errorMessage={errors.costPerHour}
                   currencyProps={{
-                    value: parseFloat(values?.costPerHour?.toString() || "0"),
+                    value: parseFloat(values?.costPerHour || "0"),
                     onBlur: handleBlur("costPerHour"),
                     onChangeValue: (value) => {
                       if (!value) return;
@@ -163,7 +167,7 @@ export default function Publication() {
                 <Button
                   className="mb-5"
                   onPress={() => handleSubmit()}
-                  title="Finalizar"
+                  title="Próximo"
                 />
               </SafeAreaView>
             </View>

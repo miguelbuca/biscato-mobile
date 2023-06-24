@@ -1,23 +1,13 @@
 import { Api } from "@/src/api";
 import { useBetterState } from "@/src/hooks/useBetterState";
 import { SkillType, Work } from "@/src/interfaces";
+import { useRouter } from "expo-router";
 import { useCallback, useEffect } from "react";
 
 export const usePublicationController = () => {
+  const route = useRouter();
   const skillTypes = useBetterState<SkillType[]>([]);
   const selectedTime = useBetterState<string>("");
-  const handlerCreateWork = useCallback(async (values: Work) => {
-    try {
-      const { data } = await Api.work.create({
-        ...values,
-        costPerHour: parseFloat(`${values.costPerHour}`),
-        skillTypeId: parseInt(`${values.skillTypeId}`),
-        totalTime: parseInt(`${values.totalTime}`),
-      });
-    } catch (error) {
-      console.log({ error });
-    }
-  }, []);
 
   const loadSkillType = useCallback(async () => {
     try {
@@ -35,8 +25,8 @@ export const usePublicationController = () => {
   useEffect(laod, []);
 
   return {
+    route,
     skillTypes,
     selectedTime,
-    handlerCreateWork,
   };
 };
