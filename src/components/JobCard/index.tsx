@@ -95,19 +95,27 @@ export const JobCard = ({ data, isLastChild, isApplied }: JobCardProps) => {
           </View>
         )}
         <View className="flex flex-row justify-between">
-          <View className="flex flex-row items-center">
+          <View className="flex flex-row items-center w-[33.333333%]">
             <MapPinSvg height={14} fill={"rgb(107,114,128)"} />
-            <Text className="text-xs font-semibold text-gray-500">
+            <Text
+              style={{
+                maxHeight: 42,
+                overflow: "hidden",
+              }}
+              numberOfLines={3}
+              ellipsizeMode="tail"
+              className="text-xs font-semibold text-gray-500"
+            >
               {data?.address ? data?.address.name : "Não definido"}
             </Text>
           </View>
-          <View className="flex flex-row items-center">
+          <View className="flex flex-row items-center w-[33.333333%]">
             <JobSvg height={14} fill={"rgb(107,114,128)"} />
             <Text className="text-xs font-semibold text-gray-500">
               {format().time(data?.time)}
             </Text>
           </View>
-          <View className="flex flex-row items-center">
+          <View className="flex flex-row items-center ">
             <ClockSvg width={14} height={14} fill={"rgb(107,114,128)"} />
             <Text className="ml-2 text-xs font-semibold text-gray-500">
               {data?.totalTime}
