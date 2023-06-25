@@ -1,4 +1,5 @@
 import {
+  AddressFunction,
   ApplicationFunction,
   AuthFunction,
   GoogleFunction,
@@ -22,6 +23,7 @@ export const Api = {
   skill: SkillFunction(axios),
   work: WorkFunction(axios),
   application: ApplicationFunction(axios),
+  address: AddressFunction(axios),
   external: {
     google: GoogleFunction(
       Constants.default.expoConfig?.extra?.googleMapsApiKey
