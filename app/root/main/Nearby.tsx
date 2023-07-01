@@ -6,6 +6,8 @@ import { useNearbyController } from "./controller";
 const Nearby = () => {
   const { location } = useNearbyController();
 
+  console.log(location.value);
+
   return (
     <View className="flex-1">
       {location.value?.coords ? (

@@ -16,7 +16,7 @@ export const requestLocationPermission = async (
     return;
   }
   let loc: Location.LocationObject;
-  if (/*__DEV__*/ false) {
+  if (__DEV__) {
     loc = {
       coords: {
         accuracy: null,

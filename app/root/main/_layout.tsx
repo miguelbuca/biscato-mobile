@@ -31,7 +31,7 @@ const Layout = () => {
           freezeOnBlur: true,
           headerLeft: () => (
             <TouchableOpacity onPress={(navigation as any).toggleDrawer}>
-              <View className="relative flex items-start justify-center p-4">
+              <View className="relative flex items-start justify-center p-4 -z-1">
                 <MenuSvg height={22} fill={"black"} />
               </View>
             </TouchableOpacity>
