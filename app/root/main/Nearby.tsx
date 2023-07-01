@@ -4,9 +4,9 @@ import MapView, { Callout, Marker } from "react-native-maps";
 import { useNearbyController } from "./controller";
 
 const Nearby = () => {
-  const { location } = useNearbyController();
+  const { location, nearbyWorkLocations } = useNearbyController();
 
-  console.log(location.value);
+  console.log({ nearbyWorkLocations });
 
   return (
     <View className="flex-1">

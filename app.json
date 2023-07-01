@@ -8,8 +8,23 @@
     "slug": "Biscato",
     "extra": {
       "api": "http://192.168.1.103:3333",
-      "googleMapsApiKey": "AIzaSyDeFBpUIxx87XSm93WCV7zgVTY0yFf7R6A"
+      "googleMapsApiKey": "AIzaSyDeFBpUIxx87XSm93WCV7zgVTY0yFf7R6A",
+      "eas": {
+        "projectId": "410c6f3a-9c15-4963-9a19-e0f3cd24ecef"
+      }
     },
+    "ios": {
+      "bundleIdentifier": "com.biscato.app",
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.biscato.app"
+    },
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
     "splash": {
@@ -32,6 +47,16 @@
         "wasm",
         "svg"
       ]
-    }
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "flipper": true
+          }
+        }
+      ]
+    ]
   }
 }

@@ -35,6 +35,7 @@ export const requestLocationPermission = async (
       distanceInterval: 5000,
     });
   }
+
   callback && callback(loc, null);
   return loc;
 };
