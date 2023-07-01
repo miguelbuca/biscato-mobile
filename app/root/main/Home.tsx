@@ -23,7 +23,11 @@ const Home = () => {
       }
       className="flex-1 flex flex-col gap-3 pt-5 bg-[#fafafa]"
     >
-      <ScrollView className="bg-white" horizontal>
+      <ScrollView
+        className="bg-white"
+        horizontal
+        showsHorizontalScrollIndicator={false}
+      >
         <View className="flex flex-row p-4">
           <View className="flex items-center justify-center border border-[#f8f8f8] rounded-lg p-2">
             <FilterSvg height={20} fill={"rgb(107,114,128)"} />
