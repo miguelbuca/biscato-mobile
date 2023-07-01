@@ -20,7 +20,7 @@ const SignIn = () => {
 
   return (
     <>
-      <View className="absolute min-w-full min-h-full">
+      <View className="absolute min-w-full min-h-full bg-[#f5f5f5]">
         <BgSvg fill={"rgba(0,0,0,0.5))"} />
       </View>
       <ScrollView className="relative flex-1  pb-6">
