@@ -99,7 +99,6 @@ export const JobCard = ({ data, isLastChild, isApplied }: JobCardProps) => {
             <MapPinSvg height={14} fill={"rgb(107,114,128)"} />
             <Text
               style={{
-                maxHeight: 42,
                 overflow: "hidden",
               }}
               numberOfLines={3}
