@@ -2,7 +2,6 @@ import Loader from "@/src/components/Loader";
 import { store } from "@/src/reduxStore/store";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { View, Text } from "react-native";
 import { Provider } from "react-redux";
 
 export default function Layout() {
@@ -36,8 +35,8 @@ export default function Layout() {
             name="Work"
           />
         </Stack>
-        <StatusBar style="dark" />
         <Loader />
+        <StatusBar style="dark" />
       </Provider>
     </>
   );
