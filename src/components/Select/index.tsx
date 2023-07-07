@@ -63,7 +63,7 @@ export const Select = ({
         {leftElement ? <View className="ml-2">{leftElement}</View> : null}
         <TextInput
           placeholderTextColor={"#aeaeae"}
-          className="h-12 px-4 w-full rounded-lg -z-10"
+          className="h-12 px-4 w-full rounded-lg -z-10 text-black"
           editable={false}
           onPressIn={onOpen}
           value={value ? _value : value}

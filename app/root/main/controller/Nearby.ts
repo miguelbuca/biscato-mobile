@@ -9,25 +9,21 @@ export const useNearbyController = () => {
   const location = useBetterState<LocationObject | null>(null);
   const nearbyWorkLocations = useBetterState<Address[]>([]);
 
-  const loadNearbyWorkLocations = useCallback(async () => {
-    if (!location.value?.coords) return;
-
-    const { latitude: lat, longitude: lng } = location.value?.coords;
-
-    const { data } = await Api.address.nearby(lat, lng);
-
-    nearbyWorkLocations.value = data;
-  }, [location]);
-
   const load = () => {
     requestLocationPermission((res) => {
+      if (!res) return;
       location.value = res;
-    });
 
-    loadNearbyWorkLocations();
+      const { latitude: lat, longitude: lng } = res.coords;
+
+      Api.address.nearby(lat, lng).then(({ data }) => {
+        nearbyWorkLocations.value = data;
+      });
+    });
   };
 
   useEffect(load, []);
+
   return {
     nearbyWorkLocations,
     location,

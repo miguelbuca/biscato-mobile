@@ -6,7 +6,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "^1.18.1",
+    "@react-native-async-storage/async-storage": "1.17.11",
     "@react-navigation/drawer": "^6.6.2",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/react": "~18.0.27",
@@ -29,7 +29,7 @@
     "nativewind": "^2.0.11",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-native": "0.71.3",
+    "react-native": "0.71.8",
     "react-native-app-intro-slider": "^4.0.4",
     "react-native-currency-input": "^1.1.0",
     "react-native-gesture-handler": "~2.9.0",

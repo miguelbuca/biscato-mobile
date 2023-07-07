@@ -1,4 +1,8 @@
+import { Work } from "./Work";
+
 export interface Address {
+  id?: number;
+
   lat?: number;
 
   lng?: number;
@@ -6,4 +10,6 @@ export interface Address {
   name: string;
 
   description?: string;
+
+  work?: Work;
 }

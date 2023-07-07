@@ -80,6 +80,11 @@ export default function Page() {
               Próximo
             </Text>
           )}
+          renderPrevButton={() => (
+            <Text className="text-base mt-2 text-primary font-semibold">
+              Anterior
+            </Text>
+          )}
           renderDoneButton={() => (
             <TouchableOpacity
               onPress={() =>
