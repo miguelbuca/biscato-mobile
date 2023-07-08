@@ -6,9 +6,19 @@ import { SvgXml } from "react-native-svg";
 import normalize from "@/src/helper/normalize";
 import { format } from "@/src/helper/format";
 import { Modalize } from "react-native-modalize";
+import { Button } from "@/src/components";
+
+import UserDrirectionSvg from "@/src/assets/svg/user-direction.svg";
 
 const Nearby = () => {
-  const { location, nearbyWorkLocations } = useNearbyController();
+  const {
+    selectedWork,
+    modalizeRef,
+    location,
+    nearbyWorkLocations,
+    handlerOpenModal,
+    navigate,
+  } = useNearbyController();
   return (
     <View className="flex-1">
       {location.value?.coords ? (
@@ -38,54 +48,121 @@ const Nearby = () => {
             fillColor="rgba(174, 0, 255, 0.1)"
           />
 
-          {nearbyWorkLocations.value.map(
-            ({ lat, lng, name, description, work }, index) => (
-              <Marker
-                key={index}
-                coordinate={{
-                  latitude: lat || 0,
-                  longitude: lng || 0,
-                }}
-              >
-                <Callout tooltip>
-                  <Pressable
-                    onPress={() => {
-                      alert("óla mundo");
-                    }}
-                    className="flex flex-row items-center border border-primary bg-primary rounded-[8px] mb-4"
-                  >
-                    <View className="flex items-center justify-center px-2">
-                      <SvgXml
-                        xml={work?.skillType?.svgXml || ``}
-                        fill={"#fff"}
-                        width={normalize(20)}
-                        height={normalize(20)}
-                      />
-                    </View>
-                    <View className="z-10 p-[2px]">
-                      <View className="bg-[#fff] px-[13px] rounded-tr-[4px] rounded-br-[4px]">
-                        <Text className="text-primary text-[13px] max-w-[200px] pt-[8px] font-black">
-                          {work?.title}
+          {nearbyWorkLocations.value.map(({ lat, lng, work }, index) => (
+            <Marker
+              key={index}
+              coordinate={{
+                latitude: lat || 0,
+                longitude: lng || 0,
+              }}
+            >
+              <Callout tooltip>
+                <Pressable
+                  onPress={() => {
+                    handlerOpenModal(work);
+                  }}
+                  className="flex flex-row items-center border border-primary bg-primary rounded-[8px] mb-4"
+                >
+                  <View className="flex items-center justify-center px-2">
+                    <SvgXml
+                      xml={work?.skillType?.svgXml || ``}
+                      fill={"#fff"}
+                      width={normalize(20)}
+                      height={normalize(20)}
+                    />
+                  </View>
+                  <View className="z-10 p-[2px]">
+                    <View className="bg-[#fff] px-[13px] rounded-tr-[4px] rounded-br-[4px]">
+                      <Text className="text-primary text-[13px] max-w-[200px] pt-[8px] font-black">
+                        {work?.title}
+                      </Text>
+                      <Text className="text-primary text-[11px] max-w-[200px]  pb-[8px] font-normal">
+                        {work?.skillType?.name}
+                      </Text>
+                      <View className="flex flex-row pb-2 items-center">
+                        <Text className="font-semibold">
+                          {format().amount(work?.costPerHour || 0)}
                         </Text>
-                        <Text className="text-primary text-[11px] max-w-[200px]  pb-[8px] font-normal">
-                          {work?.skillType?.name}
-                        </Text>
-                        <View className="flex flex-row pb-2 items-center">
-                          <Text className="font-semibold">
-                            {format().amount(work?.costPerHour || 0)}
-                          </Text>
-                          <Text className="text-[10px]">(hora)</Text>
-                        </View>
+                        <Text className="text-[10px]">(hora)</Text>
                       </View>
                     </View>
-                  </Pressable>
-                </Callout>
-              </Marker>
-            )
-          )}
+                  </View>
+                </Pressable>
+              </Callout>
+            </Marker>
+          ))}
         </MapView>
       ) : null}
-      <Modalize />
+      <Modalize
+        ref={modalizeRef}
+        modalHeight={
+          selectedWork.value?.description ? normalize(300) : normalize(200)
+        }
+        handlePosition="inside"
+        withReactModal
+        HeaderComponent={
+          <View className="flex flex-row items-center p-4 mt-2 border-b border-b-slate-100">
+            <Text className="font-bold">{selectedWork.value?.title}</Text>
+            <View
+              style={{
+                backgroundColor: selectedWork.value?.skillType?.background,
+              }}
+              className="ml-2 p-2 border-l rounded-lg border-slate-100"
+            >
+              <Text className="text-white text-[10px]">
+                {selectedWork.value?.skillType?.name}
+              </Text>
+            </View>
+          </View>
+        }
+        FooterComponent={
+          <View className="flex flex-row p-4 py-6">
+            <View className="flex-1">
+              <Button
+                onPress={() => {
+                  modalizeRef.current?.close();
+                }}
+                leftElement={
+                  <View className="mr-2">
+                    <UserDrirectionSvg
+                      height={normalize(25)}
+                      width={normalize(25)}
+                      fill={"#fff"}
+                    />
+                  </View>
+                }
+                textClassName="text-[#fff] font-[500]"
+                className="rounded-full flex-0 bg-tertiary border-[#000] mr-2"
+                title="Direções"
+              />
+            </View>
+            <View className="flex-1">
+              <Button
+                onPress={() => {
+                  navigate("Work", {
+                    ...selectedWork.value,
+                  });
+                  modalizeRef.current?.close();
+                }}
+                className="rounded-full "
+                title="Saber mais"
+              />
+            </View>
+          </View>
+        }
+      >
+        <View className="p-4">
+          <Text
+            style={{
+              overflow: "hidden",
+            }}
+            numberOfLines={5}
+            ellipsizeMode="tail"
+          >
+            {selectedWork.value?.description}
+          </Text>
+        </View>
+      </Modalize>
     </View>
   );
 };
