@@ -34,6 +34,13 @@ export default function Layout() {
             }}
             name="Work"
           />
+          <Stack.Screen
+            options={{
+              title: "Chat",
+              headerShown: true,
+            }}
+            name="Chat"
+          />
         </Stack>
         <Loader />
         <StatusBar style="dark" />

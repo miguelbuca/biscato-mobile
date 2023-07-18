@@ -42,9 +42,7 @@ export default function Page() {
   return (
     <View onLayout={load} className=" flex flex-1">
       {!isReady.value ? (
-        <View className="flex items-center justify-center flex-1">
-          <ActivityIndicator size={"small"} />
-        </View>
+        <View className="flex items-center justify-center flex-1"/>
       ) : (
         <AppIntroSlider
           style={StyleSheet.absoluteFill}

@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 
 import { save, getValueFor } from "@/src/helper/storage";
 import { Api } from "@/src/api";
+import { isLoading } from "@/src/reduxStore/slices/loader";
 
 export const usePageController = () => {
   const isReady = useBetterState<boolean>(false);
@@ -14,6 +15,7 @@ export const usePageController = () => {
   const dispatch = useDispatch();
 
   const load = useCallback(async () => {
+    dispatch(isLoading(true))
     const [access_token, appIntroSlider] = await Promise.all([
       getValueFor("access_token"),
       getValueFor("AppIntroSlider"),

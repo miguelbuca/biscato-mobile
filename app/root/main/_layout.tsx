@@ -49,7 +49,7 @@ const Layout = () => {
                 </View>
               </Link>
             ) : (
-              <Link href={"../Find-job"}>
+              <Link href={"/Chat"}>
                 <View className="relative flex items-start justify-center p-4">
                   <ChatSvg height={22} fill={"black"} />
                   <View className="absolute w-[15px] h-[15px] rounded-full items-center justify-center bg-primary top-2 left-8">
