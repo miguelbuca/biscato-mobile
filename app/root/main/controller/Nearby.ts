@@ -1,6 +1,7 @@
 import { Api } from "@/src/api";
 import { requestLocationPermission } from "@/src/helper/location";
 import { useBetterState } from "@/src/hooks/useBetterState";
+import { useLocation } from "@/src/hooks/useLocation";
 import { Address, Work } from "@/src/interfaces";
 import { LocationObject } from "expo-location";
 import { useNavigation } from "expo-router";
@@ -12,8 +13,10 @@ export const useNearbyController = () => {
   const nearbyWorkLocations = useBetterState<Address[]>([]);
   const modalizeRef = useRef<Modalize>(null);
   const { navigate }: any = useNavigation();
+  const showDirections = useBetterState<boolean>(false);
+  const selectedAddress = useBetterState<Address | null>(null);
 
-  const selectedWork = useBetterState<Work | null>(null);
+  const { address } = useLocation();
 
   const load = () => {
     requestLocationPermission((res) => {
@@ -29,16 +32,18 @@ export const useNearbyController = () => {
   };
 
   const handlerCloseModal = () => modalizeRef.current?.close();
-  const handlerOpenModal = (work?: Work) => {
-    if (!work) return;
-    selectedWork.value = work;
+  const handlerOpenModal = (address?: Address) => {
+    if (!address) return;
+    selectedAddress.value = address;
     modalizeRef.current?.open();
   };
 
   useEffect(load, []);
 
   return {
-    selectedWork,
+    address,
+    showDirections,
+    selectedAddress,
     modalizeRef,
     nearbyWorkLocations,
     location,

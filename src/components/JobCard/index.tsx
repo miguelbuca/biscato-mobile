@@ -12,6 +12,7 @@ import { Button } from "../Button";
 
 import TrashSvg from "@/src/assets/svg/trash.svg";
 import PhoneSvg from "@/src/assets/svg/phone.svg";
+import { useJobCardController } from "./controller";
 
 export interface JobCardProps {
   data?: Work;
@@ -20,7 +21,7 @@ export interface JobCardProps {
 }
 
 export const JobCard = ({ data, isLastChild, isApplied }: JobCardProps) => {
-  const { navigate }: any = useNavigation();
+  const { handlerRemoveApplication, navigate } = useJobCardController(data?.id)
 
   return (
     <Pressable
@@ -69,7 +70,10 @@ export const JobCard = ({ data, isLastChild, isApplied }: JobCardProps) => {
         </View>
         {isApplied && (
           <View className="flex items-center justify-end flex-row mb-4 px-2 rounded-lg pt-2 bg-[#f8f8f8]">
-            <Pressable className="flex-1 flex-row items-center">
+            <Pressable
+              onPress={handlerRemoveApplication}
+              className="flex-1 flex-row items-center"
+            >
               <TrashSvg height={15} width={15} fill={"rgb(220,38,38)"} />
               <Text className="ml-1 text-red-600 font-bold">Excluir</Text>
             </Pressable>

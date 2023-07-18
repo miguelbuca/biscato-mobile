@@ -9,10 +9,14 @@ import { Modalize } from "react-native-modalize";
 import { Button } from "@/src/components";
 
 import UserDrirectionSvg from "@/src/assets/svg/user-direction.svg";
+import * as Constants from "expo-constants";
+import MapViewDirections from "react-native-maps-directions";
 
 const Nearby = () => {
   const {
-    selectedWork,
+    address,
+    showDirections,
+    selectedAddress,
     modalizeRef,
     location,
     nearbyWorkLocations,
@@ -30,7 +34,6 @@ const Nearby = () => {
             longitudeDelta: 0.0421, // Set the desired zoom level (longitude span)
           }}
           showsBuildings
-          loadingEnabled
           zoomControlEnabled
           style={StyleSheet.absoluteFill}
           showsUserLocation
@@ -47,6 +50,22 @@ const Nearby = () => {
             strokeColor="#ae5333"
             fillColor="rgba(174, 0, 255, 0.1)"
           />
+          {showDirections.value && address.value && selectedAddress.value && (
+            <MapViewDirections
+              apikey={Constants.default.expoConfig?.extra?.googleMapsApiKey}
+              origin={{
+                latitude: address.value?.lat as number,
+                longitude: address.value?.lng as number,
+              }}
+              destination={{
+                latitude: selectedAddress.value?.lat as number,
+                longitude: selectedAddress.value?.lng as number,
+              }}
+              strokeColor="rgba(86, 86, 116, 0.5)"
+              strokeWidth={3}
+              mode="DRIVING"
+            />
+          )}
 
           {nearbyWorkLocations.value.map(({ lat, lng, work }, index) => (
             <Marker
@@ -59,7 +78,8 @@ const Nearby = () => {
               <Callout tooltip>
                 <Pressable
                   onPress={() => {
-                    handlerOpenModal(work);
+                    showDirections.value = false;
+                    handlerOpenModal(nearbyWorkLocations.value[index]);
                   }}
                   className="flex flex-row items-center border border-primary bg-primary rounded-[8px] mb-4"
                 >
@@ -96,21 +116,26 @@ const Nearby = () => {
       <Modalize
         ref={modalizeRef}
         modalHeight={
-          selectedWork.value?.description ? normalize(300) : normalize(200)
+          selectedAddress.value?.work?.description
+            ? normalize(300)
+            : normalize(200)
         }
         handlePosition="inside"
         withReactModal
         HeaderComponent={
           <View className="flex flex-row items-center p-4 mt-2 border-b border-b-slate-100">
-            <Text className="font-bold">{selectedWork.value?.title}</Text>
+            <Text className="font-bold">
+              {selectedAddress.value?.work?.title}
+            </Text>
             <View
               style={{
-                backgroundColor: selectedWork.value?.skillType?.background,
+                backgroundColor:
+                  selectedAddress.value?.work?.skillType?.background,
               }}
               className="ml-2 p-2 border-l rounded-lg border-slate-100"
             >
               <Text className="text-white text-[10px]">
-                {selectedWork.value?.skillType?.name}
+                {selectedAddress.value?.work?.skillType?.name}
               </Text>
             </View>
           </View>
@@ -120,6 +145,7 @@ const Nearby = () => {
             <View className="flex-1">
               <Button
                 onPress={() => {
+                  showDirections.value = true;
                   modalizeRef.current?.close();
                 }}
                 leftElement={
@@ -140,7 +166,7 @@ const Nearby = () => {
               <Button
                 onPress={() => {
                   navigate("Work", {
-                    ...selectedWork.value,
+                    ...selectedAddress.value,
                   });
                   modalizeRef.current?.close();
                 }}
@@ -159,7 +185,7 @@ const Nearby = () => {
             numberOfLines={5}
             ellipsizeMode="tail"
           >
-            {selectedWork.value?.description}
+            {selectedAddress.value?.work?.description}
           </Text>
         </View>
       </Modalize>
