@@ -4,13 +4,17 @@ import {
 } from "@react-navigation/drawer";
 import { Drawer } from "expo-router/drawer";
 import { StatusBar } from "expo-status-bar";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, Dimensions } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { theme } from "@/tailwind.config";
 
 import MenuSvg from "@/src/assets/svg/menu.svg";
 import { Avatar } from "@/src/components";
 import { useLayoutController } from "./controller";
+
+import BgSvg from "@/src/assets/svg/bg.svg";
+
+const { width, height } = Dimensions.get("screen");
 
 export default function Layout() {
   const { signOut, user } = useLayoutController();
@@ -37,6 +41,13 @@ export default function Layout() {
           return (
             <View className="flex-1">
               <View className="flex min-h-[250px] bg-primary">
+                <View className="absolute w-full h-full overflow-hidden">
+                  <BgSvg
+                    width={width}
+                    height={height}
+                    fill={"rgba(255,255,255,0.5)"}
+                  />
+                </View>
                 <SafeAreaView className="flex flex-col items-center justify-center flex-1 px-[18px]">
                   <View className="mb-2">
                     <Avatar
