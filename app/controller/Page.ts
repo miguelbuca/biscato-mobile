@@ -15,7 +15,7 @@ export const usePageController = () => {
   const dispatch = useDispatch();
 
   const load = useCallback(async () => {
-    dispatch(isLoading(true))
+    dispatch(isLoading(true));
     const [access_token, appIntroSlider] = await Promise.all([
       getValueFor("access_token"),
       getValueFor("AppIntroSlider"),
@@ -25,7 +25,10 @@ export const usePageController = () => {
       try {
         const { data } = await Api.user.me();
         dispatch(setCurrentUser(data));
-        replace("root/main");
+        
+        if (data.persons?.length) {
+          replace("root/main");
+        } else replace("userProfile");
       } catch (error) {
         replace("auth/Sign-in");
       }
@@ -34,6 +37,7 @@ export const usePageController = () => {
       else replace("auth/Sign-up");
     }
     isReady.value = true;
+    dispatch(isLoading(false));
   }, []);
 
   useEffect(() => {
