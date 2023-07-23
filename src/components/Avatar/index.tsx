@@ -16,7 +16,8 @@ export interface AvatarProps extends ViewProps {
   letters?: string;
   image?: string;
   fontStyles?: StyleProp<TextStyle>;
-  withUpload?: boolean
+  withUpload?: boolean;
+  onUpload?:(url: string)=>void
 }
 
 export const Avatar = ({
@@ -24,9 +25,11 @@ export const Avatar = ({
   fontStyles,
   letters,
   withUpload,
+  onUpload,
   ...args
 }: AvatarProps) => {
-  const { image: uploadedImage, handlerPickImage } = useAvatarController();
+  const { image: uploadedImage, handlerPickImage } =
+    useAvatarController(onUpload);
   
   return (
     <>

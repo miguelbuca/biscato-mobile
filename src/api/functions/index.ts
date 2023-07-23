@@ -7,3 +7,4 @@ export * from "./Address";
 export * from "./Application";
 export * from "./Google";
 export * from "./Chat";
+export * from "./Person"

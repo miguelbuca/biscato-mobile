@@ -1,8 +1,14 @@
 import { useBetterState } from "@/src/hooks/useBetterState";
 import * as ImagePicker from "expo-image-picker";
+import { useEffect } from "react";
 
-export const useAvatarController = () => {
+export const useAvatarController = (onUpload?: (url: string) => void) => {
   const image = useBetterState<string>("");
+
+  useEffect(() => {
+    image.value && onUpload?.(image.value)
+  }, [image])
+  
 
   const handlerPickImage = async () => {
     // No permissions request is necessary for launching the image library

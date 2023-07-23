@@ -4,6 +4,7 @@ import {
   AuthFunction,
   ChatFunction,
   GoogleFunction,
+  PersonFunction,
   SkillFunction,
   SkillTypeFunction,
   UserFunction,
@@ -32,6 +33,7 @@ export const Api = {
   work: WorkFunction(axios),
   application: ApplicationFunction(axios),
   address: AddressFunction(axios),
+  persson: PersonFunction(axios),
   chat: ChatFunction(socket),
   external: {
     google: GoogleFunction(
