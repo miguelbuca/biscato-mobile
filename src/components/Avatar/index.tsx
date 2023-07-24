@@ -8,8 +8,8 @@ import {
   Image,
 } from "react-native";
 import React from "react";
-
-import UserAvatarSvg from '@/src/assets/svg/user-avatar.svg'
+import * as ImagePicker from "expo-image-picker";
+import UserAvatarSvg from "@/src/assets/svg/user-avatar.svg";
 import { useAvatarController } from "./controller";
 
 export interface AvatarProps extends ViewProps {
@@ -17,7 +17,7 @@ export interface AvatarProps extends ViewProps {
   image?: string;
   fontStyles?: StyleProp<TextStyle>;
   withUpload?: boolean;
-  onUpload?:(url: string)=>void
+  onUpload?: (asset: ImagePicker.ImagePickerAsset | null) => void;
 }
 
 export const Avatar = ({
@@ -30,7 +30,7 @@ export const Avatar = ({
 }: AvatarProps) => {
   const { image: uploadedImage, handlerPickImage } =
     useAvatarController(onUpload);
-  
+
   return (
     <>
       <View
@@ -46,9 +46,20 @@ export const Avatar = ({
           </Text>
         ) : (
           <>
-           { !image && !uploadedImage.value ? <UserAvatarSvg height={35} width={35} fill={"#ccc"} /> : <Image className="h-[85] w-[85] rounded-[50px]" source={{
-            uri: uploadedImage.value || image
-           }}  />}
+            {!image && !uploadedImage.value ? (
+              <UserAvatarSvg height={35} width={35} fill={"#ccc"} />
+            ) : (
+              <Image
+                style={ image ? {
+                  borderColor: "white",
+                  borderWidth: 2,
+                } : undefined}
+                className="h-[85] w-[85] rounded-[50px]"
+                source={{
+                  uri: uploadedImage.value?.uri || image,
+                }}
+              />
+            )}
           </>
         )}
       </View>

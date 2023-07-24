@@ -23,8 +23,6 @@ export const socket = io("ws://192.168.1.103:3333", {
 axios.defaults.baseURL = Constants.default.expoConfig?.extra?.api;
 axios.defaults.headers.common["Content-Type"] = "application/json";
 
-console.log(socket.connected)
-
 export const Api = {
   user: UserFunction(axios),
   auth: AuthFunction(axios),

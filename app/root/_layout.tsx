@@ -17,7 +17,7 @@ import BgSvg from "@/src/assets/svg/bg.svg";
 const { width, height } = Dimensions.get("screen");
 
 export default function Layout() {
-  const { signOut, user } = useLayoutController();
+  const { signOut, user, person } = useLayoutController();
 
   return (
     <>
@@ -51,6 +51,7 @@ export default function Layout() {
                 <SafeAreaView className="flex flex-col items-center justify-center flex-1 px-[18px]">
                   <View className="mb-2">
                     <Avatar
+                      image={person.avatar}
                       letters={`${
                         user?.firstName?.[0] && user?.firstName?.[0]
                       } ${user?.lastName?.[0] && user?.lastName?.[0]}`}

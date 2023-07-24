@@ -1,4 +1,5 @@
 import { checkAndConvertColor } from "./colors";
+import * as Constants from "expo-constants";
 
 export const format = () => {
   const amount = (value: number) => {
@@ -16,6 +17,10 @@ export const format = () => {
 
     return formattedValue || "-";
   };
+
+  const assetURL = (url: string) =>{
+    return `${Constants.default.expoConfig?.extra?.api}/${url.split("\\").join('/')}`;
+  }
 
   const time = (value?: string) => {
     if (!value) return;
@@ -60,5 +65,6 @@ export const format = () => {
     time,
     state,
     amount,
+    assetURL,
   };
 };

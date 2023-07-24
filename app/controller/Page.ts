@@ -1,5 +1,5 @@
 import { useBetterState } from "@/src/hooks/useBetterState";
-import { setCurrentUser } from "@/src/reduxStore/slices/auth";
+import { setCurrentUser, setSelectedPersonIndex } from "@/src/reduxStore/slices/auth";
 import { useNavigation, useRouter } from "expo-router";
 import { useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -27,6 +27,7 @@ export const usePageController = () => {
         dispatch(setCurrentUser(data));
         
         if (data.persons?.length) {
+          dispatch(setSelectedPersonIndex(0));
           replace("root/main");
         } else replace("userProfile");
       } catch (error) {
