@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 import React from "react";
 import MapView, { Callout, Circle, Marker } from "react-native-maps";
 import { useNearbyController } from "./controller";
@@ -14,6 +14,7 @@ import MapViewDirections from "react-native-maps-directions";
 
 const Nearby = () => {
   const {
+    person,
     address,
     showDirections,
     selectedAddress,
@@ -39,6 +40,7 @@ const Nearby = () => {
           showsUserLocation
           userLocationPriority="high"
           userLocationCalloutEnabled
+          followsUserLocation={showDirections.value}
         >
           <Circle
             center={{

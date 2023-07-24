@@ -2,11 +2,13 @@ import { Api } from "@/src/api";
 import { requestLocationPermission } from "@/src/helper/location";
 import { useBetterState } from "@/src/hooks/useBetterState";
 import { useLocation } from "@/src/hooks/useLocation";
-import { Address, Work } from "@/src/interfaces";
+import { Address, Person, Work } from "@/src/interfaces";
+import { AuthSelectors } from "@/src/reduxStore/slices/auth";
 import { LocationObject } from "expo-location";
 import { useNavigation } from "expo-router";
 import { useEffect, useRef } from "react";
 import { Modalize } from "react-native-modalize";
+import { useSelector } from "react-redux";
 
 export const useNearbyController = () => {
   const location = useBetterState<LocationObject | null>(null);
@@ -15,6 +17,7 @@ export const useNearbyController = () => {
   const { navigate }: any = useNavigation();
   const showDirections = useBetterState<boolean>(false);
   const selectedAddress = useBetterState<Address | null>(null);
+  const person: Person = useSelector(AuthSelectors)?.activePerson;
 
   const { address } = useLocation();
 
@@ -50,5 +53,6 @@ export const useNearbyController = () => {
     handlerCloseModal,
     handlerOpenModal,
     navigate,
+    person
   };
 };
