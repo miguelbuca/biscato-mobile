@@ -4,6 +4,7 @@ import {
   ScrollView,
   TouchableOpacity,
   RefreshControl,
+  Pressable,
 } from "react-native";
 import React from "react";
 import { JobCard } from "@/src/components";
@@ -14,10 +15,12 @@ import { useHomeController } from "./controller";
 import { Link } from "expo-router";
 
 const Home = () => {
-  const { userSkills, works, refreshing, load } = useHomeController();
+  const { userSkills, works, refreshing, load, filter, handlerSkillType } =
+    useHomeController();
 
   return (
     <ScrollView
+      showsVerticalScrollIndicator={false}
       refreshControl={
         <RefreshControl refreshing={refreshing.value} onRefresh={load} />
       }
@@ -32,20 +35,38 @@ const Home = () => {
           <View className="flex items-center justify-center border border-[#f8f8f8] rounded-lg p-2">
             <FilterSvg height={20} fill={"rgb(107,114,128)"} />
           </View>
-          <View
+          <Pressable
             className={`flex items-center justify-center ml-2 py-3 px-4 rounded-lg 
-            bg-primary
+            ${filter.job?.skillType === "" ? "bg-primary" : "bg-[#f8f8f8]"}
             `}
+            onPress={() => handlerSkillType("")}
           >
-            <Text className={` font-[500] text-white`}>Todos</Text>
-          </View>
+            <Text
+              className={`font-[500] ${
+                filter.job?.skillType === "" && "text-white"
+              }`}
+            >
+              Todos
+            </Text>
+          </Pressable>
           {userSkills.value.map(({ name, skillType }, index) => (
-            <View
-              className={`flex items-center justify-center mx-2 py-3 px-4 rounded-lg bg-[#f8f8f8]`}
+            <Pressable
+              onPress={() => handlerSkillType(skillType?.name || "")}
+              className={`flex items-center justify-center mx-2 py-3 px-4 rounded-lg ${
+                filter.job?.skillType === skillType?.name
+                  ? "bg-primary"
+                  : "bg-[#f8f8f8]"
+              } `}
               key={index}
             >
-              <Text className={` font-[500] `}>{skillType?.name}</Text>
-            </View>
+              <Text
+                className={` font-[500] ${
+                  filter.job?.skillType === skillType?.name && "text-white"
+                }`}
+              >
+                {skillType?.name}
+              </Text>
+            </Pressable>
           ))}
         </View>
       </ScrollView>
