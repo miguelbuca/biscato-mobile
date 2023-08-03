@@ -15,9 +15,14 @@ import axios from "axios";
 
 import * as Constants from "expo-constants";
 import io from "socket.io-client";
+import { getValueFor } from "../helper/storage";
 
-export const socket = io("ws://192.168.1.103:3333", {
+export const socket = io(Constants.default.expoConfig?.extra?.api, {
   autoConnect: true,
+  auth: async (cb) => {
+    const token = await getValueFor("access_token");
+    cb({ token });
+  },
 });
 
 axios.defaults.baseURL = Constants.default.expoConfig?.extra?.api;
