@@ -41,7 +41,7 @@ export const JobCard = ({ data, isLastChild, isApplied }: JobCardProps) => {
             style={{
               backgroundColor: data?.skillType?.background,
             }}
-            className="flex items-center justify-center w-14 h-14 rounded-lg"
+            className="flex items-center justify-center w-14 h-14 rounded-2xl"
           >
             {data?.skillType?.svgXml && (
               <SvgXml
