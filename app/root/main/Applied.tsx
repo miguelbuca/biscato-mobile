@@ -8,6 +8,7 @@ const Applied = () => {
 
   return (
     <ScrollView
+      showsVerticalScrollIndicator={false}
       refreshControl={
         <RefreshControl refreshing={refreshing.value} onRefresh={load} />
       }

@@ -45,7 +45,6 @@ export default function Layout() {
             options={{
               headerShown: true,
               title: "Competências",
-              /*headerShadowVisible: false,*/
               headerSearchBarOptions: {
                 inputType: "text",
                 placeholder: "Escreva aqui...",
