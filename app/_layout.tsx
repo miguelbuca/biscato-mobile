@@ -41,6 +41,18 @@ export default function Layout() {
             }}
             name="Chat"
           />
+          <Stack.Screen
+            options={{
+              headerShown: true,
+              title: "Competências",
+              /*headerShadowVisible: false,*/
+              headerSearchBarOptions: {
+                inputType: "text",
+                placeholder: "Escreva aqui...",
+              },
+            }}
+            name="Find-job"
+          />
         </Stack>
         <Loader />
         <StatusBar style="dark" />
