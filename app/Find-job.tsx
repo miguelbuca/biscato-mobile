@@ -1,7 +1,6 @@
 import {
   View,
   Text,
-  ScrollView,
   FlatList,
   TouchableOpacity,
   TextInput,
@@ -12,7 +11,8 @@ import { SvgXml } from "react-native-svg";
 import { useFindJobController } from "./root/controller";
 
 const FindJob = () => {
-  const { skilltypes } = useFindJobController();
+  const { skilltypes, userSkilltypesIds } = useFindJobController();
+
   return (
     <View className="h-full bg-white">
       <FlatList
@@ -25,6 +25,7 @@ const FindJob = () => {
             className="flex w-[50%] items-center justify-center"
           >
             <FindJobCard
+              isChecked={userSkilltypesIds.value.includes(item.id)}
               image={
                 <SvgXml
                   height={40}

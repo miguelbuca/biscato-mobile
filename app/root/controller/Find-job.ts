@@ -8,13 +8,18 @@ import { useDispatch } from "react-redux";
 export const useFindJobController = () => {
   const dispatch = useDispatch();
   const skilltypes = useBetterState<SkillType[]>([]);
+  const userSkilltypesIds = useBetterState<(number | undefined)[]>([]);
 
   const load = useCallback(() => {
     dispatch(isLoading(true));
     Api.skillType
-      .all()
+      .me()
       .then(({ data }) => {
-        skilltypes.value = data;
+        userSkilltypesIds.value = data.map(({ id }) => id) || [];
+
+        Api.skillType.all().then(({ data }) => {
+          skilltypes.value = data;
+        });
       })
       .finally(() => dispatch(isLoading(false)));
   }, []);
@@ -23,5 +28,6 @@ export const useFindJobController = () => {
 
   return {
     skilltypes,
+    userSkilltypesIds,
   };
 };
