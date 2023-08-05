@@ -9,7 +9,14 @@ export const SkillTypeFunction = (axios: AxiosStatic) => {
 
     return await axios.get<SkillType[]>("/skill-types");
   };
+  const me = async () => {
+    const access_token = await getValueFor("access_token");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
+
+    return await axios.get<SkillType[]>("/skill-types/me");
+  };
   return {
     all,
+    me
   };
 };

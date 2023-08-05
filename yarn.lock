@@ -6679,10 +6679,10 @@ react-native-currency-input@^1.1.0:
   resolved "https://registry.yarnpkg.com/react-native-currency-input/-/react-native-currency-input-1.1.0.tgz#2f86e6ad4d47518df0c5ade06f5e0f5afa0aeb11"
   integrity sha512-TNyqQ98pB6WdLJiEz5NIZWUT1zpzJNBUCGS+5PGO0QCmbssSA/n4zVC7+msX5Z0Wl+iwhpTPsCckDJeRIlxwKg==
 
-react-native-flipper@^0.206.0:
-  version "0.206.0"
-  resolved "https://registry.yarnpkg.com/react-native-flipper/-/react-native-flipper-0.206.0.tgz#accd8e539463de26d543bfc384d0ff7810e0074b"
-  integrity sha512-QqSpA8+73zWgSrd87ZAPHBmh3biMKpgtpx+3ZH2opQfyNP5shWXo6iKpYt3L3un7ZkOQ8oF/9xiKgNkBAOXQ9g==
+react-native-flipper@^0.210.0:
+  version "0.210.0"
+  resolved "https://registry.yarnpkg.com/react-native-flipper/-/react-native-flipper-0.210.0.tgz#d292bb7d1afbdbf873c86a59014f266027fc108e"
+  integrity sha512-5kyIM+V3cfO1msVVlbV5VsIQ4ltScq860tvyK1Tyk5ylNZ/7SqeRGsnWJcuBNA0xMkDyfwKZOGtSe6AEd+MA9A==
 
 react-native-gesture-handler@~2.9.0:
   version "2.9.0"

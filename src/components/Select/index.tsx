@@ -12,7 +12,7 @@ import { useBetterState } from "@/src/hooks/useBetterState";
 const { height } = Dimensions.get("screen");
 export interface SelectInputProps extends Omit<TextInputProps, "onChange"> {
   errorMessage?: string;
-  onChange: (value: any) => void;
+  onChange: (value: any, label?: string) => void;
   selectedId?: string | number;
   leftElement?: JSX.Element;
   data: any[];
@@ -23,6 +23,7 @@ export interface SelectInputProps extends Omit<TextInputProps, "onChange"> {
   fields?: string[];
   keyAsNumber?: boolean;
   getSelectedLabel?: (title: string) => void;
+  withOverlay?: boolean;
 }
 export const Select = ({
   leftElement,
@@ -34,6 +35,7 @@ export const Select = ({
   data,
   value,
   keyAsNumber = true,
+  withOverlay = true,
   ...args
 }: SelectInputProps) => {
   const modalizeRef = useRef<Modalize>(null);
@@ -78,13 +80,14 @@ export const Select = ({
               </Text>
             </View>
           }
+          withOverlay={withOverlay}
           flatListProps={{
             data,
             renderItem: ({ item, index }) => {
               return (
                 <TouchableOpacity
                   onPress={() => {
-                    onChange?.(item);
+                    onChange?.(item, item?.[fields?.[1]]);
                     modalizeRef.current?.close();
                   }}
                   key={index}
