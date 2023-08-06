@@ -15,14 +15,9 @@ import axios from "axios";
 
 import * as Constants from "expo-constants";
 import io from "socket.io-client";
-import { getValueFor } from "../helper/storage";
 
 export const socket = io(Constants.default.expoConfig?.extra?.api, {
   autoConnect: true,
-  auth: async (cb) => {
-    const token = await getValueFor("access_token");
-    cb({ token });
-  },
 });
 
 axios.defaults.baseURL = Constants.default.expoConfig?.extra?.api;
@@ -37,7 +32,7 @@ export const Api = {
   application: ApplicationFunction(axios),
   address: AddressFunction(axios),
   persson: PersonFunction(axios),
-  chat: ChatFunction(socket),
+  chat: ChatFunction(axios, socket),
   external: {
     google: GoogleFunction(
       Constants.default.expoConfig?.extra?.googleMapsApiKey

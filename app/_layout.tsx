@@ -38,6 +38,7 @@ export default function Layout() {
             options={{
               title: "Chat",
               headerShown: true,
+              headerShadowVisible: true
             }}
             name="Chat"
           />

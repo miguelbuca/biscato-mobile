@@ -13,8 +13,6 @@ import { Formik } from "formik";
 import { SignInValidationSchema } from "@/src/validations";
 import { useSignInController } from "./controller";
 
-const { height } = Dimensions.get("window");
-
 const SignIn = () => {
   const { handler, navigate } = useSignInController();
 

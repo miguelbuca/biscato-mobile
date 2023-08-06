@@ -1,9 +1,6 @@
 import {
   View,
-  Text,
   FlatList,
-  TouchableOpacity,
-  TextInput,
 } from "react-native";
 import React from "react";
 import { FindJobCard } from "@/src/components";

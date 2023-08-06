@@ -5,3 +5,4 @@ export * from "./Address";
 export * from "./Work";
 export * from "./Application";
 export * from "./Person"
+export * from './Chat'

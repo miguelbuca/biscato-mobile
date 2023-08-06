@@ -11,7 +11,7 @@ export const useSignUpController = () => {
     try {
       Api.auth.signUp(values).then(({ access_token }) => {
         if (access_token) {
-          replace("../root/main");
+          replace("../userProfile");
         }
       });
     } catch (error) {
