@@ -14,9 +14,6 @@ import {
   REGISTER,
 } from "redux-persist";
 
-const createDebugger = require("redux-flipper").default;
-
-
 const store = configureStore({
   reducer: persistReducer(rootPersistConfig, rootReducer),
   middleware: (getDefaultMiddleware) =>
@@ -25,7 +22,7 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(createDebugger()),
+    }),
 });
 
 const persistor = persistStore(store);

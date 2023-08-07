@@ -14,11 +14,11 @@ export const ChatFunction = (axios: AxiosStatic, socket: Socket) => {
     });
   };
 
-  const messages = async () => {
+  const messages = async (toAccount: string) => {
     const access_token = await getValueFor("access_token");
     axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
 
-    return await axios.get<Chat[]>("/chat/messages");
+    return await axios.get<Chat[]>(`/chat/messages/${toAccount}`);
   };
 
   const onMessage = (channel: string, callback?: (payload: Chat) => void) => {
