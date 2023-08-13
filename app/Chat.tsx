@@ -2,22 +2,24 @@ import {
   View,
   Text,
   TextInput,
-  Button,
-  Dimensions,
   ScrollView,
-  Platform,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { useChatController } from "./controller/Chat";
 import normalize from "@/src/helper/normalize";
 
 import SvgSend from "@/src/assets/svg/form/send.svg";
 import MessageCard from "@/src/components/messageCard";
 import { BlurView } from "expo-blur";
+import { Avatar } from "@/src/components";
+
+import * as Constants from "expo-constants";
 
 const Chat = () => {
   const {
+    navigation,
+    otherAccount,
     displayFrame,
     keyboardHeight,
     scrollHeight,
@@ -28,6 +30,32 @@ const Chat = () => {
     handlerMessage,
     getDate,
   } = useChatController();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle(props: { children: string; tintColor?: string | undefined }) {
+        return (
+          <View className="flex flex-row items-center justify-self-start w-full">
+            <View>
+              <Avatar
+                image={`${Constants.default.expoConfig?.extra?.api}/${otherAccount.value?.persons?.[0]?.avatar}`}
+                imageStyle={{
+                  height: normalize(35),
+                  width: normalize(35),
+                }}
+                className="flex items-center h-[25px] w-[25px] border-transparent"
+              />
+            </View>
+            <View className="ml-3">
+              <Text className="text-xs font-semibold">{`${otherAccount.value?.firstName} ${otherAccount.value?.lastName}`}</Text>
+              <Text className="text-[10px] opacity-70">Chat</Text>
+            </View>
+          </View>
+        );
+      },
+    });
+  }, [otherAccount]);
+
   return (
     <View className="flex-1 border-t border-t-[#f5f5f5]  flex flex-col bg-white">
       <ScrollView
@@ -72,6 +100,7 @@ const Chat = () => {
           display: displayFrame.value ? "none" : "flex",
           bottom: keyboardHeight.value,
         }}
+        intensity={300}
         className="absolute w-full"
       >
         <View

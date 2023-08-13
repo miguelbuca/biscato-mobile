@@ -5,8 +5,8 @@ import { useBetterState } from "@/src/hooks/useBetterState";
 import { useKeyboard } from "@/src/hooks/useKeyboard";
 import { Chat, User } from "@/src/interfaces";
 import { AuthSelectors } from "@/src/reduxStore/slices/auth";
-import { useSearchParams } from "expo-router";
-import { useCallback, useEffect, useRef } from "react";
+import { useNavigation, useSearchParams } from "expo-router";
+import { useCallback, useEffect, useLayoutEffect, useRef } from "react";
 import { ScrollView } from "react-native-gesture-handler";
 import { useSelector } from "react-redux";
 
@@ -14,7 +14,9 @@ export const useChatController = () => {
   const { toAccount } = useSearchParams<{
     toAccount: string;
   }>();
+  const navigation = useNavigation();
   const { id: fromAccount }: User = useSelector(AuthSelectors).user;
+  const otherAccount = useBetterState<User | undefined>(undefined);
   const message = useBetterState<string>("");
   const messages = useBetterState<Chat[]>([]);
   const scrollRef = useRef<ScrollView>(null);
@@ -33,6 +35,10 @@ export const useChatController = () => {
 
   const load = useCallback(() => {
     if (!toAccount) return;
+
+    Api.user.findUser(toAccount).then(({ data }) => {
+      otherAccount.value = data;
+    });
     Api.chat
       .messages(toAccount)
       .then(({ data }) => {
@@ -57,7 +63,7 @@ export const useChatController = () => {
   const handlerMessage = useCallback(async () => {
     const { data } = await Api.chat.sendMessage({
       content: message.value,
-      toAccount: fromAccount === 1 ? 2 : 1,
+      toAccount: parseInt(`${toAccount}`),
     });
 
     if (data) {
@@ -70,9 +76,11 @@ export const useChatController = () => {
         animated: true,
       });
     }
-  }, [scrollRef, messages, message, scrollHeight]);
+  }, [scrollRef, messages, toAccount, message, scrollHeight]);
 
   return {
+    navigation,
+    otherAccount,
     getDate,
     displayFrame,
     keyboardHeight,

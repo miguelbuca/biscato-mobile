@@ -4,7 +4,7 @@ import { Chat } from "@/src/interfaces";
 import { Avatar } from "../Avatar";
 import normalize from "@/src/helper/normalize";
 import * as Constants from "expo-constants";
-import tailwind from "@/tailwind.config";
+import { format } from "@/src/helper/format";
 
 export interface MessageCardProps {
   data: Chat;
@@ -43,11 +43,11 @@ const MessageCard = ({ isSender, data }: MessageCardProps) => {
               isSender ? "text-white" : "text-black"
             }`}
           >
-            {data.createdAt && new Date(data.createdAt).toLocaleTimeString()}
+            {data.createdAt && format().date(data.createdAt,'time')}
           </Text>
         </View>
       </View>
-      <View
+      {/*<View
         style={{
           marginLeft: isSender ? normalize(8) : 0,
           marginRight: !isSender ? normalize(8) : 0,
@@ -65,7 +65,7 @@ const MessageCard = ({ isSender, data }: MessageCardProps) => {
           }}
           className="flex items-center h-[40px] w-[40px]"
         />
-      </View>
+      </View>*/}
     </View>
   );
 };

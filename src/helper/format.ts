@@ -65,10 +65,7 @@ export const format = () => {
   const date = (value: string, mode: "time" | "date" = "date") => {
     const result =
       mode === "time"
-        ? new Date(value).toLocaleDateString("pt-PT", {
-            hour: "2-digit",
-            minute: "2-digit",
-          })
+        ? `${new Date(value).getHours()}:${new Date(value).getMinutes()}`
         : new Date(value).toLocaleDateString("pt-PT", {
             day: "2-digit",
             month: "long",

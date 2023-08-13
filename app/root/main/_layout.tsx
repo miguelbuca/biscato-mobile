@@ -14,7 +14,7 @@ import ChatSvg from "@/src/assets/svg/chat.svg";
 import { useLayoutController } from "./controller";
 
 const Layout = () => {
-  const { SUB_VALUE, navigation } = useLayoutController();
+  const { SUB_VALUE, navigation, user } = useLayoutController();
 
   return (
     <Tabs
@@ -49,7 +49,7 @@ const Layout = () => {
                 </View>
               </Link>
             ) : (
-              <Link href={"/Chat?toAccount=2"}>
+              <Link href={`/Chat?toAccount=${user.id === 1 ? "2" : "1"}`}>
                 <View className="relative flex items-start justify-center p-4">
                   <ChatSvg height={22} fill={"black"} />
                   <View className="absolute w-[15px] h-[15px] rounded-full items-center justify-center bg-primary top-2 left-8">

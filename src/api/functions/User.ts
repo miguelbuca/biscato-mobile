@@ -9,7 +9,14 @@ export const UserFunction = (axios: AxiosStatic) => {
 
     return await axios.get<User>("/users/me");
   };
+  const findUser = async (id: number|string) => {
+    const access_token = await getValueFor("access_token");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
+
+    return await axios.get<User>(`/users/${id}`);
+  };
   return {
     me,
+    findUser,
   };
 };

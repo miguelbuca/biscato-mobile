@@ -15,7 +15,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import normalize from "@/src/helper/normalize";
 
 export default function Publication() {
-  const { skillTypes, selectedTime, route } = usePublicationController();
+  const { skillTypes, selectedTime, navigate } = usePublicationController();
   return (
     <KeyboardAwareScrollView className="flex-1 flex flex-col gap-3 pt-5 bg-[#fafafa]">
       <View>
@@ -31,10 +31,9 @@ export default function Publication() {
             address: undefined,
             skillTypeId: undefined,
           }}
-          onSubmit={(params) => {
-            route.push({
-              params,
-              pathname: "./Location",
+          onSubmit={(work) => {
+            navigate("Location", {
+              work
             });
           }}
         >

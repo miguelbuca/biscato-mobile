@@ -2,34 +2,45 @@ import { Api } from "@/src/api";
 import { requestLocationPermission } from "@/src/helper/location";
 import { useBetterState } from "@/src/hooks/useBetterState";
 import { Address, Work } from "@/src/interfaces";
+import { isLoading } from "@/src/reduxStore/slices/loader";
 import { LocationObject } from "expo-location";
-import { useSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter, useSearchParams } from "expo-router";
 import { useCallback, useEffect } from "react";
 import { Region } from "react-native-maps";
+import { useDispatch } from "react-redux";
 
 export const useLocationController = () => {
+  const dispatch = useDispatch();
   const location = useBetterState<LocationObject | null>(null);
   const address = useBetterState<Address | null>(null);
-
-  const work: Work = useSearchParams();
+  const { work } = useLocalSearchParams<any>();
+  const { replace }   = useRouter()
 
   const handlerCancel = () => {
     address.value = null;
     handlerCreate();
   };
-  const handlerCreate = useCallback(async () => {
+  const handlerCreate = useCallback( () => {
     try {
-      const { data } = await Api.work.create({
-        ...work,
-        costPerHour: parseFloat(`${work.costPerHour}`),
-        skillTypeId: parseInt(`${work.skillTypeId}`),
-        totalTime: parseInt(`${work.totalTime}`),
-        address: address.value
-          ? {
-              ...address.value,
-            }
-          : undefined,
-      });
+      dispatch(isLoading(true));
+      Api.work
+        .create({
+          ...work,
+          costPerHour: parseFloat(`${work?.costPerHour}`),
+          skillTypeId: parseInt(`${work?.skillTypeId}`),
+          totalTime: parseInt(`${work?.totalTime}`),
+          address: address.value
+            ? {
+                ...address.value,
+              }
+            : undefined,
+        })
+        .then(({ data })=>{
+          replace('./root/main/Home')
+        })
+        .finally(() => {
+          dispatch(isLoading(false));
+        });
     } catch (error) {
       console.log({ error });
     }
