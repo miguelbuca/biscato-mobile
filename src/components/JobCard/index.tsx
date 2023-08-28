@@ -21,7 +21,7 @@ export interface JobCardProps {
 }
 
 export const JobCard = ({ data, isLastChild, isApplied }: JobCardProps) => {
-  const { handlerRemoveApplication, navigate } = useJobCardController(data?.id)
+  const { handlerRemoveApplication, navigate } = useJobCardController(data?.id);
 
   return (
     <Pressable
@@ -82,6 +82,11 @@ export const JobCard = ({ data, isLastChild, isApplied }: JobCardProps) => {
                 className="my-0 bg-white max-h-[40px]"
                 title="Chat"
                 textClassName="text-primary"
+                onPress={() => {
+                  navigate("Chat", {
+                    toAccount: data?.user?.id,
+                  });
+                }}
               />
             </View>
             <View>

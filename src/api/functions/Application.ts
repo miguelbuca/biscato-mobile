@@ -19,11 +19,18 @@ export const ApplicationFunction = (axios: AxiosStatic) => {
     const access_token = await getValueFor("access_token");
     axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
 
-    return await axios.delete<Application>("/applications/"+id);
+    return await axios.delete<Application>("/applications/" + id);
+  };
+  const candidates = async (id: string | number) => {
+    const access_token = await getValueFor("access_token");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
+
+    return await axios.get<Application[]>("/applications/works/" + id);
   };
   return {
     me,
     create,
-    remove
+    remove,
+    candidates,
   };
 };

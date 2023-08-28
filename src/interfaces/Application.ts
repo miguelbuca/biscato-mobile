@@ -1,3 +1,4 @@
+import { User } from "./User";
 import { Work } from "./Work";
 
 export interface Application {
@@ -21,6 +22,8 @@ export interface Application {
     | "BLOCKED"
     | "RELEASED"
     | "UNDER_MAINTENANCE";
+
+    user?: User
 
   workId: number;
   work?: Work;

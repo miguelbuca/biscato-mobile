@@ -39,7 +39,7 @@ export default function Layout() {
               title: "Chat",
               headerShown: true,
               headerShadowVisible: false,
-              headerBackTitleVisible: false
+              headerBackTitleVisible: false,
             }}
             name="Chat"
           />
@@ -53,6 +53,13 @@ export default function Layout() {
               },
             }}
             name="Find-job"
+          />
+          <Stack.Screen
+            options={{
+              headerShown: true,
+              title: "Candidatos",
+            }}
+            name="CandidatesList"
           />
         </Stack>
         <Loader />

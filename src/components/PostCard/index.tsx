@@ -3,12 +3,19 @@ import React from "react";
 import { Work } from "@/src/interfaces";
 import { SvgXml } from "react-native-svg";
 import { format } from "@/src/helper/format";
+import { Link } from "expo-router";
 
 export interface PostCardProps {
-  data: Work;
+  data: Work & {
+    _count: {
+      applications: number;
+      interactions: number;
+    };
+  };
 }
 
 export const PostCard = ({ data }: PostCardProps) => {
+
   return (
     <View className="flex flex-col border border-gray-100 rounded-lg p-4  min-h-[280px] w-[300px] mx-2">
       <View className="flex flex-col flex-1 pb-2">
@@ -35,7 +42,7 @@ export const PostCard = ({ data }: PostCardProps) => {
         <View className="flex flex-1 flex-col justify-center mt-4 py-2 border-t border-gray-100">
           <View className="flex flex-row gap-x-3 my-1">
             <Text className="font-semibold">Cadidaturas</Text>
-            <Text>109</Text>
+            <Text>{data?._count.applications}</Text>
           </View>
           <View className="flex flex-row gap-x-3 my-1">
             <Text className="font-semibold">Valor</Text>
@@ -55,11 +62,11 @@ export const PostCard = ({ data }: PostCardProps) => {
         </View>
       </View>
       <View className="flex">
-        <TouchableOpacity>
+        <Link href={`../../CandidatesList?id=${data.id}`}>
           <View className="flex items-center justify-center rounded-lg bg-black  px-5 h-[42px]">
-            <Text className="font-bold text-xs text-white">Ver mais</Text>
+            <Text className="font-bold text-xs text-white">Ver candidatos</Text>
           </View>
-        </TouchableOpacity>
+        </Link>
       </View>
     </View>
   );
