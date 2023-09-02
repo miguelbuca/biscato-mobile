@@ -21,8 +21,8 @@ export const ChatFunction = (axios: AxiosStatic, socket: Socket) => {
     return await axios.get<Chat[]>(`/chat/messages/${toAccount}`);
   };
 
-  const onMessage = (channel: string, callback?: (payload: Chat) => void) => {
-    socket.on(channel, (args) => {
+  const onMessage = (callback?: (payload: Chat) => void) => {
+    socket.on('message', (args) => {
       callback?.(args);
     });
   };
