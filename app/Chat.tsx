@@ -15,6 +15,7 @@ import { BlurView } from "expo-blur";
 import { Avatar } from "@/src/components";
 
 import * as Constants from "expo-constants";
+import { baseURL } from "@/src/api";
 
 const Chat = () => {
   const {
@@ -38,7 +39,7 @@ const Chat = () => {
           <View className="flex flex-row items-center justify-self-start w-full">
             <View>
               <Avatar
-                image={`${Constants.default.expoConfig?.extra?.api}/${otherAccount.value?.persons?.[0]?.avatar}`}
+                image={`${baseURL}/${otherAccount.value?.persons?.[0]?.avatar}`}
                 imageStyle={{
                   height: normalize(35),
                   width: normalize(35),

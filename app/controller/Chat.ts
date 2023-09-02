@@ -1,12 +1,12 @@
 import { Api } from "@/src/api";
 import { format } from "@/src/helper/format";
-import normalize from "@/src/helper/normalize";
 import { useBetterState } from "@/src/hooks/useBetterState";
 import { useKeyboard } from "@/src/hooks/useKeyboard";
+import { useSocket } from "@/src/hooks/useSocket";
 import { Chat, User } from "@/src/interfaces";
 import { AuthSelectors } from "@/src/reduxStore/slices/auth";
 import { useNavigation, useSearchParams } from "expo-router";
-import { useCallback, useEffect, useLayoutEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { ScrollView } from "react-native-gesture-handler";
 import { useSelector } from "react-redux";
 
@@ -14,6 +14,7 @@ export const useChatController = () => {
   const { toAccount } = useSearchParams<{
     toAccount: string;
   }>();
+  const { socket } = useSocket();
   const navigation = useNavigation();
   const { id: fromAccount }: User = useSelector(AuthSelectors).user;
   const otherAccount = useBetterState<User | undefined>(undefined);
@@ -39,29 +40,34 @@ export const useChatController = () => {
     Api.user.findUser(toAccount).then(({ data }) => {
       otherAccount.value = data;
     });
-    Api.chat
-      .messages(toAccount)
-      .then(({ data }) => {
-        messages.value = data;
-      })
-      .catch((error) => {
-        console.log({ error });
-      });
-  }, [toAccount, scrollRef]);
+    socket &&
+      Api.chat(socket)
+        .messages(toAccount)
+        .then(({ data }) => {
+          messages.value = data;
+        })
+        .catch((error) => {
+          console.log({ error });
+        });
+  }, [toAccount, scrollRef, socket]);
 
   useEffect(load, []);
 
   useEffect(() => {
-    return Api.chat.onMessage(`${fromAccount}`, (payload: Chat) => {
+    if (!socket) return;
+
+    return Api.chat(socket).onMessage((payload: Chat) => {
       messages.value = [...messages.value, payload];
       scrollRef.current?.scrollToEnd({
         animated: true,
       });
     });
-  }, [messages, scrollRef, fromAccount]);
+  }, [messages, scrollRef, socket, fromAccount]);
 
   const handlerMessage = useCallback(async () => {
-    const { data } = await Api.chat.sendMessage({
+    if (!socket) return;
+
+    const { data } = await Api.chat(socket).sendMessage({
       content: message.value,
       toAccount: parseInt(`${toAccount}`),
     });
@@ -76,7 +82,7 @@ export const useChatController = () => {
         animated: true,
       });
     }
-  }, [scrollRef, messages, toAccount, message, scrollHeight]);
+  }, [scrollRef, messages, toAccount, message, scrollHeight, socket]);
 
   return {
     navigation,

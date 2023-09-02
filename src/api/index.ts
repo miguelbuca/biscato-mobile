@@ -14,13 +14,13 @@ import {
 import axios from "axios";
 
 import * as Constants from "expo-constants";
-import io from "socket.io-client";
+import { Socket } from "socket.io-client";
 
-export const socket = io(Constants.default.expoConfig?.extra?.api, {
-  autoConnect: true,
-});
+const { url, port } = Constants.default.expoConfig?.extra?.api;
 
-axios.defaults.baseURL = Constants.default.expoConfig?.extra?.api;
+export const baseURL = `${url}:${port["http-https"]}`
+
+axios.defaults.baseURL = baseURL;
 axios.defaults.headers.common["Content-Type"] = "application/json";
 
 export const Api = {
@@ -32,7 +32,7 @@ export const Api = {
   application: ApplicationFunction(axios),
   address: AddressFunction(axios),
   persson: PersonFunction(axios),
-  chat: ChatFunction(axios, socket),
+  chat: (socket: Socket) => ChatFunction(axios, socket),
   external: {
     google: GoogleFunction(
       Constants.default.expoConfig?.extra?.googleMapsApiKey

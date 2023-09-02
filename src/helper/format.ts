@@ -1,3 +1,4 @@
+import { baseURL } from "../api";
 import { checkAndConvertColor } from "./colors";
 import * as Constants from "expo-constants";
 
@@ -19,7 +20,7 @@ export const format = () => {
   };
 
   const assetURL = (url: string) => {
-    return `${Constants.default.expoConfig?.extra?.api}/${url
+    return `${baseURL}/${url
       .split("\\")
       .join("/")}`;
   };
