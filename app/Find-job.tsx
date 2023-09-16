@@ -1,4 +1,7 @@
-import { View, FlatList, Platform } from "react-native";
+import {
+  View,
+  FlatList,
+} from "react-native";
 import React from "react";
 import { FindJobCard } from "@/src/components";
 import { SvgXml } from "react-native-svg";
@@ -13,7 +16,7 @@ const FindJob = () => {
       <FlatList
         style={{
           flex: 1,
-          paddingTop: Platform.OS !== "android" ? normalize(160) : normalize(20),
+          paddingTop: normalize(160),
         }}
         data={skilltypes.value}
         numColumns={2}
