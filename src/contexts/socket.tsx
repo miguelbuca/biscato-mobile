@@ -11,11 +11,11 @@ import { getValueFor } from "../helper/storage";
 import { Socket, io } from "socket.io-client";
 import * as Constants from "expo-constants";
 
-import notifee, {
+/*import notifee, {
   AndroidImportance,
   EventType,
   Notification,
-} from "@notifee/react-native";
+} from "@notifee/react-native";*/
 import { Chat, User } from "../interfaces";
 import { useSelector } from "react-redux";
 import { AuthSelectors } from "../reduxStore/slices/auth";
@@ -33,7 +33,7 @@ export const SocketProvider: React.FC<ViewProps> = ({ children }) => {
   const baseURL = `${url}:${port["ws"]}`;
 
   const handlerMessageNotification = async (notification: Notification) => {
-    await notifee.requestPermission();
+   /* await notifee.requestPermission();
 
     const channelId = await notifee.createChannel({
       id: "message",
@@ -47,10 +47,10 @@ export const SocketProvider: React.FC<ViewProps> = ({ children }) => {
       android: {
         channelId,
       },
-    });
+    });*/
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     return notifee.onForegroundEvent(({ type, detail }) => {
       switch (type) {
         case EventType.DISMISSED:
@@ -94,7 +94,7 @@ export const SocketProvider: React.FC<ViewProps> = ({ children }) => {
         data: { ...message },
       });
     });
-  }, [socket, user]);
+  }, [socket, user]);*/
 
   return (
     <SocketContext.Provider

@@ -50,3 +50,12 @@ type GeocoderResponse = {
     compound_code: string;
   };
 };
+
+type PaymentMethodType = "credit_card" | "reference";
+
+type PaymentMethod = {
+  name: string;
+  type: PaymentMethodType;
+  description?: string;
+  onPress?(): void;
+};
