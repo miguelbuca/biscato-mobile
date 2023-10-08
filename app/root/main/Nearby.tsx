@@ -38,8 +38,8 @@ const Nearby = () => {
           zoomControlEnabled
           style={StyleSheet.absoluteFill}
           showsUserLocation
+          collapsable={true}
           userLocationPriority="high"
-          userLocationCalloutEnabled
           followsUserLocation={showDirections.value}
         >
           <Circle

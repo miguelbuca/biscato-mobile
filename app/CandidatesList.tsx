@@ -13,7 +13,8 @@ import SvgCorrect from "@/src/assets/svg/correct.svg";
 import normalize from "@/src/helper/normalize";
 
 const CandidatesList = () => {
-  const { candidatures, work, route } = useCandidatesListController();
+  const { candidatures, work, handlerAccept, handlerReject } =
+    useCandidatesListController();
 
   return (
     <FlatList
@@ -62,16 +63,6 @@ const CandidatesList = () => {
           }`}
           key={index}
         >
-          {/*<View className="mr-4">
-            <Avatar
-              image={`${Constants.default.expoConfig?.extra?.api}/${item.user?.persons?.[0]?.avatar}`}
-              imageStyle={{
-                height: normalize(35),
-                width: normalize(35),
-              }}
-              className="flex items-center h-[25px] w-[25px] border-transparent"
-            />
-          </View>*/}
           <View className="flex-1 flex-col">
             <Text>{`${item.user?.firstName} ${item.user?.lastName}`}</Text>
             <Text className="text-xs opacity-50">
@@ -79,7 +70,7 @@ const CandidatesList = () => {
             </Text>
           </View>
           <View className="flex flex-row gap-x-4">
-            <TouchableOpacity>
+            <TouchableOpacity onPress={handlerAccept}>
               <View className="h-[40px] w-[40px] justify-center items-center bg-blue-400 rounded-full">
                 <SvgCorrect
                   height={normalize(25)}
@@ -88,7 +79,7 @@ const CandidatesList = () => {
                 />
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={handlerReject}>
               <View className="h-[40px] w-[40px] justify-center items-center bg-red-500 rounded-full">
                 <SvgTimes
                   height={normalize(25)}

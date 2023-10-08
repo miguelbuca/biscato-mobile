@@ -1,15 +1,18 @@
 import { Api } from "@/src/api";
+import { useToast } from "@/src/contexts/toast";
 import { useBetterState } from "@/src/hooks/useBetterState";
 import { Application } from "@/src/interfaces";
-import { useRouter, useSearchParams } from "expo-router";
+import { useNavigation, useRouter, useSearchParams } from "expo-router";
 import { useCallback, useEffect, useMemo } from "react";
 
 export const useCandidatesListController = () => {
   const route = useRouter()
+  const navigation = useNavigation()
   const candidatures = useBetterState<Application[]>([]);
   const { id } = useSearchParams<{
     id: string;
   }>();
+  const { toast } = useToast()
 
   const load = useCallback(() => {
     if (!id) return;
@@ -25,9 +28,21 @@ export const useCandidatesListController = () => {
 
   useEffect(load, []);
 
+  const handlerAccept = () =>{
+    navigation.navigate("SwitchPaymentMethod" as never);
+  }
+  const handlerReject = () => {
+    toast?.({
+      title: "",
+      subtitle: "ola mundo"
+    })
+  };
+
   return {
     route,
     candidatures,
     work,
+    handlerAccept,
+    handlerReject,
   };
 };

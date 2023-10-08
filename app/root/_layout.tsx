@@ -13,6 +13,13 @@ import { Avatar } from "@/src/components";
 import { useLayoutController } from "./controller";
 
 import BgSvg from "@/src/assets/svg/bg.svg";
+import normalize from "@/src/helper/normalize";
+
+import HomeSvg from "@/src/assets/svg/drawer-home.svg";
+import UserSvg from "@/src/assets/svg/drawer-user.svg";
+import WalletSvg from "@/src/assets/svg/drawer-wallet.svg";
+import SettingsSvg from "@/src/assets/svg/drawer-settigs.svg";
+import SignOutSvg from "@/src/assets/svg/drawer-signout.svg";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -75,8 +82,17 @@ export default function Layout() {
               >
                 <DrawerItemList {...props} />
                 <TouchableOpacity onPress={signOut}>
-                  <View className="m-2 p-3 rounded-md">
-                    <Text className="font-semibold text-gray-500">Sair</Text>
+                  <View className="flex flex-row m-2 p-3">
+                    <View>
+                      <SignOutSvg
+                        height={normalize(18)}
+                        width={normalize(18)}
+                        fill={"rgb(107,114,128)"}
+                      />
+                    </View>
+                    <View className="flex-1 ml-[15px]">
+                      <Text className="font-semibold text-gray-500">Sair</Text>
+                    </View>
                   </View>
                 </TouchableOpacity>
               </DrawerContentScrollView>
@@ -88,18 +104,68 @@ export default function Layout() {
           options={{
             title: "Início",
             headerShown: false,
+            drawerIcon({ color }) {
+              return (
+                <View className="w-[2px]">
+                  <HomeSvg
+                    height={normalize(16)}
+                    width={normalize(16)}
+                    fill={color}
+                  />
+                </View>
+              );
+            },
           }}
           name="main"
         />
         <Drawer.Screen
           options={{
             title: "Minha conta",
+            drawerIcon({ color }) {
+              return (
+                <View className="w-[2px]">
+                  <UserSvg
+                    height={normalize(16)}
+                    width={normalize(16)}
+                    fill={color}
+                  />
+                </View>
+              );
+            },
           }}
           name="Account"
         />
         <Drawer.Screen
           options={{
+            title: "Carteira",
+            drawerIcon({ color }) {
+              return (
+                <View className="w-[2px]">
+                  <WalletSvg
+                    height={normalize(17)}
+                    width={normalize(17)}
+                    fill={color}
+                  />
+                </View>
+              );
+            },
+          }}
+          name="Wallet"
+        />
+        <Drawer.Screen
+          options={{
             title: "Definições",
+            drawerIcon({ color }) {
+              return (
+                <View className="w-[2px]">
+                  <SettingsSvg
+                    height={normalize(17)}
+                    width={normalize(17)}
+                    fill={color}
+                  />
+                </View>
+              );
+            },
           }}
           name="Settings"
         />
