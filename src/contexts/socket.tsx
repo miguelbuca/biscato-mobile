@@ -18,7 +18,6 @@ import { Chat, User } from "../interfaces";
 import { useSelector } from "react-redux";
 import { AuthSelectors } from "../reduxStore/slices/auth";
 
-
 export const SocketContext = createContext<{
   socket?: Socket;
 }>({
@@ -31,7 +30,7 @@ export const SocketProvider: React.FC<ViewProps> = ({ children }) => {
   const baseURL = `${url}:${port["ws"]}`;
 
   const handlerMessageNotification = async (notification: Notification) => {
-   /* await notifee.requestPermission();
+    /* await notifee.requestPermission();
 
     const channelId = await notifee.createChannel({
       id: "message",
@@ -90,9 +89,6 @@ export const SocketProvider: React.FC<ViewProps> = ({ children }) => {
       });
     });
   }, [socket, user]);*/
-    };
-    
-  }, [socket]);
 
   return (
     <SocketContext.Provider

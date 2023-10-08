@@ -6,3 +6,4 @@ export * from "./Work";
 export * from "./Application";
 export * from "./Person"
 export * from './Chat'
+export * from './Notification'

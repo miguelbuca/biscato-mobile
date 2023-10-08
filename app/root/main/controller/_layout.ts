@@ -1,4 +1,5 @@
 import { Api } from "@/src/api";
+import { useBetterState } from "@/src/hooks/useBetterState";
 import { User } from "@/src/interfaces";
 import { AuthSelectors, setCurrentUser } from "@/src/reduxStore/slices/auth";
 import { useNavigation } from "expo-router";
@@ -10,11 +11,16 @@ export const useLayoutController = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const user: User = useSelector(AuthSelectors)?.user;
+  const notifications = useBetterState<number>(0)
+  const chat = useBetterState<number>(0);
 
   const load = useCallback(() => {
     try {
       Api.user.me().then(({ data }) => {
         dispatch(setCurrentUser(data));
+      });
+      Api.notification.count().then(({ data }) => {
+        notifications.value = data
       });
     } catch (error) {
       console.log({ error });
@@ -27,5 +33,7 @@ export const useLayoutController = () => {
     user,
     SUB_VALUE,
     navigation,
+    notifications,
+    chat
   };
 };

@@ -14,7 +14,8 @@ import ChatSvg from "@/src/assets/svg/chat.svg";
 import { useLayoutController } from "./controller";
 
 const Layout = () => {
-  const { SUB_VALUE, navigation, user } = useLayoutController();
+  const { SUB_VALUE, navigation, user, notifications, chat } =
+    useLayoutController();
 
   return (
     <Tabs
@@ -86,11 +87,11 @@ const Layout = () => {
           tabBarIcon: ({ focused, color, size }) => (
             <View className="relative">
               <JobSvg height={size - SUB_VALUE} fill={color} />
-              {!focused && (
+              {!focused && chat.value ? (
                 <View className="absolute w-[15px] h-[15px] rounded-full items-center justify-center bg-primary -top-[5px] -right-1.5">
-                  <Text className="text-[10px] text-white">2</Text>
+                  <Text className="text-[10px] text-white">{chat.value}</Text>
                 </View>
-              )}
+              ) : null}
             </View>
           ),
         }}
@@ -102,9 +103,13 @@ const Layout = () => {
           tabBarIcon: ({ color, size }) => (
             <View className="relative">
               <BellSvg height={size - SUB_VALUE} fill={color} />
-              {/*<View className="absolute w-[15px] h-[15px] rounded-full items-center justify-center bg-primary -top-[5px] -right-[2px]">
-                <Text className="text-[10px] text-white">2</Text>
-          </View>*/}
+              {notifications.value ? (
+                <View className="absolute w-[15px] h-[15px] rounded-full items-center justify-center bg-primary -top-[5px] -right-[2px]">
+                  <Text className="text-[10px] text-white">
+                    {notifications.value}
+                  </Text>
+                </View>
+              ) : null}
             </View>
           ),
         }}

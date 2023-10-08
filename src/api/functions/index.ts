@@ -8,3 +8,4 @@ export * from "./Application";
 export * from "./Google";
 export * from "./Chat";
 export * from "./Person"
+export * from "./Notification"
