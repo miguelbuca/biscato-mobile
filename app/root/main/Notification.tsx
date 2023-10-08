@@ -1,12 +1,16 @@
-import { View, Text, FlatList, Pressable } from "react-native";
+import { View, Text, FlatList, Pressable, RefreshControl } from "react-native";
 import React from "react";
 import { useNotificationController } from "./controller/Notification";
 
 const Notification = () => {
-  const { notifications } = useNotificationController();
+  const { notifications, handlerOpennedNotification, load, refreshing } =
+    useNotificationController();
 
   return (
     <FlatList
+      refreshControl={
+        <RefreshControl refreshing={refreshing.value} onRefresh={load} />
+      }
       className="pt-4"
       data={notifications.value}
       renderItem={({ item, index }) => {
@@ -18,6 +22,7 @@ const Notification = () => {
                 ? "border-b border-slate-100"
                 : "mb-8"
             } ${item.status !== "ACTIVE" ? "bg-white" : "bg-blue-100"}`}
+            onPress={() => handlerOpennedNotification(index)}
           >
             <View className="mr-4">
               <View className="flex items-center justify-center h-[45px] w-[45px] bg-white rounded-full">

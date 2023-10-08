@@ -42,26 +42,28 @@ export const useHomeController = () => {
 
   useEffect(laod, []);
 
-  const load = useCallback((fltr?: Filter) => {
-    try {
-      dispatch(isLoading(true));
-      Api.skill?.me().then(({ data }) => {
-        userSkills.value = data;
-      });
-
-      Api.work
-        ?.all(fltr)
-        .then(({ data }) => {
-          works.value = data;
-        })
-        .finally(() => {
-          dispatch(isLoading(false));
+  const load = useCallback(
+    (fltr?: Filter) => {
+      try {
+        Api.skill?.me().then(({ data }) => {
+          userSkills.value = data;
         });
-    } catch (error) {
-      console.log(error);
-    } finally {
-    }
-  }, []);
+
+        Api.work
+          ?.all(fltr)
+          .then(({ data }) => {
+            works.value = data;
+          })
+          .finally(() => {
+            dispatch(isLoading(false));
+          });
+      } catch (error) {
+        console.log(error);
+      } finally {
+      }
+    },
+    [refreshing]
+  );
 
   const handlerSkillType = (value: string) => {
     dispatch(

@@ -8,6 +8,17 @@ import { useDispatch } from "react-redux";
 export const useNotificationController = () => {
   const dispatch = useDispatch();
   const notifications = useBetterState<Notification[]>([]);
+  const refreshing = useBetterState<boolean>(false);
+
+  const handlerOpennedNotification = (index: number) => {
+    const notification = notifications.value[index];
+    if (!notification || !notification.id) return;
+    Api.notification
+      .edit(notification.id, {
+        status: "INACTIVE",
+      })
+      .then(() => loadNotifications());
+  };
 
   const loadNotifications = useCallback(() => {
     try {
@@ -22,10 +33,10 @@ export const useNotificationController = () => {
   const load = useCallback(() => {
     try {
       dispatch(isLoading(true));
-      loadNotifications()
+      loadNotifications();
     } catch (error) {
       console.log(error);
-    }finally{
+    } finally {
       dispatch(isLoading(false));
     }
   }, []);
@@ -33,6 +44,9 @@ export const useNotificationController = () => {
   useEffect(load, []);
 
   return {
+    load,
+    refreshing,
     notifications,
+    handlerOpennedNotification,
   };
 };

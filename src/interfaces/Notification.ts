@@ -1,4 +1,5 @@
 export interface Notification {
+  id?: number
   status?:
     | "ACTIVE"
     | "INACTIVE"
