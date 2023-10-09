@@ -20,9 +20,7 @@ export const format = () => {
   };
 
   const assetURL = (url: string) => {
-    return `${baseURL}/${url
-      .split("\\")
-      .join("/")}`;
+    return `${baseURL}/${url.split("\\").join("/")}`;
   };
 
   const time = (value?: string) => {
@@ -75,13 +73,13 @@ export const format = () => {
     return result;
   };
 
-  function checkDate(date: string) {
+  function checkDate(date: string, modify?: boolean) {
     const currentDate: any = new Date();
     const inputDate: any = new Date(date);
 
     const diffTime = Math.abs(currentDate - inputDate);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
+
     if (diffDays === 0) {
       return "Hoje";
     } else if (diffDays === 1) {
@@ -89,7 +87,17 @@ export const format = () => {
     } else if (diffDays === 2) {
       return "Antes de Ontem";
     } else {
-      return date;
+      if (!modify) return date;
+
+      const dt = new Date(date);
+
+      if (dt.getFullYear() !== new Date().getFullYear())
+        return date.split("T")[0].split("-").reverse().join(".");
+      else
+        return dt.toLocaleDateString("pt-PT", {
+          month: "long",
+          day: "2-digit",
+        });
     }
   }
 

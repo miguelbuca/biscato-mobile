@@ -104,29 +104,29 @@ export const JobCard = ({ data, isLastChild, isApplied }: JobCardProps) => {
           </View>
         )}
         <View className="flex flex-row justify-between">
-          <View className="flex flex-row items-center w-[33.333333%]">
+          <View className="flex flex-row items-center min-w-[33.333333%] w-[33.333333%] max-w-[33.333333%]">
             <MapPinSvg height={14} fill={"rgb(107,114,128)"} />
             <Text
               style={{
                 overflow: "hidden",
               }}
-              numberOfLines={2}
+              numberOfLines={1}
               ellipsizeMode="tail"
               className="text-[10px] font-semibold text-gray-500"
             >
               {data?.address ? data?.address.name : "Não definido"}
             </Text>
           </View>
-          <View className="flex flex-row items-center w-[33.333333%]">
+          <View className="flex flex-row items-center justify-center min-w-[33.333333%] w-[33.333333%] max-w-[33.333333%]">
             <JobSvg height={14} fill={"rgb(107,114,128)"} />
             <Text className="text-[10px] font-semibold text-gray-500">
-              {format().time(data?.time)}
+              {format().time(data?.time)}({data?.totalTime})
             </Text>
           </View>
-          <View className="flex flex-row items-center ">
+          <View className="flex flex-row items-center justify-end min-w-[33.333333%] w-[33.333333%] max-w-[33.333333%] ">
             <ClockSvg width={14} height={14} fill={"rgb(107,114,128)"} />
             <Text className="ml-2 text-[10px] font-semibold text-gray-500">
-              {data?.totalTime}
+              {format().checkDate(data?.createdAt as string, true)}
             </Text>
           </View>
         </View>

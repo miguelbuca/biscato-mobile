@@ -29,4 +29,6 @@ export interface Work {
   skillType?: SkillType;
 
   status?: StatusType;
+
+  createdAt?: string
 }
