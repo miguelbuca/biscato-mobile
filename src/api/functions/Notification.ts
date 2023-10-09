@@ -19,7 +19,7 @@ export const NotificationFunction = (axios: AxiosStatic) => {
     const access_token = await getValueFor("access_token");
     axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
 
-    return await axios.get("/notification/me/count");
+    return await axios.get<number>("/notification/me/count");
   };
   return {
     count,

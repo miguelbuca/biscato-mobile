@@ -1,5 +1,5 @@
 export interface Notification {
-  id?: number
+  id?: number;
   status?:
     | "ACTIVE"
     | "INACTIVE"
@@ -25,5 +25,7 @@ export interface Notification {
 
   content?: string;
 
-  extra?: object;
+  type?: "SYSTEM" | "USER";
+
+  extra?: any;
 }

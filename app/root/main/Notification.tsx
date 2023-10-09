@@ -1,6 +1,7 @@
 import { View, Text, FlatList, Pressable, RefreshControl } from "react-native";
 import React from "react";
 import { useNotificationController } from "./controller/Notification";
+import { AvatarNotification } from "@/src/components";
 
 const Notification = () => {
   const { notifications, handlerOpennedNotification, load, refreshing } =
@@ -25,8 +26,8 @@ const Notification = () => {
             onPress={() => handlerOpennedNotification(index)}
           >
             <View className="mr-4">
-              <View className="flex items-center justify-center h-[45px] w-[45px] bg-white rounded-full">
-                <Text>test</Text>
+              <View className="min-h-[45px] min-w-[45px] ">
+                <AvatarNotification data={item} />
               </View>
             </View>
             <View className={`flex-1`}>

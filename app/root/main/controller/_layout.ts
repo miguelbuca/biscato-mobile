@@ -2,6 +2,7 @@ import { Api } from "@/src/api";
 import { useBetterState } from "@/src/hooks/useBetterState";
 import { User } from "@/src/interfaces";
 import { AuthSelectors, setCurrentUser } from "@/src/reduxStore/slices/auth";
+import { notificationSelectors, setNotificationCount } from "@/src/reduxStore/slices/notifications";
 import { useNavigation } from "expo-router";
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +12,7 @@ export const useLayoutController = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const user: User = useSelector(AuthSelectors)?.user;
-  const notifications = useBetterState<number>(0)
+  const notifications = useSelector(notificationSelectors)?.count;
   const chat = useBetterState<number>(0);
 
   const load = useCallback(() => {
@@ -20,7 +21,7 @@ export const useLayoutController = () => {
         dispatch(setCurrentUser(data));
       });
       Api.notification.count().then(({ data }) => {
-        notifications.value = data
+        dispatch(setNotificationCount(data))
       });
     } catch (error) {
       console.log({ error });

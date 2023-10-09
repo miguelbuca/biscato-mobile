@@ -103,10 +103,10 @@ const Layout = () => {
           tabBarIcon: ({ color, size }) => (
             <View className="relative">
               <BellSvg height={size - SUB_VALUE} fill={color} />
-              {notifications.value ? (
+              {notifications ? (
                 <View className="absolute w-[15px] h-[15px] rounded-full items-center justify-center bg-primary -top-[5px] -right-[2px]">
                   <Text className="text-[10px] text-white">
-                    {notifications.value}
+                    {notifications}
                   </Text>
                 </View>
               ) : null}
