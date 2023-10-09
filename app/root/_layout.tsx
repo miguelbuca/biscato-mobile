@@ -138,6 +138,9 @@ export default function Layout() {
         <Drawer.Screen
           options={{
             title: "Carteira",
+            drawerItemStyle:{
+              display: 'none'
+            },
             drawerIcon({ color }) {
               return (
                 <View className="w-[2px]">
