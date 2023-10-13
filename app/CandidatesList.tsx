@@ -8,13 +8,12 @@ import {
 import React from "react";
 import { useCandidatesListController } from "./controller";
 import { SvgXml } from "react-native-svg";
-import SvgTimes from '@/src/assets/svg/times.svg';
-import SvgLink from "@/src/assets/svg/link.svg";
+import SvgTimes from "@/src/assets/svg/times.svg";
 import normalize from "@/src/helper/normalize";
 import { format } from "@/src/helper/format";
 
 const CandidatesList = () => {
-  const { candidatures, work, handlerAccept, handlerReject } =
+  const { candidatures, work, handlerAccept, handlerReject, handlerPortfolio } =
     useCandidatesListController();
 
   return (
@@ -70,6 +69,7 @@ const CandidatesList = () => {
               ? "rounded-bl-lg rounded-br-lg mb-4"
               : "border-b border-b-slate-100"
           }`}
+          onPress={() => handlerPortfolio(item.user?.id)}
           key={index}
         >
           <View className="flex-1 flex-col">

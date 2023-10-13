@@ -101,15 +101,15 @@ export const format = () => {
     }
   }
 
-  const numberAsFollow = (value: number) => {
+  const numberAsFollow = (value: number, toFixed = 1) => {
     if (typeof value !== "number" || isNaN(value)) {
       throw new Error("Invalid input. Value must be a number.");
     }
 
     if (value >= 1000000) {
-      return (value / 1000000).toFixed(1) + "M";
+      return (value / 1000000).toFixed(toFixed) + "M";
     } else if (value >= 1000) {
-      return (value / 1000).toFixed(1) + "K";
+      return (value / 1000).toFixed(toFixed) + "K";
     } else {
       return value.toString();
     }

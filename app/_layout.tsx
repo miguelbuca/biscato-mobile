@@ -72,6 +72,13 @@ export default function Layout() {
                 }}
                 name="SwitchPaymentMethod"
               />
+              <Stack.Screen
+                options={{
+                  headerShown: true,
+                  title: "Portfólio",
+                }}
+                name="Portfolio"
+              />
             </Stack>
             <Loader />
             <StatusBar style="dark" />
