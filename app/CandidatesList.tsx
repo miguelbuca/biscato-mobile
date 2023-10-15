@@ -19,8 +19,8 @@ const CandidatesList = () => {
   return (
     <FlatList
       ListHeaderComponent={() => (
-        <View className="flex flex-col">
-          <View className="bg-white p-2 flex flex-row rounded-lg mb-2">
+        <View className="flex flex-col mt-4">
+          <View className="bg-white p-4 flex flex-row rounded-lg mb-2">
             <View className="mr-2">
               <View
                 style={{
@@ -62,7 +62,7 @@ const CandidatesList = () => {
       )}
       renderItem={({ item, index }) => (
         <Pressable
-          className={`bg-white px-2 flex flex-row items-center py-5 ${
+          className={`bg-white px-4 flex flex-row items-center py-5 ${
             index === 0 ? "rounded-tl-lg rounded-tr-lg mt-4" : ""
           }  ${
             candidatures.value.length === index + 1
@@ -80,18 +80,16 @@ const CandidatesList = () => {
           </View>
           <View className="flex items-center flex-row gap-x-2">
             <TouchableOpacity onPress={handlerAccept}>
-              <View className="min-h-[35px] justify-center items-center bg-blue-400 rounded-full">
-                <Text className="px-3 py-2 text-white font-semibold">
-                  Aceitar
-                </Text>
+              <View className="h-[42px] justify-center items-center bg-primary rounded-lg">
+                <Text className="px-3 text-white font-semibold">Aceitar</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={handlerReject}>
-              <View className="h-[35px] w-[35px] justify-center items-center bg-gray-300 rounded-full">
+              <View className="h-[42px] w-[42px] justify-center items-center bg-[#f8f8f8] rounded-lg">
                 <SvgTimes
                   height={normalize(25)}
                   width={normalize(25)}
-                  fill={"#fff"}
+                  fill={"#000000"}
                 />
               </View>
             </TouchableOpacity>
@@ -99,7 +97,6 @@ const CandidatesList = () => {
         </Pressable>
       )}
       data={candidatures.value}
-      className="p-4"
     />
   );
 };

@@ -10,3 +10,4 @@ export * from "./Select";
 export * from "./Accordion";
 export * from "./messageCard"
 export * from "./AvatarNotification"
+export * from "./WorkCard"
