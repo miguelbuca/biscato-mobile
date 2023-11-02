@@ -18,7 +18,7 @@ export const Accordion = ({
 }: AccordinProps) => {
   const { display } = useAccordionController(isOpen || false);
   return (
-    <View className="flex flex-col bg-white" {...args}>
+    <View className="flex flex-col bg-white dark:bg-[#111]" {...args}>
       <Pressable
         onPress={() => (display.value = !display.value)}
         className="flex flex-row justify-between p-4 px-6"

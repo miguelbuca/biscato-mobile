@@ -12,9 +12,9 @@ const Applied = () => {
       refreshControl={
         <RefreshControl refreshing={refreshing.value} onRefresh={load} />
       }
-      className="flex-1 flex flex-col gap-3 pt-5 bg-[#fafafa]"
+      className="flex-1 flex flex-col gap-3 bg-[#fafafa] dark:bg-black pt-28"
     >
-      <View className="flex flex-col bg-white">
+      <View className="flex flex-col bg-white dark:bg-[#1a1a1a]">
         <View className="p-4">
           <Text className="text-base font-semibold text-gray-500">
             Publicações ({works.state.value.length})
@@ -24,14 +24,14 @@ const Applied = () => {
           <ScrollView horizontal>
             <View className="flex flex-row py-4 px-2">
               {works.state.value.map((item, index) => (
-                <PostCard key={index} data={item} />
+                <PostCard key={index} data={item as any} />
               ))}
             </View>
           </ScrollView>
         )}
       </View>
 
-      <View className="flex flex-col bg-white p-4 mb-8">
+      <View className="flex flex-col bg-white p-4 dark:bg-[#1a1a1a] mb-52">
         <View>
           <Text className="text-base font-semibold text-gray-500">
             Minhas candidaturas

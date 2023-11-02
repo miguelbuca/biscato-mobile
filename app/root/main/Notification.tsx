@@ -12,7 +12,7 @@ const Notification = () => {
       refreshControl={
         <RefreshControl refreshing={refreshing.value} onRefresh={load} />
       }
-      className="pt-4"
+      className="dark:bg-black pt-28"
       data={notifications.value}
       renderItem={({ item, index }) => {
         return (
@@ -20,9 +20,9 @@ const Notification = () => {
             key={index}
             className={`flex p-4 flex-row  ${
               index !== notifications.value.length - 1
-                ? "border-b border-slate-100"
+                ? "border-b border-slate-100 dark:border-[#333]"
                 : "mb-8"
-            } ${item.status !== "ACTIVE" ? "bg-white" : "bg-blue-100"}`}
+            } ${item.status !== "ACTIVE" ? "bg-white dark:bg-[#222]" : "bg-blue- dark:bg-[#333] dark:border-[#222]"}`}
             onPress={() => handlerOpennedNotification(index)}
           >
             <View className="mr-4">
@@ -32,7 +32,7 @@ const Notification = () => {
             </View>
             <View className={`flex-1`}>
               <View>
-                <Text className="font-semibold">{item.title}</Text>
+                <Text className="font-semibold dark:text-white">{item.title}</Text>
               </View>
               <View className="my-2">
                 <Text
@@ -41,7 +41,7 @@ const Notification = () => {
                   }}
                   numberOfLines={3}
                   ellipsizeMode="tail"
-                  className="text-xs"
+                  className="text-xs dark:text-white dark:opacity-80"
                 >
                   {item.content}
                 </Text>

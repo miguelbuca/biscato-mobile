@@ -1,12 +1,16 @@
+import HeaderBackground from "@/src/components/HeaderBackground";
 import Loader from "@/src/components/Loader";
 import { SocketProvider } from "@/src/contexts/socket";
 import { ToastProvider } from "@/src/contexts/toast";
 import { store } from "@/src/reduxStore/store";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { useColorScheme } from "nativewind";
+import { useEffect } from "react";
 import { Provider } from "react-redux";
 
 export default function Layout() {
+  const { colorScheme } = useColorScheme();
   return (
     <>
       <Provider store={store}>
@@ -15,12 +19,17 @@ export default function Layout() {
             <Stack
               screenOptions={{
                 headerShown: false,
+                headerTitleStyle: {
+                  color: colorScheme === "light" ? "#000" : "#fff",
+                },
               }}
             >
               <Stack.Screen
                 options={{
                   title: "Publicar biscato",
                   headerShown: true,
+                  headerTransparent: true,
+                  headerBackground: () => <HeaderBackground />,
                 }}
                 name="Publication"
               />
@@ -62,6 +71,8 @@ export default function Layout() {
                 options={{
                   headerShown: true,
                   title: "Candidatos",
+                  headerTransparent: true,
+                  headerBackground: () => <HeaderBackground />,
                 }}
                 name="CandidatesList"
               />
@@ -76,6 +87,8 @@ export default function Layout() {
                 options={{
                   headerShown: true,
                   title: "Portfólio",
+                  headerTransparent: true,
+                  headerBackground: () => <HeaderBackground />,
                 }}
                 name="Portfolio"
               />
@@ -85,6 +98,7 @@ export default function Layout() {
           </SocketProvider>
         </ToastProvider>
       </Provider>
+      <StatusBar style={colorScheme !== "light" ? "light" : "dark"} />
     </>
   );
 }

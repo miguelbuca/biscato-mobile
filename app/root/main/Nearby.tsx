@@ -34,6 +34,12 @@ const Nearby = () => {
             latitudeDelta: 0.0922, // Set the desired zoom level (latitude span)
             longitudeDelta: 0.0421, // Set the desired zoom level (longitude span)
           }}
+          mapPadding={{
+            top: 50,
+            bottom: 50,
+            left: 10,
+            right: 10
+          }}
           showsBuildings
           zoomControlEnabled
           style={StyleSheet.absoluteFill}

@@ -14,18 +14,23 @@ import { SignInValidationSchema } from "@/src/validations";
 import { useSignInController } from "./controller";
 
 const SignIn = () => {
-  const { handler, navigate } = useSignInController();
+  const { handler, navigate, colorScheme } = useSignInController();
 
   return (
     <>
-      <View className="absolute min-w-full min-h-full bg-[#f5f5f5]">
-        <BgSvg fill={"rgba(0,0,0,0.5))"} />
+      <View className="absolute flex-1 min-w-full min-h-full bg-[#f5f5f5] dark:bg-black">
+        <BgSvg
+          fill={
+            colorScheme === "light"
+              ? "rgba(0,0,0,0.5))"
+              : "rgba(255,255,255,0.3))"
+          }
+        />
       </View>
       <ScrollView className="relative flex-1  pb-6">
         <View
-          className="rounded-lg"
+          className="rounded-lg bg-white dark:bg-[#111]"
           style={{
-            backgroundColor: "#ffffff",
             width: "90%",
             shadowColor: "#000",
             shadowOffset: { width: 0, height: 2 },
@@ -45,7 +50,7 @@ const SignIn = () => {
             onSubmit={handler}
           >
             {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-              <View className="m-4 pb-8 border-b border-b-[#eeeeee]">
+              <View className="m-4 pb-8 border-b border-b-[#eeeeee] dark:border-b-[#222]">
                 <Input
                   placeholder="Email"
                   onChangeText={handleChange("email")}
@@ -70,7 +75,7 @@ const SignIn = () => {
                 />
                 <TouchableOpacity onPress={() => navigate("Sign-up" as never)}>
                   <View className="flex flex-row items-center justify-center mt-4">
-                    <Text>Não tenho uma conta!</Text>
+                    <Text className="dark:text-white">Não tenho uma conta!</Text>
                     <Text className="text-tertiary font-black ml-1">
                       Criar agora
                     </Text>

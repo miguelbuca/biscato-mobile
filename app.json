@@ -1,5 +1,6 @@
 {
   "expo": {
+    "userInterfaceStyle": "automatic",
     "scheme": "acme",
     "web": {
       "bundler": "metro"
@@ -8,7 +9,7 @@
     "slug": "Biscato",
     "extra": {
       "api": {
-        "url": "http://192.168.1.100",
+        "url": "http://192.168.1.102",
         "port": {
           "http-https": 4000,
           "ws": 4000

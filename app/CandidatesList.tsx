@@ -18,9 +18,10 @@ const CandidatesList = () => {
 
   return (
     <FlatList
+      className="bg-[#f5f5f5] dark:bg-black pt-28"
       ListHeaderComponent={() => (
-        <View className="flex flex-col mt-4">
-          <View className="bg-white p-4 flex flex-row rounded-lg mb-2">
+        <View className="flex flex-col mt-4 ">
+          <View className="bg-white dark:bg-[#222] p-4 flex flex-row rounded-lg mb-2">
             <View className="mr-2">
               <View
                 style={{
@@ -40,7 +41,7 @@ const CandidatesList = () => {
             </View>
             <View className="flex flex-1 flex-col justify-center">
               <Text
-                className="font-semibold mb-1"
+                className="font-semibold mb-1 dark:text-white"
                 style={{
                   overflow: "hidden",
                 }}
@@ -49,11 +50,11 @@ const CandidatesList = () => {
               >
                 {work?.title}
               </Text>
-              <Text>{work?.skillType?.name}</Text>
+              <Text className="dark:text-white">{work?.skillType?.name}</Text>
             </View>
           </View>
           <View className="self-center my-4">
-            <Text className="text-xs">
+            <Text className="text-xs dark:text-white">
               <Text className="font-bold">Nota: </Text>Clique no cartão para ver
               o portfólio do candidato.
             </Text>
@@ -62,19 +63,19 @@ const CandidatesList = () => {
       )}
       renderItem={({ item, index }) => (
         <Pressable
-          className={`bg-white px-4 flex flex-row items-center py-5 ${
+          className={`bg-white dark:bg-[#222] px-4 flex flex-row items-center py-5 ${
             index === 0 ? "rounded-tl-lg rounded-tr-lg mt-4" : ""
           }  ${
             candidatures.value.length === index + 1
-              ? "rounded-bl-lg rounded-br-lg mb-4"
-              : "border-b border-b-slate-100"
+              ? "rounded-bl-lg rounded-br-lg mb-52"
+              : "border-b border-b-slate-100 dark:border-b-[#111]"
           }`}
           onPress={() => handlerPortfolio(item.user?.id)}
           key={index}
         >
           <View className="flex-1 flex-col">
-            <Text>{`${item.user?.firstName} ${item.user?.lastName}`}</Text>
-            <Text className="text-black text-[11px] mt-0.5 opacity-50">
+            <Text className="dark:text-white">{`${item.user?.firstName} ${item.user?.lastName}`}</Text>
+            <Text className="text-black dark:text-white text-[11px] mt-0.5 opacity-50">
               {format().numberAsFollow(3500)} seguidores
             </Text>
           </View>

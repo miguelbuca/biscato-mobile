@@ -24,14 +24,15 @@ import SignOutSvg from "@/src/assets/svg/drawer-signout.svg";
 const { width, height } = Dimensions.get("screen");
 
 export default function Layout() {
-  const { signOut, user, person } = useLayoutController();
+  const { signOut, user, person, colorScheme } = useLayoutController();
 
   return (
     <>
       <Drawer
         screenOptions={({ navigation }) => {
           return {
-            drawerInactiveTintColor: "rgb(107,114,128)",
+            drawerInactiveTintColor:
+              colorScheme === "dark" ? "#fff" : "rgb(107,114,128)",
             drawerActiveTintColor: (
               theme?.extend?.colors as { primary: string }
             ).primary,
@@ -46,8 +47,8 @@ export default function Layout() {
         }}
         drawerContent={(props) => {
           return (
-            <View className="flex-1">
-              <View className="flex min-h-[250px] bg-primary">
+            <View className="flex-1 bg-white dark:bg-black ">
+              <View className="flex min-h-[250px] bg-primary border-b border-b-white dark:border-b-[#111]">
                 <View className="absolute w-full h-full overflow-hidden">
                   <BgSvg
                     width={width}
@@ -58,7 +59,7 @@ export default function Layout() {
                 <SafeAreaView className="flex flex-col items-center justify-center flex-1 px-[18px]">
                   <View className="mb-2">
                     <Avatar
-                      image={person.avatar}
+                      image={person?.avatar}
                       letters={`${
                         user?.firstName?.[0] && user?.firstName?.[0]
                       } ${user?.lastName?.[0] && user?.lastName?.[0]}`}
@@ -87,11 +88,15 @@ export default function Layout() {
                       <SignOutSvg
                         height={normalize(18)}
                         width={normalize(18)}
-                        fill={"rgb(107,114,128)"}
+                        fill={
+                          colorScheme === "dark" ? "#fff" : "rgb(107,114,128)"
+                        }
                       />
                     </View>
                     <View className="flex-1 ml-[15px]">
-                      <Text className="font-semibold text-gray-500">Sair</Text>
+                      <Text className="font-semibold text-gray-500 dark:text-white">
+                        Sair
+                      </Text>
                     </View>
                   </View>
                 </TouchableOpacity>
@@ -138,8 +143,8 @@ export default function Layout() {
         <Drawer.Screen
           options={{
             title: "Carteira",
-            drawerItemStyle:{
-              display: 'none'
+            drawerItemStyle: {
+              display: "none",
             },
             drawerIcon({ color }) {
               return (
@@ -173,7 +178,7 @@ export default function Layout() {
           name="Settings"
         />
       </Drawer>
-      <StatusBar style="dark" />
+      <StatusBar style={colorScheme !== "light" ? "light" : "dark"} />
     </>
   );
 }

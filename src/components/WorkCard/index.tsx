@@ -15,7 +15,7 @@ export const WorkCard: FC<{ item: PortfolioItem; style?: ViewStyle }> = ({ item,
       key={item.id}
       style={[{ paddingTop: 12, flex: 1 }, style]}
     >
-      <View className="ml-[12px] bg-white p-0.5 rounded-2xl">
+      <View className="ml-[12px] bg-white p-0.5 rounded-xl dark:bg-[#222]">
         <Image
           source={{ uri: item.image }}
           style={{
@@ -23,10 +23,10 @@ export const WorkCard: FC<{ item: PortfolioItem; style?: ViewStyle }> = ({ item,
             alignSelf: "stretch",
           }}
           resizeMode="cover"
-          className="rounded-2xl"
+          className="rounded-xl"
         />
         <Text
-          className="py-4 px-2"
+          className="py-4 px-2 dark:text-white"
         >
           {item.description}
         </Text>

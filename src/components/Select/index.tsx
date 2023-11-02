@@ -61,11 +61,11 @@ export const Select = ({
 
   return (
     <TouchableOpacity onPress={onOpen}>
-      <View className="bg-[#f8f8f8] my-2 flex flex-row items-center border border-transparent rounded-lg focus:border focus:rounded-lg focus:border-primary">
+      <View className="bg-[#f8f8f8] dark:bg-[#222] my-2 flex flex-row items-center border border-transparent rounded-lg focus:border focus:rounded-lg focus:border-primary">
         {leftElement ? <View className="ml-2">{leftElement}</View> : null}
         <TextInput
           placeholderTextColor={"#aeaeae"}
-          className="h-12 px-4 w-full rounded-lg -z-10 text-black"
+          className="h-12 px-4 w-full rounded-lg -z-10 text-black dark:text-white"
           editable={false}
           onPressIn={onOpen}
           value={value ? _value : value}
@@ -75,7 +75,7 @@ export const Select = ({
           ref={modalizeRef}
           HeaderComponent={
             <View className="mx-6 border-b py-4 border-b-[#f8f8f8]">
-              <Text className="font-semibold text-base">
+              <Text className="font-semibold text-base dark:text-white">
                 {args.placeholder}
               </Text>
             </View>
@@ -98,7 +98,7 @@ export const Select = ({
                     }`}
                   >
                     <View className="flex-1">
-                      <Text className="flex-1text-md">
+                      <Text className="flex-1 text-md dark:text-white">
                         {item?.[fields?.[1]]}
                       </Text>
                     </View>

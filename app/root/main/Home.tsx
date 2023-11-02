@@ -20,7 +20,6 @@ import { Formik } from "formik";
 
 const { height } = Dimensions.get("window");
 
-import PencilSvg from "@/src/assets/svg/form/pencil.svg";
 import CostPorHourSvg from "@/src/assets/svg/form/coins.svg";
 import ClockSvg from "@/src/assets/svg/form/clock.svg";
 import SkillSvg from "@/src/assets/svg/form/skill.svg";
@@ -41,6 +40,7 @@ const Home = () => {
     handlerFilterOptionsReset,
     skillType,
     skillTypeID,
+    colorScheme,
   } = useHomeController();
 
   return (
@@ -49,29 +49,36 @@ const Home = () => {
       refreshControl={
         <RefreshControl refreshing={refreshing.value} onRefresh={load} />
       }
-      className="flex-1 flex flex-col gap-3 pt-5 bg-[#fafafa]"
+      className="flex-1 flex flex-col gap-3 bg-[#fafafa] dark:bg-black pt-28"
     >
       <ScrollView
-        className="bg-white"
+        className="bg-white dark:bg-[#1a1a1a]"
         horizontal
         showsHorizontalScrollIndicator={false}
       >
         <View className="flex flex-row p-4">
           <Pressable
             onPress={() => modalizeRef.current?.open()}
-            className="flex items-center justify-center border border-[#f8f8f8] rounded-lg p-2"
+            className="flex items-center justify-center border border-[#f8f8f8] dark:border-[#2a2a2a] rounded-lg p-2"
           >
-            <FilterSvg height={20} fill={"rgb(107,114,128)"} />
+            <FilterSvg
+              height={20}
+              fill={colorScheme === "light" ? "rgb(107,114,128)" : "#ccc"}
+            />
           </Pressable>
           <Pressable
             className={`flex items-center justify-center ml-2 py-3 px-4 rounded-lg 
-            ${filter.job?.skillType === "" ? "bg-primary" : "bg-[#f8f8f8]"}
+            ${
+              filter.job?.skillType === ""
+                ? "bg-primary"
+                : "bg-[#f8f8f8] dark:bg-[#2a2a2a]"
+            }
             `}
             onPress={() => handlerSkillType("")}
           >
             <Text
               className={`font-[500] ${
-                filter.job?.skillType === "" && "text-white"
+                filter.job?.skillType === "" ? "text-white" : "dark:text-white"
               }`}
             >
               Todos
@@ -83,13 +90,15 @@ const Home = () => {
               className={`flex items-center justify-center mx-2 py-3 px-4 rounded-lg ${
                 filter.job?.skillType === skillType?.name
                   ? "bg-primary"
-                  : "bg-[#f8f8f8]"
+                  : "bg-[#f8f8f8] dark:bg-[#2a2a2a]"
               } `}
               key={index}
             >
               <Text
                 className={` font-[500] ${
-                  filter.job?.skillType === skillType?.name && "text-white"
+                  filter.job?.skillType === skillType?.name
+                    ? "text-white"
+                    : "dark:text-white"
                 }`}
               >
                 {skillType?.name}
@@ -99,9 +108,11 @@ const Home = () => {
         </View>
       </ScrollView>
 
-      <View className="flex flex-row items-center p-4 bg-white">
+      <View className="flex flex-row items-center p-4 bg-white dark:bg-[#1a1a1a]">
         <View className="flex-1">
-          <Text className="text-[16px]">Queres um biscateiro?</Text>
+          <Text className="text-[16px] text-gray-500 dark:text-white">
+            Queres um biscateiro?
+          </Text>
         </View>
         <View>
           <Link href={"/Publication"}>
@@ -116,9 +127,9 @@ const Home = () => {
         </View>
       </View>
 
-      <View className="flex flex-col bg-white p-4 mb-8">
+      <View className="flex flex-col bg-white dark:bg-[#1a1a1a] p-4 mb-52">
         <View className="mb-5">
-          <Text className="text-base font-semibold text-gray-500">
+          <Text className="text-base font-semibold text-gray-500 ">
             Sugestões de trabalho
           </Text>
         </View>

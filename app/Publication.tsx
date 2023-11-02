@@ -17,8 +17,8 @@ import normalize from "@/src/helper/normalize";
 export default function Publication() {
   const { skillTypes, selectedTime, navigate } = usePublicationController();
   return (
-    <KeyboardAwareScrollView className="flex-1 flex flex-col gap-3 pt-5 bg-[#fafafa]">
-      <View>
+    <KeyboardAwareScrollView className="flex-1 flex flex-col gap-3 bg-[#f5f5f5] dark:bg-black pt-28">
+      <View className="mb-52">
         <Formik
           validationSchema={WorkValidationSchema}
           initialValues={{
@@ -33,7 +33,7 @@ export default function Publication() {
           }}
           onSubmit={(work) => {
             navigate("Location", {
-              work
+              work,
             });
           }}
         >

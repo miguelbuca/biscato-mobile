@@ -7,6 +7,7 @@ import {
   setJobFilter,
 } from "@/src/reduxStore/slices/filter";
 import { isLoading } from "@/src/reduxStore/slices/loader";
+import { useColorScheme } from "nativewind";
 import { useCallback, useEffect, useRef } from "react";
 import { Modalize } from "react-native-modalize";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,6 +27,7 @@ export const useHomeController = () => {
   const skillType = useBetterState<string>("");
 
   const skillTypeID = useBetterState<string | undefined>(undefined);
+  const { colorScheme } = useColorScheme();
 
   const loadSkillType = useCallback(async () => {
     try {
@@ -140,5 +142,6 @@ export const useHomeController = () => {
     skillTypes,
     handlerFilterOptions,
     handlerFilterOptionsReset,
+    colorScheme,
   };
 };

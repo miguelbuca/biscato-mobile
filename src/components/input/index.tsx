@@ -27,28 +27,28 @@ export const Input = ({
   const { phoneInputRef } = useInputController();
   return (
     <>
-      <View className="bg-[#f8f8f8] my-2 flex flex-row items-center border border-transparent rounded-lg focus:border focus:rounded-lg focus:border-primary">
+      <View className="bg-[#f8f8f8] dark:bg-[#222] dark:border-[#222] my-2 flex flex-row items-center border border-transparent rounded-lg focus:border focus:rounded-lg focus:border-primary">
         {leftElement ? <View className="ml-2">{leftElement}</View> : null}
         {!currencyProps && !isPhone ? (
           <TextInput
             placeholderTextColor={"#aeaeae"}
-            className="h-12 px-4 w-full rounded-lg"
+            className="h-12 px-4 w-full rounded-lg dark:text-white"
             {...args}
           />
         ) : currencyProps ? (
           <CurrencyInput
-            className="h-12 px-4 w-full rounded-lg"
+            className="h-12 px-4 w-full rounded-lg dark:text-white"
             {...(args as any)}
             {...(currencyProps as any)}
           />
         ) : (
           <PhoneInput
             initialCountry="ao"
-            className="h-12 px-2 w-full rounded-lg"
+            className="h-12 px-2 w-full rounded-lg dark:text-white"
             autoFormat
             ref={phoneInputRef as any}
-            onChangePhoneNumber={(value)=>{
-              if(!value)return
+            onChangePhoneNumber={(value) => {
+              if (!value) return;
               args?.onChangeText?.(value?.split(" ").join(""));
             }}
             {...args}

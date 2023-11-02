@@ -7,7 +7,6 @@ import ClockSvg from "@/src/assets/svg/clock.svg";
 import { Work } from "@/src/interfaces";
 import { SvgXml } from "react-native-svg";
 import { format } from "@/src/helper/format";
-import { useNavigation } from "expo-router";
 import { Button } from "../Button";
 
 import TrashSvg from "@/src/assets/svg/trash.svg";
@@ -21,7 +20,8 @@ export interface JobCardProps {
 }
 
 export const JobCard = ({ data, isLastChild, isApplied }: JobCardProps) => {
-  const { handlerRemoveApplication, navigate } = useJobCardController(data?.id);
+  const { handlerRemoveApplication, navigate, colorScheme } =
+    useJobCardController(data?.id);
 
   return (
     <Pressable
@@ -33,7 +33,7 @@ export const JobCard = ({ data, isLastChild, isApplied }: JobCardProps) => {
     >
       <View
         className={`flex flex-col  py-4 ${
-          !isLastChild && "border-b border-[#f8f8f8]"
+          !isLastChild && "border-b border-[#f8f8f8] dark:border-b-[#222]"
         }`}
       >
         <View className="flex flex-row mb-5">
@@ -48,18 +48,22 @@ export const JobCard = ({ data, isLastChild, isApplied }: JobCardProps) => {
                 xml={data?.skillType.svgXml}
                 width={24}
                 height={24}
-                fill={"#ffffff"}
+                fill={colorScheme === "light" ? "#fff" : "#000"}
               />
             )}
           </View>
           <View className="flex flex-col flex-1">
             <View className="ml-2 flex-1">
               <View className="flex justify-center flex-1">
-                <Text className="text-[16px] font-semibold">{data?.title}</Text>
+                <Text className="text-[16px] font-semibold dark:text-white">
+                  {data?.title}
+                </Text>
               </View>
               <View className="flex flex-row justify-between">
                 <TouchableOpacity>
-                  <Text className="text-xs">{data?.skillType?.name}</Text>
+                  <Text className="text-xs dark:text-white">
+                    {data?.skillType?.name}
+                  </Text>
                 </TouchableOpacity>
                 <Text className="text-primary font-semibold">
                   {format().amount(data?.costPerHour || 0)}/hr
@@ -69,7 +73,7 @@ export const JobCard = ({ data, isLastChild, isApplied }: JobCardProps) => {
           </View>
         </View>
         {isApplied && (
-          <View className="flex items-center justify-end flex-row mb-4 px-2 rounded-lg pt-2 bg-[#f8f8f8]">
+          <View className="flex items-center justify-end flex-row mb-4 px-2 rounded-lg pt-2 bg-[#f8f8f8] dark:bg-[#222]">
             <Pressable
               onPress={handlerRemoveApplication}
               className="flex-1 flex-row items-center"
@@ -79,9 +83,9 @@ export const JobCard = ({ data, isLastChild, isApplied }: JobCardProps) => {
             </Pressable>
             <View className="mr-2">
               <Button
-                className="my-0 bg-white max-h-[40px]"
+                className="my-0 bg-white max-h-[40px] dark:bg-[#111]"
                 title="Chat"
-                textClassName="text-primary"
+                textClassName="text-primary dark:text-white"
                 onPress={() => {
                   navigate("Chat", {
                     toAccount: data?.user?.id,
@@ -91,12 +95,16 @@ export const JobCard = ({ data, isLastChild, isApplied }: JobCardProps) => {
             </View>
             <View>
               <Button
-                className="my-0 bg-white max-h-[40px]"
+                className="my-0 bg-white max-h-[40px] dark:bg-black"
                 title="Denunciar"
-                textClassName="text-black"
+                textClassName="text-black dark:text-white"
                 leftElement={
                   <View className="mr-1">
-                    <PhoneSvg height={12} width={12} fill={"black"} />
+                    <PhoneSvg
+                      height={12}
+                      width={12}
+                      fill={colorScheme === "dark" ? "#fff" : "#000"}
+                    />
                   </View>
                 }
               />

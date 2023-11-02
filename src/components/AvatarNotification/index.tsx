@@ -16,7 +16,7 @@ export const AvatarNotification: FC<{ data: Notification }> = ({ data }) => {
           <SvgXml xml={img.value} />
         </View>
       ) : img.value ? (
-        <View className="flex items-center justify-center rounded-full border-2 h-[45px] w-[45px] border-slate-100">
+        <View className="flex items-center justify-center rounded-full border-[1px] h-[45px] w-[45px] border-slate-100">
           <Image
             style={{
               height: normalize(45),

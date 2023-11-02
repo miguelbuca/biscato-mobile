@@ -4,6 +4,7 @@ import { User } from "@/src/interfaces";
 import { AuthSelectors, setCurrentUser } from "@/src/reduxStore/slices/auth";
 import { notificationSelectors, setNotificationCount } from "@/src/reduxStore/slices/notifications";
 import { useNavigation } from "expo-router";
+import { useColorScheme } from "nativewind";
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -14,6 +15,7 @@ export const useLayoutController = () => {
   const user: User = useSelector(AuthSelectors)?.user;
   const notifications = useSelector(notificationSelectors)?.count;
   const chat = useBetterState<number>(0);
+   const { colorScheme } = useColorScheme();
 
   const load = useCallback(() => {
     try {
@@ -35,6 +37,7 @@ export const useLayoutController = () => {
     SUB_VALUE,
     navigation,
     notifications,
-    chat
+    chat,
+    colorScheme,
   };
 };

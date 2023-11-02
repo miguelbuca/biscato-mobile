@@ -14,13 +14,13 @@ const Portfolio = () => {
     usePortfolioController();
 
   return (
-    <View className="flex-1">
+    <View className="flex-1 dark:bg-black">
       <MasonryList
         style={{
           flex: 1,
         }}
         ListHeaderComponent={
-          <View className="p-4 my-4 bg-white">
+          <View className="p-4 my-4 mt-28 bg-white dark:bg-[#222] mx-3 rounded-xl">
             <View className="flex flex-row items-center gap-x-3 py-6">
               <View>
                 <Image
@@ -35,8 +35,8 @@ const Portfolio = () => {
                 />
               </View>
               <View className="flex flex-col">
-                <Text className="font-bold text-sm">{`${user.value?.firstName} ${user.value?.lastName}`}</Text>
-                <Text className="text-sm">UI/UX Design</Text>
+                <Text className="font-bold text-sm dark:text-white">{`${user.value?.firstName} ${user.value?.lastName}`}</Text>
+                <Text className="text-sm dark:text-white">UI/UX Design</Text>
                 <View className="flex flex-row mt-1 gap-x-2 items-center">
                   <Text className="text-[11px] text-gray-500">
                     {format().numberAsFollow(1270)} Seguidores
@@ -45,16 +45,18 @@ const Portfolio = () => {
                     {format().numberAsFollow(5)} Seguindo
                   </Text>
                   <Text className="text-[11px] text-gray-500">
-                    {format().numberAsFollow(1050,2)} Biscatos
+                    {format().numberAsFollow(1050, 2)} Biscatos
                   </Text>
                 </View>
               </View>
             </View>
             <View>
               <View className="flex flex-col">
-                <Text className="font-semibold text-xs">About</Text>
+                <Text className="font-semibold text-xs dark:text-white">
+                  About
+                </Text>
                 <Text
-                  className="my-2 text-xs"
+                  className="my-2 text-xs dark:text-white"
                   style={{
                     overflow: "hidden",
                   }}
