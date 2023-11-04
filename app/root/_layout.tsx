@@ -20,6 +20,7 @@ import UserSvg from "@/src/assets/svg/drawer-user.svg";
 import WalletSvg from "@/src/assets/svg/drawer-wallet.svg";
 import SettingsSvg from "@/src/assets/svg/drawer-settigs.svg";
 import SignOutSvg from "@/src/assets/svg/drawer-signout.svg";
+import HeaderBackground from "@/src/components/HeaderBackground";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -31,15 +32,23 @@ export default function Layout() {
       <Drawer
         screenOptions={({ navigation }) => {
           return {
+            headerTitleStyle: {
+              color: colorScheme === "light" ? "#000" : "#fff",
+            },
             drawerInactiveTintColor:
               colorScheme === "dark" ? "#fff" : "rgb(107,114,128)",
+            headerTransparent: true,
+            headerBackground: () => <HeaderBackground />,
             drawerActiveTintColor: (
               theme?.extend?.colors as { primary: string }
             ).primary,
             headerLeft: () => (
               <TouchableOpacity onPress={(navigation as any).toggleDrawer}>
                 <View className="relative flex items-start justify-center p-4">
-                  <MenuSvg height={22} fill={"black"} />
+                  <MenuSvg
+                    height={22}
+                    fill={colorScheme === "dark" ? "#fff" : "#000"}
+                  />
                 </View>
               </TouchableOpacity>
             ),

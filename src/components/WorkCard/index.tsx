@@ -19,10 +19,10 @@ export const WorkCard: FC<{ item: PortfolioItem; style?: ViewStyle }> = ({ item,
         <Image
           source={{ uri: item.image }}
           style={{
-            height: randomBool ? 150 : 280,
+            height: 250,
             alignSelf: "stretch",
           }}
-          resizeMode="cover"
+          resizeMode="stretch"
           className="rounded-xl"
         />
         <Text

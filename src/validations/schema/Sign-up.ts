@@ -3,7 +3,12 @@ import * as yup from "yup";
 
 export const SignUpValidationSchema = yup
   .object()
-  .shape<Record<keyof User, yup.AnySchema>>({
+  .shape<
+    Record<
+      keyof Pick<User, "firstName" | "lastName" | "email" | "password">,
+      yup.AnySchema
+    >
+  >({
     firstName: yup.string().required("Nome é necessário"),
     lastName: yup.string().required("Sobrenome é necessário"),
     email: yup

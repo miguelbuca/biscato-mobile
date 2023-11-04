@@ -46,7 +46,7 @@ const SignUp = () => {
             onSubmit={handler}
           >
             {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-              <View className="m-4 pb-8 border-b border-b-[#eeeeee] dark:border-b-[#222]">
+              <View className="m-4 pb-8">
                 <Input
                   placeholder="Nome"
                   onChangeText={handleChange("firstName")}
@@ -94,7 +94,6 @@ const SignUp = () => {
               </View>
             )}
           </Formik>
-          <OAuthButtons />
         </View>
       </ScrollView>
     </>
