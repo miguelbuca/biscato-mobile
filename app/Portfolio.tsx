@@ -76,10 +76,14 @@ const Portfolio = () => {
                   height={normalize(13)}
                   fill={"#ffffff"}
                 />
-                <Text className="text-white font-semibold"> Seguir</Text>
+                <Text className="text-white font-semibold">
+                  {isMyPortfolio ? " Biscato" : " Seguir"}
+                </Text>
               </View>
               <View className="flex flex-1 items-center justify-center max-h-[42px] px-7 py-3 rounded-lg bg-[#f8f8f8]">
-                <Text className="text-black font-semibold">Mensagem</Text>
+                <Text className="text-black font-semibold">
+                  {isMyPortfolio ? "Editar" : "Mensagem"}
+                </Text>
               </View>
               <View className="flex  items-center justify-center px-7 max-h-[42px] py-3 rounded-lg bg-[#f8f8f8]">
                 <ShareSvg

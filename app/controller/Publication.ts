@@ -1,14 +1,13 @@
 import { Api } from "@/src/api";
 import { useBetterState } from "@/src/hooks/useBetterState";
-import { SkillType, Work } from "@/src/interfaces";
-import { useNavigation, useRouter } from "expo-router";
+import { SkillType } from "@/src/interfaces";
+import { useNavigation } from "expo-router";
 import { useCallback, useEffect } from "react";
 
 export const usePublicationController = () => {
-  const { navigate } = useNavigation()
+  const { navigate }: any = useNavigation();
   const skillTypes = useBetterState<SkillType[]>([]);
   const selectedTime = useBetterState<string>("");
-  
 
   const loadSkillType = useCallback(async () => {
     try {

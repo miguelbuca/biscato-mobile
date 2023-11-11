@@ -69,5 +69,7 @@ export const useAccountController = () => {
 
   return {
     items,
+    user,
+    selectedPersonIndex,
   };
 };

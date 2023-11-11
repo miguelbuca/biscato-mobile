@@ -17,16 +17,17 @@ import { Accordion, Button } from "@/src/components";
 const { width, height } = Dimensions.get("screen");
 
 export default function Work() {
-  const { params, scrollRef, handlerCreateApplication } = useWorkController();
+  const { params, scrollRef, handlerCreateApplication, isMyWork, colorScheme } =
+    useWorkController();
 
   return (
     <>
-      <StatusBar style="light" />
+      <StatusBar style={colorScheme} />
       <View className={`flex-1`}>
         <KeyboardAwareScrollView
           bounces={false}
           ref={scrollRef}
-          className="flex-1 flexflex-col"
+          className="flex-1 flex flex-col dark:bg-black"
         >
           <View
             style={{
@@ -48,7 +49,7 @@ export default function Work() {
                   width: normalize(90),
                   height: normalize(90),
                 }}
-                className="w-[100px] h-[100px] bg-white rounded-full items-center justify-center"
+                className="w-[100px] h-[100px] bg-white dark:bg-[#111] rounded-full items-center justify-center"
               >
                 <SvgXml
                   xml={params.skillType?.svgXml || ""}
@@ -68,7 +69,7 @@ export default function Work() {
                     style={{
                       fontSize: normalize(18),
                     }}
-                    className="text-white font-semibold"
+                    className="text-white dark:text-[#111] font-semibold"
                   >
                     {params.title}
                   </Text>
@@ -82,9 +83,7 @@ export default function Work() {
             >
               <View>
                 <Button
-                  style={{
-                    backgroundColor: "#fff",
-                  }}
+                  className="bg-white dark:bg-[#111]"
                   onPress={() => {
                     scrollRef.current && scrollRef?.current.scrollToEnd(true);
                   }}
@@ -95,7 +94,7 @@ export default function Work() {
                     }}
                     className="text-black text-base font-medium"
                   >
-                    Candidatar-se
+                    {isMyWork.value ? "Ver candidatos" : " Candidatar-se"}
                   </Text>
                 </Button>
               </View>
@@ -104,7 +103,7 @@ export default function Work() {
                   style={{
                     fontSize: normalize(22),
                   }}
-                  className="text-white font-semibold"
+                  className="text-white dark:text-[#111] font-semibold"
                 >
                   {format().amount(params.costPerHour || 0)}
                 </Text>
@@ -112,7 +111,7 @@ export default function Work() {
                   style={{
                     fontSize: normalize(8),
                   }}
-                  className="text-white uppercase font-semibold"
+                  className="text-white dark:text-[#111] uppercase font-semibold"
                 >
                   Valor Por Hora
                 </Text>
@@ -123,7 +122,7 @@ export default function Work() {
             <View className="flex flex-row items-center gap-x-3 mb-10">
               <View className="flex-1 flex-col">
                 <View className="flex flex-row items-center">
-                  <Text className="font-bold text-[12px]">{`${params?.user?.firstName} ${params?.user?.lastName}`}</Text>
+                  <Text className="font-bold text-[12px] dark:text-white">{`${params?.user?.firstName} ${params?.user?.lastName}`}</Text>
                   <View className="flex items-center ml-1 rounded-full">
                     <VerifiedSvg height={20} width={20} />
                   </View>
@@ -168,7 +167,7 @@ export default function Work() {
                 title="Descrição"
                 isOpen
               >
-                <Text>{params.description}</Text>
+                <Text className="dark:text-white">{params.description}</Text>
               </Accordion>
             )}
             {params.term && (
@@ -187,9 +186,7 @@ export default function Work() {
             </View>
             <View>
               <Button
-                style={{
-                  backgroundColor: "#fff",
-                }}
+                className="bg-white dark:bg-[#111]"
                 onPress={handlerCreateApplication}
               >
                 <Text
@@ -198,7 +195,9 @@ export default function Work() {
                   }}
                   className="text-black text-base font-medium"
                 >
-                  Enviar candidatura
+                  {isMyWork.value
+                    ? "Lista dos candidatos"
+                    : " Enviar candidatura"}
                 </Text>
               </Button>
             </View>

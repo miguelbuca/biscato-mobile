@@ -44,6 +44,7 @@ const Applied = () => {
               data={item.work}
               isLastChild={index + 1 === arr.length}
               isApplied
+              applicationId={item.id}
             />
           ))}
         </View>

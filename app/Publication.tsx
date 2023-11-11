@@ -58,23 +58,26 @@ export default function Publication() {
                 />
                 <Select
                   placeholder="Habilidade"
-                  value={values.skillTypeId}
-                  onChange={(value) => {
-                    const tm = handleChange("skillTypeId");
-
+                  onValueChange={(value) => {
+                    if (!value) return;
+                    const fn = handleChange("skillTypeId");
                     try {
-                      tm(`${value["id"]}`);
+                      fn(value?.toString());
                     } catch (error) {
                       console.log(error);
                     }
                   }}
-                  fields={["id", "name"]}
-                  onBlur={handleBlur("skillTypeId")}
+                  itemKey={1}
                   errorMessage={errors.skillTypeId}
                   leftElement={
                     <SkillSvg width={15} height={15} fill={"#aeaeae"} />
                   }
-                  data={skillTypes.value}
+                  items={skillTypes.value.map((item) => {
+                    return {
+                      label: item.name || "",
+                      value: item.id || 0,
+                    };
+                  })}
                 />
                 <Input
                   placeholder="Valor por hora"
@@ -103,24 +106,26 @@ export default function Publication() {
                 />
                 <Select
                   placeholder="Duração"
-                  keyAsNumber={false}
                   value={values.time}
-                  onChange={(value) => {
-                    const tm = handleChange("time");
-                    tm(value["id"]);
+                  onValueChange={(value) => {
+                    if (!value) return;
+                    const fn = handleChange("time");
+                    try {
+                      fn(value?.toString());
+                    } catch (error) {
+                      console.log(error);
+                    }
                   }}
-                  onBlur={handleBlur("time")}
                   errorMessage={errors.time}
                   leftElement={
                     <ClockSvg width={15} height={15} fill={"#aeaeae"} />
                   }
-                  getSelectedLabel={(title) => (selectedTime.value = title)}
-                  data={[
-                    { value: "Horas", id: "HOUR" },
-                    { value: "Dias", id: "DAY" },
-                    { value: "Semanas", id: "WEEK" },
-                    { value: "Meses", id: "MONTH" },
-                    { value: "Anos", id: "YEAR" },
+                  items={[
+                    { label: "Horas", value: "HOUR" },
+                    { label: "Dias", value: "DAY" },
+                    { label: "Semanas", value: "WEEK" },
+                    { label: "Meses", value: "MONTH" },
+                    { label: "Anos", value: "YEAR" },
                   ]}
                 />
                 <Input

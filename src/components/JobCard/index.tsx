@@ -17,9 +17,15 @@ export interface JobCardProps {
   data?: Work;
   isLastChild?: boolean;
   isApplied?: boolean;
+  applicationId?: number;
 }
 
-export const JobCard = ({ data, isLastChild, isApplied }: JobCardProps) => {
+export const JobCard = ({
+  data,
+  isLastChild,
+  isApplied,
+  applicationId,
+}: JobCardProps) => {
   const { handlerRemoveApplication, navigate, colorScheme } =
     useJobCardController(data?.id);
 
@@ -75,7 +81,7 @@ export const JobCard = ({ data, isLastChild, isApplied }: JobCardProps) => {
         {isApplied && (
           <View className="flex items-center justify-end flex-row mb-4 px-2 rounded-lg pt-2 bg-[#f8f8f8] dark:bg-[#222]">
             <Pressable
-              onPress={handlerRemoveApplication}
+              onPress={() => handlerRemoveApplication(applicationId)}
               className="flex-1 flex-row items-center"
             >
               <TrashSvg height={15} width={15} fill={"rgb(220,38,38)"} />

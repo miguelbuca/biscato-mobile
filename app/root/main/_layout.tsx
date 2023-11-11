@@ -7,7 +7,7 @@ import JobSvg from "@/src/assets/svg/job.svg";
 import BellSvg from "@/src/assets/svg/bell.svg";
 import { View, Text, TouchableOpacity } from "react-native";
 
-import SearchSvg from "@/src/assets/svg/search.svg";
+import ShortSvg from "@/src/assets/svg/short.svg";
 import LogoFontSvg from "@/src/assets/svg/logo-font.svg";
 import MenuSvg from "@/src/assets/svg/menu.svg";
 import ChatSvg from "@/src/assets/svg/chat.svg";
@@ -78,8 +78,9 @@ const Layout = () => {
               route.name !== "Applied" ? (
                 <Link href={"/Find-job"}>
                   <View className="relative flex items-start justify-center p-4">
-                    <SearchSvg
-                      height={22}
+                    <ShortSvg
+                      height={20}
+                      width={20}
                       fill={colorScheme === "light" ? "black" : "#fff"}
                     />
                   </View>

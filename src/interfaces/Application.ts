@@ -22,8 +22,8 @@ export interface Application {
     | "BLOCKED"
     | "RELEASED"
     | "UNDER_MAINTENANCE";
-
-    user?: User
+  id?: number;
+  user?: User;
 
   workId: number;
   work?: Work;

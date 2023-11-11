@@ -73,11 +73,19 @@ export const PostCard = ({ data }: PostCardProps) => {
         </View>
       </View>
       <View className="flex">
-        <Link href={`../../CandidatesList?id=${data.id}`}>
-          <View className="flex items-center justify-center rounded-lg bg-black dark:bg-primary  px-5 h-[42px]">
-            <Text className="font-bold text-xs text-white">Ver candidatos</Text>
-          </View>
-        </Link>
+        {data?._count.applications ? (
+          <Link href={`../../CandidatesList?id=${data.id}`}>
+            <View
+              className={`flex items-center justify-center rounded-lg bg-black dark:bg-primary  px-5 h-[42px]`}
+            >
+              <Text className="font-bold text-xs text-white">
+                Ver candidatos
+              </Text>
+            </View>
+          </Link>
+        ) : (
+          <View className="h-[42px]" />
+        )}
       </View>
     </View>
   );

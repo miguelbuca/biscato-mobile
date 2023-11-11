@@ -80,11 +80,11 @@ export const format = () => {
     const diffTime = Math.abs(currentDate - inputDate);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-    if (diffDays === 0) {
+    if (diffDays === 1) {
       return "Hoje";
-    } else if (diffDays === 1) {
-      return "Ontem";
     } else if (diffDays === 2) {
+      return "Ontem";
+    } else if (diffDays === 3) {
       return "Antes de Ontem";
     } else {
       if (!modify) return date;

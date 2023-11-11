@@ -11,6 +11,7 @@ import React from "react";
 import { Input, JobCard, Select } from "@/src/components";
 
 import FilterSvg from "@/src/assets/svg/filter.svg";
+import SearchSvg from "@/src/assets/svg/search.svg";
 import MegaphoneSvg from "@/src/assets/svg/megaphone.svg";
 import { useHomeController } from "./controller";
 import { Link } from "expo-router";
@@ -59,9 +60,9 @@ const Home = () => {
         <View className="flex flex-row p-4">
           <Pressable
             onPress={() => modalizeRef.current?.open()}
-            className="flex items-center justify-center border border-[#f8f8f8] dark:border-[#2a2a2a] rounded-lg p-2"
+            className="flex items-center justify-center border border-[#e8e8e8] dark:border-[#2a2a2a] rounded-lg p-2"
           >
-            <FilterSvg
+            <SearchSvg
               height={20}
               fill={colorScheme === "light" ? "rgb(107,114,128)" : "#ccc"}
             />
@@ -149,10 +150,15 @@ const Home = () => {
         withReactModal
         //handlePosition="inside"
         modalHeight={normalize(height - 150)}
+        modalStyle={{
+          backgroundColor: colorScheme === "dark" ? "#111" : "#fff",
+        }}
         HeaderComponent={
-          <View className="flex flex-row items-center p-4 mt-2 border-b border-b-slate-100">
+          <View className="flex flex-row items-center p-4 mt-2 border-b border-b-slate-100 dark:border-b-[#222]">
             <View className="flex flex-1">
-              <Text className="font-black text-[16px]">Filtrar</Text>
+              <Text className="font-black text-[16px] dark:text-white">
+                Filtrar
+              </Text>
             </View>
             <View>
               <TouchableOpacity onPress={handlerFilterOptionsReset}>
@@ -193,67 +199,57 @@ const Home = () => {
             {({ handleChange, handleBlur, values, errors }) => (
               <View>
                 <View className="my-2">
-                  <Text className="font-bold">Habilidades</Text>
+                  <Text className="font-bold dark:text-white">Habilidades</Text>
                 </View>
                 <Select
                   placeholder="Habilidade"
-                  value={values.skillTypeId}
-                  onChange={(value, label) => {
-                    const tm = handleChange("skillTypeId");
-
-                    if (label) skillType.value = label;
+                  onValueChange={(value) => {
+                    if (!value) return;
 
                     try {
-                      tm(`${value["id"]}`);
+                      const fn = handleChange("skillTypeId");
+                      fn(value?.toString());
                     } catch (error) {
                       console.log(error);
                     }
                   }}
-                  fields={["id", "name"]}
-                  onBlur={handleBlur("skillTypeId")}
                   errorMessage={errors.skillTypeId}
                   leftElement={
                     <SkillSvg width={15} height={15} fill={"#aeaeae"} />
                   }
-                  data={[
-                    {
-                      id: 0,
-                      name: "Não selecionado",
-                    },
-                    ...skillTypes.value,
-                  ]}
+                  items={(skillTypes.value || []).map((item) => {
+                    return {
+                      label: item.name || "",
+                      value: item.id || 0,
+                    };
+                  })}
                 />
 
                 <View className="my-2">
-                  <Text className="font-bold">Duração</Text>
+                  <Text className="font-bold dark:text-white">Duração</Text>
                 </View>
                 <Select
                   placeholder="Duração"
-                  keyAsNumber={false}
                   value={values.time as string}
-                  onChange={(value) => {
-                    const tm = handleChange("time");
-                    tm(value["id"]);
-                  }}
-                  onBlur={handleBlur("time")}
+                  onValueChange={handleChange("time")}
                   errorMessage={errors.time}
                   leftElement={
                     <ClockSvg width={15} height={15} fill={"#aeaeae"} />
                   }
-                  getSelectedLabel={(title) => (selectedTime.value = title)}
-                  data={[
-                    { value: "Não selecionado", id: "null" },
-                    { value: "Horas", id: "HOUR" },
-                    { value: "Dias", id: "DAY" },
-                    { value: "Semanas", id: "WEEK" },
-                    { value: "Meses", id: "MONTH" },
-                    { value: "Anos", id: "YEAR" },
+                  items={[
+                    { label: "Horas", value: "HOUR" },
+                    { label: "Dias", value: "DAY" },
+                    { label: "Semanas", value: "WEEK" },
+                    { label: "Meses", value: "MONTH" },
+                    { label: "Anos", value: "YEAR" },
                   ]}
                 />
                 <View className="flex flex-row gap-3">
                   <View className="flex-1">
                     <View className="my-2">
-                      <Text className="font-bold">Valor mínimo</Text>
+                      <Text className="font-bold dark:text-white">
+                        Valor mínimo
+                      </Text>
                     </View>
                     <Input
                       placeholder="Valor por hora"
@@ -289,7 +285,9 @@ const Home = () => {
                   </View>
                   <View className="flex-1">
                     <View className="my-2">
-                      <Text className="font-bold">Valor máximo</Text>
+                      <Text className="font-bold dark:text-white">
+                        Valor máximo
+                      </Text>
                     </View>
                     <Input
                       placeholder="Valor por hora"

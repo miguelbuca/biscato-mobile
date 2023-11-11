@@ -42,7 +42,6 @@ export default function Layout() {
               />
               <Stack.Screen
                 options={{
-                  title: "Publicar trabalho",
                   headerShown: true,
                 }}
                 name="Work"

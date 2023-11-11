@@ -10,16 +10,14 @@ export const useJobCardController = (id?: number) => {
   const dispatch = useDispatch();
   const { colorScheme } = useColorScheme();
 
-  const handlerRemoveApplication = useCallback(() => {
+  const handlerRemoveApplication = useCallback((id?: number) => {
     if (!id) return;
     dispatch(isLoading(true));
 
-    Api.application.remove(id).then(({ data })=>{
-      console.log(data)
-    }).finally(() => {
+    Api.application.remove(id).finally(() => {
       dispatch(isLoading(false));
     });
-  }, [id]);
+  }, []);
 
   return {
     handlerRemoveApplication,
