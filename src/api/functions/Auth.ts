@@ -5,7 +5,7 @@ import { save, getValueFor, remove } from "@/src/helper/storage";
 
 export const AuthFunction = (axios: AxiosStatic) => {
   const signIn = async (credentials: Pick<User, "email" | "password">) => {
-    const { data } = await axios.post<{ access_token: string }>(
+    const { data,  } = await axios.post<{ access_token: string }>(
       "/auth/signin",
       credentials
     );

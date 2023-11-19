@@ -1,5 +1,8 @@
 import { useBetterState } from "@/src/hooks/useBetterState";
-import { setCurrentUser, setSelectedPersonIndex } from "@/src/reduxStore/slices/auth";
+import {
+  setCurrentUser,
+  setSelectedPersonIndex,
+} from "@/src/reduxStore/slices/auth";
 import { useNavigation, useRouter } from "expo-router";
 import { useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -24,11 +27,17 @@ export const usePageController = () => {
     if (access_token) {
       try {
         const { data } = await Api.user.me();
+        const { data: skillType } = await Api.skillType.me();
+
         dispatch(setCurrentUser(data));
-        
+
         if (data.persons?.length) {
-          dispatch(setSelectedPersonIndex(0));
-          replace("root/main");
+          if (skillType.length < 3) {
+            replace("Skill");
+          } else {
+            dispatch(setSelectedPersonIndex(0));
+            replace("root/main");
+          }
         } else replace("userProfile");
       } catch (error) {
         replace("auth/Sign-in");

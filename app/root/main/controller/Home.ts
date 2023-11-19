@@ -22,6 +22,7 @@ export const useHomeController = () => {
   const formikRef = useRef<any>(null);
 
   const skillTypes = useBetterState<SkillType[]>([]);
+  const skillTypesAll = useBetterState<SkillType[]>([]);
   const selectedTime = useBetterState<string>("");
 
   const skillType = useBetterState<string>("");
@@ -32,7 +33,9 @@ export const useHomeController = () => {
   const loadSkillType = useCallback(async () => {
     try {
       const { data } = await Api.skillType.me();
+      const { data: all } = await Api.skillType.all();
       skillTypes.value = data;
+      skillTypesAll.value = all;
     } catch (error) {
       console.log({ error });
     }
@@ -143,5 +146,6 @@ export const useHomeController = () => {
     handlerFilterOptions,
     handlerFilterOptionsReset,
     colorScheme,
+    skillTypesAll,
   };
 };

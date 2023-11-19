@@ -50,7 +50,7 @@ const PersonInfo = () => {
                 leftElement={
                   <BirthdaySvg width={15} height={15} fill={"#aeaeae"} />
                 }
-                onChange={(_, value) => {
+                onChange={(value) => {
                   if (!value) return;
                   const fn = handleChange("birthday");
                   try {

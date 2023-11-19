@@ -42,6 +42,7 @@ const Home = () => {
     skillType,
     skillTypeID,
     colorScheme,
+    skillTypesAll,
   } = useHomeController();
 
   return (
@@ -217,7 +218,7 @@ const Home = () => {
                   leftElement={
                     <SkillSvg width={15} height={15} fill={"#aeaeae"} />
                   }
-                  items={(skillTypes.value || []).map((item) => {
+                  items={(skillTypesAll.value || []).map((item) => {
                     return {
                       label: item.name || "",
                       value: item.id || 0,

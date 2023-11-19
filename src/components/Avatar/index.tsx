@@ -33,7 +33,7 @@ export const Avatar = ({
 }: AvatarProps) => {
   const { image: uploadedImage, handlerPickImage } =
     useAvatarController(onUpload);
-    
+
   return (
     <>
       <View

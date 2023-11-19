@@ -18,12 +18,13 @@ export const usePersonInfoController = () => {
   const handlerCreatePerson = useCallback(
     async (values: Person) => {
       try {
-        if (!avatar.value ) return;
+        if (!avatar.value) return;
 
-        const { uri, type } = avatar.value
+        const { data: skillType } = await Api.skillType.me();
+        const { uri, type } = avatar.value;
         const fileName = avatar.value.uri.split("/").pop();
 
-        if(!uri || !fileName || !type)return
+        if (!uri || !fileName || !type) return;
 
         dispatch(isLoading(true));
         const formData = new FormData();
@@ -32,7 +33,7 @@ export const usePersonInfoController = () => {
           {
             uri: uri,
             name: fileName,
-            type: type +'/'+fileName.split(".").pop(),
+            type: type + "/" + fileName.split(".").pop(),
           } as any,
           fileName
         );
@@ -43,16 +44,17 @@ export const usePersonInfoController = () => {
 
         await Api.persson
           .create(formData)
-          .then(({ data }) => {
-            //console.log(data);
-            replace("root/main");
+          .then(() => {
+            if (skillType.length < 3) {
+              replace("Skill");
+            } else replace("root/main");
           })
           .finally(() => {
             dispatch(isLoading(false));
           });
       } catch (error) {
         console.log({ error });
-      } 
+      }
     },
     [avatar]
   );

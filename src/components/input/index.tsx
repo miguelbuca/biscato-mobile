@@ -1,4 +1,11 @@
-import { View, Text, TextInput, TextInputProps, ViewProps } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TextInputProps,
+  ViewProps,
+  Pressable,
+} from "react-native";
 import React, { FC } from "react";
 import CurrencyInput, { CurrencyInputProps } from "react-native-currency-input";
 
@@ -6,10 +13,12 @@ import PhoneInput from "react-native-phone-input";
 import { useInputController } from "./constroller";
 
 import RNDateTimePicker, {
-  BaseProps,
-} from "@react-native-community/datetimepicker";
+  DateTimePickerProps,
+} from "react-native-modal-datetime-picker";
 
 import { theme } from "@/tailwind.config";
+import { useBetterState } from "@/src/hooks/useBetterState";
+import { useColorScheme } from "nativewind";
 
 export interface InputProps extends TextInputProps {
   errorMessage?: string;
@@ -66,15 +75,41 @@ export const InputDataPicker = ({
   label,
   leftElement,
   errorMessage,
+  onChange,
+  value,
   ...args
-}: BaseProps & { label?: string } & Pick<InputProps, "leftElement"|'errorMessage'>) => {
+}: Omit<DateTimePickerProps, "onConfirm" | "onCancel"> & {
+  label?: string;
+  value?: Date;
+} & Pick<InputProps, "leftElement" | "errorMessage">) => {
+  const isDatePickerVisible = useBetterState<boolean>(false);
+  const { colorScheme } = useColorScheme()
+
+  const showDatePicker = () => {
+    isDatePickerVisible.value = true;
+  };
+
+  const hideDatePicker = () => {
+    isDatePickerVisible.value = false;
+  };
+
+  const handleConfirm = (date: Date) => {
+    onChange?.(date);
+    hideDatePicker();
+  };
+
   return (
     <View className="my-2">
-      <View className="bg-[#f8f8f8] rounded-lg  h-12 px-2 flex-row  items-center">
+      <Pressable
+        onPress={showDatePicker}
+        className="bg-[#f8f8f8] rounded-lg  h-12 px-2 flex-row  items-center"
+      >
         {leftElement ? <View className="mr-2">{leftElement}</View> : null}
-        {label ? (
+        {label || value ? (
           <View className="flex-1 mr-2">
-            <Text className="text-[#aeaeae] text-[16px]">{label}</Text>
+            <Text className="text-[#aeaeae] text-[16px]">
+              {value?.toLocaleDateString() || label}
+            </Text>
           </View>
         ) : null}
         <RNDateTimePicker
@@ -84,10 +119,14 @@ export const InputDataPicker = ({
             alignItems: "center",
           }}
           collapsable={false}
-          //accentColor={(theme?.extend?.colors as { primary: string }).primary}
           {...args}
+          themeVariant={colorScheme}
+          isVisible={isDatePickerVisible.value}
+          mode="date"
+          onConfirm={handleConfirm}
+          onCancel={hideDatePicker}
         />
-      </View>
+      </Pressable>
       {errorMessage && (
         <Text className="text-red-600 text-[10px] mt-2">{errorMessage}</Text>
       )}

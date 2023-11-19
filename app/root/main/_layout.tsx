@@ -5,7 +5,7 @@ import HomeSvg from "@/src/assets/svg/home.svg";
 import MapPinSvg from "@/src/assets/svg/map-pin.svg";
 import JobSvg from "@/src/assets/svg/job.svg";
 import BellSvg from "@/src/assets/svg/bell.svg";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Platform } from "react-native";
 
 import ShortSvg from "@/src/assets/svg/short.svg";
 import LogoFontSvg from "@/src/assets/svg/logo-font.svg";
@@ -14,7 +14,7 @@ import ChatSvg from "@/src/assets/svg/chat.svg";
 import { useLayoutController } from "./controller";
 import { BlurView } from "expo-blur";
 
-import config from '@/tailwind.config'
+import config from "@/tailwind.config";
 import { StatusBar } from "expo-status-bar";
 import HeaderBackground from "@/src/components/HeaderBackground";
 
@@ -47,13 +47,27 @@ const Layout = () => {
               borderTopColor:
                 colorScheme === "light" ? "#cccccc" : "rgba(255,255,255,0.1)",
             },
-            tabBarBackground: () => (
-              <BlurView
-                intensity={50}
-                tint={colorScheme}
-                className="absolute w-full h-full"
-              />
-            ),
+            tabBarBackground:
+              Platform.OS === "ios"
+                ? () => (
+                    <BlurView
+                      intensity={50}
+                      tint={colorScheme}
+                      className="absolute w-full h-full"
+                    />
+                  )
+                : () => (
+                    <View
+                      style={{
+                        borderTopWidth: 0.5,
+                        borderTopColor:
+                          colorScheme === "light"
+                            ? "rgba(0,0,0,0.1)"
+                            : "rgba(255,255,255,0.1)",
+                      }}
+                      className="absolute w-full h-full bg-white dark:bg-black"
+                    />
+                  ),
             headerLeft: () => (
               <TouchableOpacity onPress={(navigation as any).toggleDrawer}>
                 <View className="relative flex items-start justify-center p-4 -z-1">
