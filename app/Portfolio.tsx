@@ -10,7 +10,7 @@ import MasonryList from "@react-native-seoul/masonry-list";
 import { WorkCard } from "@/src/components";
 
 const Portfolio = () => {
-  const { logged, user, data, getWorkCardStyles, isMyPortfolio } =
+  const { user, data, getWorkCardStyles, isMyPortfolio } =
     usePortfolioController();
 
   return (

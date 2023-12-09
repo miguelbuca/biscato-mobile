@@ -47,6 +47,7 @@ const Nearby = () => {
           collapsable={true}
           userLocationPriority="high"
           followsUserLocation={showDirections.value}
+          
         >
           <Circle
             center={{

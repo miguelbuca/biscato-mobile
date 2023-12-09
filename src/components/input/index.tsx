@@ -52,6 +52,7 @@ export const Input = ({
           />
         ) : (
           <PhoneInput
+            initialValue={args.value}
             initialCountry="ao"
             className="h-12 px-2 w-full rounded-lg dark:text-white"
             autoFormat
@@ -83,7 +84,7 @@ export const InputDataPicker = ({
   value?: Date;
 } & Pick<InputProps, "leftElement" | "errorMessage">) => {
   const isDatePickerVisible = useBetterState<boolean>(false);
-  const { colorScheme } = useColorScheme()
+  const { colorScheme } = useColorScheme();
 
   const showDatePicker = () => {
     isDatePickerVisible.value = true;

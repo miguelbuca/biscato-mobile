@@ -6,6 +6,7 @@ import {
   GoogleFunction,
   NotificationFunction,
   PersonFunction,
+  PortfolioFunction,
   SkillFunction,
   SkillTypeFunction,
   UserFunction,
@@ -34,6 +35,7 @@ export const Api = {
   notification: NotificationFunction(axios),
   address: AddressFunction(axios),
   persson: PersonFunction(axios),
+  portfolio: PortfolioFunction(axios),
   chat: (socket: Socket) => ChatFunction(axios, socket),
   external: {
     google: GoogleFunction(

@@ -1,32 +1,34 @@
 import { AxiosStatic } from "axios";
 import { getValueFor } from "@/src/helper/storage";
-import { User } from "@/src/interfaces";
+import { Person, Portfolio } from "@/src/interfaces";
 
-export const UserFunction = (axios: AxiosStatic) => {
-  const me = async () => {
+export const PortfolioFunction = (axios: AxiosStatic) => {
+  const create = async (data: Portfolio) => {
     const access_token = await getValueFor("access_token");
     axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
 
-    return await axios.get<User>("/users/me");
-  };
-  const findUser = async (id: number | string) => {
-    const access_token = await getValueFor("access_token");
-    axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
-
-    return await axios.get<User>(`/users/${id}`);
+    return await axios.post<Person>("/portfolio", data);
   };
 
-  const update = async (data: User) => {
+  const me = async (data: Portfolio) => {
     const access_token = await getValueFor("access_token");
     axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
 
-    return await axios.patch<User>(`/users`, {
+    return await axios.post<Person>("/portfolio/me", data);
+  };
+
+  const update = async (data: Person, id?: number) => {
+    const access_token = await getValueFor("access_token");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
+
+    return await axios.patch<Portfolio>(`/portfolio/${id}`, {
       ...data,
     });
   };
+
   return {
     me,
-    findUser,
-    update
+    create,
+    update,
   };
 };
