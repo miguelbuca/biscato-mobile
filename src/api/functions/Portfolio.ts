@@ -10,11 +10,11 @@ export const PortfolioFunction = (axios: AxiosStatic) => {
     return await axios.post<Person>("/portfolio", data);
   };
 
-  const me = async (data: Portfolio) => {
+  const person = async (id: number | string) => {
     const access_token = await getValueFor("access_token");
     axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
 
-    return await axios.post<Person>("/portfolio/me", data);
+    return await axios.get<Portfolio>(`/portfolio/person/${id}`);
   };
 
   const update = async (data: Person, id?: number) => {
@@ -27,7 +27,7 @@ export const PortfolioFunction = (axios: AxiosStatic) => {
   };
 
   return {
-    me,
+    person,
     create,
     update,
   };

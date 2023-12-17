@@ -1,6 +1,6 @@
 {
   "expo": {
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
     "scheme": "acme",
     "web": {
       "bundler": "metro"

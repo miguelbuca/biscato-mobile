@@ -11,6 +11,7 @@ import moment from "moment";
 
 const Account = () => {
   const {
+    person,
     items,
     user,
     selectedPersonIndex,
@@ -45,7 +46,7 @@ const Account = () => {
               <View className="flex-row my-4 items-center justify-center">
                 <Link
                   selectionColor={"transparent"}
-                  href={"/Portfolio?userId=" + user.id}
+                  href={"/Portfolio?personId="+person?.id}
                 >
                   <Text className="font-semibold dark:text-white">
                     Portfólio

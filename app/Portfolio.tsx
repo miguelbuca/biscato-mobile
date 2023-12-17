@@ -10,7 +10,7 @@ import MasonryList from "@react-native-seoul/masonry-list";
 import { WorkCard } from "@/src/components";
 
 const Portfolio = () => {
-  const { user, data, getWorkCardStyles, isMyPortfolio } =
+  const { user, portfolioInfo, data, getWorkCardStyles, isMyPortfolio } =
     usePortfolioController();
 
   return (
@@ -36,7 +36,7 @@ const Portfolio = () => {
               </View>
               <View className="flex flex-col">
                 <Text className="font-bold text-sm dark:text-white">{`${user.value?.firstName} ${user.value?.lastName}`}</Text>
-                <Text className="text-sm dark:text-white">UI/UX Design</Text>
+                <Text className="text-sm dark:text-white">{portfolioInfo.value?.title}</Text>
                 <View className="flex flex-row mt-1 gap-x-2 items-center">
                   <Text className="text-[11px] text-gray-500">
                     {format().numberAsFollow(1270)} Seguidores
@@ -63,9 +63,7 @@ const Portfolio = () => {
                   numberOfLines={2}
                   ellipsizeMode="tail"
                 >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s
+                  {portfolioInfo.value?.biography}
                 </Text>
               </View>
             </View>

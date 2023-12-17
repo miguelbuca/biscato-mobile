@@ -15,35 +15,26 @@ const MessageCard = ({ isSender, data }: MessageCardProps) => {
     <View
       style={{
         alignSelf: isSender ? "flex-end" : "flex-start",
-        flexDirection: isSender ? "row" : "row-reverse",
+        flexDirection: 'column',
       }}
     >
       <View
         style={
           isSender
             ? {
-                borderTopRightRadius: 0,
+                borderBottomRightRadius: 0,
               }
             : {
                 borderTopLeftRadius: 0,
               }
         }
         className={`flex flex-col ${
-          isSender ? "bg-primary" : "bg-[#f3f3f3]"
+          isSender ? "bg-green-500" : "bg-[#f3f3f3]"
         } my-1 p-2 rounded-2xl`}
       >
         <View>
           <Text className={`${isSender ? "text-white" : "text-black"} text-xs`}>
             {data.content}
-          </Text>
-        </View>
-        <View className="w-full flex justify-end items-end">
-          <Text
-            className={`mt-2 text-[9px] opacity-70  ${
-              isSender ? "text-white" : "text-black"
-            }`}
-          >
-            {data.createdAt && format().date(data.createdAt,'time')}
           </Text>
         </View>
       </View>

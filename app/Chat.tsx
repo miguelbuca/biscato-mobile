@@ -4,6 +4,10 @@ import {
   TextInput,
   ScrollView,
   TouchableOpacity,
+  KeyboardAvoidingView,
+  FlatList,
+  Platform,
+  SafeAreaView,
 } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useChatController } from "./controller/Chat";
@@ -14,22 +18,20 @@ import MessageCard from "@/src/components/messageCard";
 import { BlurView } from "expo-blur";
 import { Avatar } from "@/src/components";
 
-import * as Constants from "expo-constants";
 import { baseURL } from "@/src/api";
+import HeaderBackground from "@/src/components/HeaderBackground";
 
 const Chat = () => {
   const {
     navigation,
     otherAccount,
-    displayFrame,
-    keyboardHeight,
-    scrollHeight,
     message,
     messages,
     fromAccount,
     scrollRef,
     handlerMessage,
     getDate,
+    colorScheme,
   } = useChatController();
 
   useLayoutEffect(() => {
@@ -54,81 +56,75 @@ const Chat = () => {
           </View>
         );
       },
+      headerShown: true,
+      headerTransparent: true,
+      headerBackground: () => <HeaderBackground />,
     });
   }, [otherAccount]);
 
   return (
-    <View className="flex-1 border-t border-t-[#f5f5f5]  flex flex-col bg-white">
-      <ScrollView
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={0}
+      className="flex-1 border-t border-t-[#f5f5f5]  flex flex-col bg-white "
+    >
+      <FlatList
         showsVerticalScrollIndicator={false}
         ref={scrollRef}
-        className="flex-1 p-4 pb-80"
-        onScroll={({ nativeEvent }) => {
-          scrollHeight.value = nativeEvent.contentSize.height;
-        }}
-      >
-        {messages.value.map((item, index, arr) => {
+        className="p-4 py-24 -mb-24"
+        data={messages.value}
+        renderItem={({ item, index }) => {
           const date = getDate(item.createdAt);
           return (
-            <View
-              style={{
-                marginBottom:
-                  index === arr.length - 1
-                    ? !keyboardHeight.value
-                      ? normalize(180)
-                      : normalize(keyboardHeight.value + 180)
-                    : 0,
-              }}
-              key={index}
-            >
-              {date && (
+            <View key={index}>
+              {/*date && (
                 <View className="relative border-b border-[#f3f3f3] flex items-center justify-center my-4">
                   <View className="absolute bg-white mt-2 px-4">
                     <Text className=" text-[9px] opacity-70 ">{date}</Text>
                   </View>
                 </View>
-              )}
+              )*/}
               <MessageCard
                 isSender={item.fromAccount === fromAccount}
                 data={item}
               />
             </View>
           );
-        })}
-      </ScrollView>
-      <BlurView
-        style={{
-          display: displayFrame.value ? "none" : "flex",
-          bottom: keyboardHeight.value,
         }}
-        intensity={300}
-        className="absolute w-full"
-      >
-        <View
+      />
+      <View className="relative bg-transparent">
+        <BlurView
+          intensity={80}
+          tint={colorScheme}
           style={{
-            marginBottom: !keyboardHeight.value ? normalize(12) : 0,
+            borderTopWidth: 0.2,
+            borderTopColor:
+              colorScheme === "light" ? "#cccccc" : "rgba(255,255,255,0.1)",
           }}
-          className="flex flex-row p-4 items-center"
-        >
-          <TextInput
-            value={message.value}
-            onChangeText={(text) => (message.value = text)}
-            className="flex-1 border bg-white border-[#e2e2e2] px-4 h-[35px] rounded-full mr-2"
-            placeholder="Mensagem"
-            placeholderTextColor={"#ccc"}
-          />
-          <TouchableOpacity onPress={handlerMessage}>
-            <View className="flex justify-center items-center bg-primary h-[35px] w-[35px] rounded-full">
-              <SvgSend
-                height={normalize(30)}
-                width={normalize(30)}
-                fill={"#fff"}
-              />
-            </View>
-          </TouchableOpacity>
-        </View>
-      </BlurView>
-    </View>
+          className="absolute h-full w-full"
+        />
+        <SafeAreaView>
+          <View className="flex flex-row px-4 py-2 items-center bg-transparent">
+            <TextInput
+              value={message.value}
+              onChangeText={(text) => (message.value = text)}
+              className="flex-1 border bg-white border-[#e2e2e2] px-4 h-[35px] rounded-full mr-2"
+              placeholder="Mensagem"
+              placeholderTextColor={"#ccc"}
+            />
+            <TouchableOpacity onPress={handlerMessage}>
+              <View className="flex justify-center items-center bg-primary h-[35px] w-[35px] rounded-full">
+                <SvgSend
+                  height={normalize(30)}
+                  width={normalize(30)}
+                  fill={"#fff"}
+                />
+              </View>
+            </TouchableOpacity>
+          </View>
+        </SafeAreaView>
+      </View>
+    </KeyboardAvoidingView>
   );
 };
 

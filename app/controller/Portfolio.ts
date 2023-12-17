@@ -1,13 +1,13 @@
 import { Api } from "@/src/api";
 import { useBetterState } from "@/src/hooks/useBetterState";
-import { PortfolioItem, User } from "@/src/interfaces";
+import { Portfolio, PortfolioItem, User } from "@/src/interfaces";
 import { AuthSelectors } from "@/src/reduxStore/slices/auth";
 import { useSearchParams } from "expo-router";
 import { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 export const usePortfolioController = () => {
-  const { userId } = useSearchParams<{ userId: string }>();
+  const { personId } = useSearchParams<{ userId: string; personId: string }>();
   const logged: User = useSelector(AuthSelectors).user;
   const user = useBetterState<User | undefined>(undefined);
   const isMyPortfolio = useBetterState<boolean>(false);
@@ -55,31 +55,40 @@ export const usePortfolioController = () => {
       description: "Ecobirdy Charlie Chair",
     },
   ]);
+  const portfolioInfo = useBetterState<Portfolio | undefined>(undefined);
 
-  const loadUserInfo = useCallback(async () => {
-    if (!userId) return;
+  const loadUserInfo = useCallback(async (userId: number | string) => {
     const { data } = await Api.user.findUser(userId);
     user.value = data;
     isMyPortfolio.value = data.id === logged.id;
-  }, [userId]);
+  }, []);
+
+  const loadPortfolioInfo = useCallback(async () => {
+    if (!personId) return;
+    const { data } = await Api.portfolio.person(personId);
+    portfolioInfo.value = data;
+
+    data && loadUserInfo(data.person?.user?.id || "");
+  }, [personId]);
 
   useEffect(() => {
     try {
-      loadUserInfo();
+      loadPortfolioInfo();
     } catch (error) {
       console.log({ error });
     }
   }, []);
 
-  const getWorkCardStyles = (i: number) =>{
+  const getWorkCardStyles = (i: number) => {
     return {
       paddingLeft: i % 2 === 0 ? 0 : 0,
       marginRight: i % 2 === 0 ? 0 : 12,
       marginBottom: i + 1 === data.value.length ? 48 : 0,
     };
-  }
-  
+  };
+
   return {
+    portfolioInfo,
     data,
     logged,
     isMyPortfolio,

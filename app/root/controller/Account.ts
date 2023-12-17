@@ -151,6 +151,7 @@ export const useAccountController = () => {
   }, [selectedInput, editInput, person]);
 
   return {
+    person,
     items,
     user,
     selectedPersonIndex,

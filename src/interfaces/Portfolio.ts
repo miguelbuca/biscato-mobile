@@ -1,3 +1,4 @@
+import { Person } from "./Person";
 import { PortfolioItem } from "./PortfolioItem";
 
 export class Portfolio {
@@ -10,4 +11,6 @@ export class Portfolio {
   items?: PortfolioItem[];
 
   personId?: string;
+
+  person?: Person
 }

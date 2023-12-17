@@ -2,7 +2,6 @@ import { View, Text, Platform } from "react-native";
 import React from "react";
 import { BlurView } from "expo-blur";
 import { useHeaderBackgroundController } from "./controller";
-import { StatusBar } from "expo-status-bar";
 
 const HeaderBackground = () => {
   const { colorScheme } = useHeaderBackgroundController();

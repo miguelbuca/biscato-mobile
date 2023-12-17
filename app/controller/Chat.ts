@@ -6,8 +6,9 @@ import { useSocket } from "@/src/hooks/useSocket";
 import { Chat, User } from "@/src/interfaces";
 import { AuthSelectors } from "@/src/reduxStore/slices/auth";
 import { useNavigation, useSearchParams } from "expo-router";
+import { useColorScheme } from "nativewind";
 import { useCallback, useEffect, useRef } from "react";
-import { ScrollView } from "react-native-gesture-handler";
+import { FlatList } from "react-native";
 import { useSelector } from "react-redux";
 
 export const useChatController = () => {
@@ -20,9 +21,9 @@ export const useChatController = () => {
   const otherAccount = useBetterState<User | undefined>(undefined);
   const message = useBetterState<string>("");
   const messages = useBetterState<Chat[]>([]);
-  const scrollRef = useRef<ScrollView>(null);
+  const scrollRef = useRef<FlatList>(null);
   const scrollHeight = useBetterState<number>(0);
-  const { keyboardHeight, displayFrame } = useKeyboard();
+  const { colorScheme } = useColorScheme();
   var lastDate = "";
 
   const getDate = (value?: string) => {
@@ -76,9 +77,7 @@ export const useChatController = () => {
       messages.value = [...messages.value, data];
       message.value = "";
 
-      scrollRef.current?.scrollTo({
-        x: 0,
-        y: scrollHeight.value,
+      scrollRef.current?.scrollToEnd({
         animated: true,
       });
     }
@@ -88,8 +87,7 @@ export const useChatController = () => {
     navigation,
     otherAccount,
     getDate,
-    displayFrame,
-    keyboardHeight,
+    colorScheme,
     scrollHeight,
     handlerMessage,
     messages,

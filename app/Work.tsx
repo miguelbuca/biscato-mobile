@@ -134,10 +134,7 @@ export default function Work() {
               <View>
                 <TouchableOpacity>
                   <View
-                    style={{
-                      backgroundColor: "rgba(0,0,0,0.06)",
-                    }}
-                    className="flex flex-row items-center justify-center p-3 rounded-lg"
+                    className="bg-black/5 dark:bg-white/5 flex flex-row items-center justify-center p-3 rounded-lg"
                   >
                     <View className="mr-1">
                       <MapPinSvg
@@ -181,9 +178,9 @@ export default function Work() {
                 <Text>{params.term}</Text>
               </Accordion>
             )}
-            <View className="flex items-center justify- my-4">
+            {/*<View className="flex items-center justify- my-4">
               <Text className="text-gray-400">(94) candidaturas</Text>
-            </View>
+            </View>*/}
             <View>
               <Button
                 className="bg-white dark:bg-[#111]"
