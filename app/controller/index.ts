@@ -6,3 +6,4 @@ export * from "./Location"
 export * from "./Publication";
 export * from "./Work";
 export * from "./SwitchPaymentMethod";
+export * from "./_layout"

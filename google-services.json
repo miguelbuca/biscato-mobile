@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "347319942469",
+    "project_id": "biscato-platform",
+    "storage_bucket": "biscato-platform.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:347319942469:android:902af015f7c7cc1c36522c",
+        "android_client_info": {
+          "package_name": "com.biscato.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOmzIhPGQgYUEFlwHk-Q-kgmS1D-mIDuU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
