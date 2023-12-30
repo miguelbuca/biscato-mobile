@@ -1,29 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.biscato.app-mergeDebugResources-3:/values-v23/values-v23.xml",
+            "outputFile": "com.biscato.app-mergeDebugResources-4:/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\ee8b6ca9794eefaf499ad14c5a86598d\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endLines": "4",
-                        "endColumns": "12",
-                        "endOffsets": "200"
-                    },
-                    "to": {
-                        "startLines": "52",
-                        "startColumns": "4",
-                        "startOffsets": "3361",
-                        "endLines": "54",
-                        "endColumns": "12",
-                        "endOffsets": "3506"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\764e2dee83e018c52fce0decdc233070\\transformed\\appcompat-1.4.2\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\b9defe92ac992f3cb7dac30f4f5af4d4\\transformed\\appcompat-1.4.2\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -42,17 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\16c2de3c67b15b0b0dc7d3167fdbeed3\\transformed\\work-runtime-2.8.0\\res\\values-v23\\values-v23.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,121",
-                        "endColumns": "65,62",
-                        "endOffsets": "116,179"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\b8ac1492b07461a489a47c90839e83cc\\transformed\\material-1.1.0\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\b0106d137cd735ef12457022f618efd8\\transformed\\material-1.1.0\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,6",
                         "startColumns": "4,4",
@@ -68,6 +39,35 @@
                         "endLines": "58,62",
                         "endColumns": "10,10",
                         "endOffsets": "3771,4044"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\6bb41a7f5f7d2d18914f41ded619c4d0\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "200"
+                    },
+                    "to": {
+                        "startLines": "52",
+                        "startColumns": "4",
+                        "startOffsets": "3361",
+                        "endLines": "54",
+                        "endColumns": "12",
+                        "endOffsets": "3506"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\95d66605659142db5069b539fe9c3907\\transformed\\work-runtime-2.7.1\\res\\values-v23\\values-v23.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,121",
+                        "endColumns": "65,62",
+                        "endOffsets": "116,179"
                     }
                 }
             ]

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.biscato.app-mergeDebugResources-3:/values-hdpi-v4/values-hdpi-v4.xml",
+            "outputFile": "com.biscato.app-mergeDebugResources-4:/values-hdpi-v4/values-hdpi-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\764e2dee83e018c52fce0decdc233070\\transformed\\appcompat-1.4.2\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\b9defe92ac992f3cb7dac30f4f5af4d4\\transformed\\appcompat-1.4.2\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

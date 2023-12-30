@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.biscato.app-mergeDebugResources-3:/values-pt-rPT/values-pt-rPT.xml",
+            "outputFile": "com.biscato.app-mergeDebugResources-4:/values-pt-rPT/values-pt-rPT.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\01df057423d6b8b6d0f85fcf06324d7a\\transformed\\browser-1.2.0\\res\\values-pt-rPT\\values-pt-rPT.xml",
+                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\6baafba55cdb60e9bc4a1b010c4fd7ef\\transformed\\browser-1.2.0\\res\\values-pt-rPT\\values-pt-rPT.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -21,7 +21,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\4fef22634f35148c04f538bd4632c020\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-pt-rPT\\values.xml",
+                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\19b3e57c1a52649c0d0f40a3e3673f4a\\transformed\\core-1.7.0\\res\\values-pt-rPT\\values-pt-rPT.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "65",
+                        "startColumns": "4",
+                        "startOffsets": "7316",
+                        "endColumns": "100",
+                        "endOffsets": "7412"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\572d478cc88ec9a5f318b6da68df54fb\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-pt-rPT\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -38,24 +55,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\ad3ddb8b10b96842298e934147851c7b\\transformed\\core-1.7.0\\res\\values-pt-rPT\\values-pt-rPT.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "64",
-                        "startColumns": "4",
-                        "startOffsets": "7239",
-                        "endColumns": "100",
-                        "endOffsets": "7335"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\5b299352837c0f5786f99432f77ceebd\\transformed\\biometric-1.1.0\\res\\values-pt-rPT\\values-pt-rPT.xml",
+                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\8779540c15f121e829784c6439c19f58\\transformed\\biometric-1.1.0\\res\\values-pt-rPT\\values-pt-rPT.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
@@ -64,15 +64,32 @@
                         "endOffsets": "166,261,390,529,676,811,940,1087,1189,1329,1478,1604"
                     },
                     "to": {
-                        "startLines": "47,49,53,54,55,56,57,58,59,60,61,62",
+                        "startLines": "47,49,54,55,56,57,58,59,60,61,62,63",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "5170,5402,5810,5939,6078,6225,6360,6489,6636,6738,6878,7027",
+                        "startOffsets": "5170,5402,5887,6016,6155,6302,6437,6566,6713,6815,6955,7104",
                         "endColumns": "115,94,128,138,146,134,128,146,101,139,148,125",
-                        "endOffsets": "5281,5492,5934,6073,6220,6355,6484,6631,6733,6873,7022,7148"
+                        "endOffsets": "5281,5492,6011,6150,6297,6432,6561,6708,6810,6950,7099,7225"
                     }
                 },
                 {
-                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\764e2dee83e018c52fce0decdc233070\\transformed\\appcompat-1.4.2\\res\\values-pt-rPT\\values-pt-rPT.xml",
+                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\669d8709c6a68fe2633d386d773b6bb4\\transformed\\jetified-firebase-messaging-22.0.0\\res\\values-pt-rPT\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "211",
+                        "endColumns": "72",
+                        "endOffsets": "283"
+                    },
+                    "to": {
+                        "startLines": "53",
+                        "startColumns": "4",
+                        "startOffsets": "5810",
+                        "endColumns": "76",
+                        "endOffsets": "5882"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\b9defe92ac992f3cb7dac30f4f5af4d4\\transformed\\appcompat-1.4.2\\res\\values-pt-rPT\\values-pt-rPT.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -81,15 +98,15 @@
                         "endOffsets": "208,314,421,510,611,729,814,894,986,1080,1177,1271,1370,1464,1560,1655,1747,1839,1924,2031,2142,2244,2352,2460,2567,2732,2831,2917"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,63",
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,64",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,213,319,426,515,616,734,819,899,991,1085,1182,1276,1375,1469,1565,1660,1752,1844,1929,2036,2147,2249,2357,2465,2572,2737,7153",
+                        "startOffsets": "105,213,319,426,515,616,734,819,899,991,1085,1182,1276,1375,1469,1565,1660,1752,1844,1929,2036,2147,2249,2357,2465,2572,2737,7230",
                         "endColumns": "107,105,106,88,100,117,84,79,91,93,96,93,98,93,95,94,91,91,84,106,110,101,107,107,106,164,98,85",
-                        "endOffsets": "208,314,421,510,611,729,814,894,986,1080,1177,1271,1370,1464,1560,1655,1747,1839,1924,2031,2142,2244,2352,2460,2567,2732,2831,7234"
+                        "endOffsets": "208,314,421,510,611,729,814,894,986,1080,1177,1271,1370,1464,1560,1655,1747,1839,1924,2031,2142,2244,2352,2460,2567,2732,2831,7311"
                     }
                 },
                 {
-                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\7f5a2d4aa464d9b4817a97eadb46dce2\\transformed\\jetified-play-services-base-18.1.0\\res\\values-pt-rPT\\values.xml",
+                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\ea56af8bc76f803ef1780c3f4388ff66\\transformed\\jetified-play-services-base-18.1.0\\res\\values-pt-rPT\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",

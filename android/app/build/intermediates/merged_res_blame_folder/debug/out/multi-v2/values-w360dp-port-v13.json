@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.biscato.app-mergeDebugResources-3:/values-w360dp-port-v13/values-w360dp-port-v13.xml",
+            "outputFile": "com.biscato.app-mergeDebugResources-4:/values-w360dp-port-v13/values-w360dp-port-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\b8ac1492b07461a489a47c90839e83cc\\transformed\\material-1.1.0\\res\\values-w360dp-port-v13\\values-w360dp-port-v13.xml",
+                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\b0106d137cd735ef12457022f618efd8\\transformed\\material-1.1.0\\res\\values-w360dp-port-v13\\values-w360dp-port-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

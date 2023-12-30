@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.biscato.app-mergeDebugResources-3:/values-ru-rRU/values-ru-rRU.xml",
+            "outputFile": "com.biscato.app-mergeDebugResources-4:/values-ru-rRU/values-ru-rRU.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\3bffe0e615bbdbfe0aeaf6d4c0f8acfe\\transformed\\jetified-Android-Image-Cropper-4.3.0\\res\\values-ru-rRU\\values-ru-rRU.xml",
+                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\852fb015dc14f6630e383b59a0599c78\\transformed\\jetified-Android-Image-Cropper-4.3.0\\res\\values-ru-rRU\\values-ru-rRU.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",

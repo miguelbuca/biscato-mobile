@@ -8,9 +8,11 @@ import { StatusBar } from "expo-status-bar";
 import { useColorScheme } from "nativewind";
 import { useEffect } from "react";
 import { Provider } from "react-redux";
+import { useLayoutNotification } from "./controller";
 
 export default function Layout() {
   const { colorScheme } = useColorScheme();
+  const {} = useLayoutNotification()
   return (
     <>
       <Provider store={store}>
