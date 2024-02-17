@@ -22,10 +22,10 @@ export const SocketContext = createContext<{
 export const SocketProvider: React.FC<ViewProps> = ({ children }) => {
   const [socket, setSocket] = useState<Socket>();
   const { url, port } = Constants.default.expoConfig?.extra?.api;
-  const baseURL = `${url}:${port["ws"]}`;
+  //const baseURL = `${url}:${port["ws"]}`;
 
   const init = useCallback(() => {
-    getValueFor("access_token").then(async (token) => {
+   /* getValueFor("access_token").then(async (token) => {
       const connection = io(baseURL, {
         autoConnect: true,
         auth: {
@@ -33,7 +33,7 @@ export const SocketProvider: React.FC<ViewProps> = ({ children }) => {
         },
       });
       setSocket(connection);
-    });
+    });*/
   }, []);
 
   useEffect(init, []);

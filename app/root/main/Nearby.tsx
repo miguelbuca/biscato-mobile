@@ -14,6 +14,7 @@ import MapViewDirections from "react-native-maps-directions";
 
 const Nearby = () => {
   const {
+    mapStyle,
     person,
     address,
     showDirections,
@@ -47,6 +48,7 @@ const Nearby = () => {
           collapsable={true}
           userLocationPriority="high"
           followsUserLocation={showDirections.value}
+          customMapStyle={mapStyle}
           
         >
           <Circle

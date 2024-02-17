@@ -38,9 +38,9 @@ export const useCandidatesListController = () => {
     });
   };
 
-  const handlerPortfolio = (userId?: number) => {
-    if (!userId) return;
-    route.push("Portfolio?userId=" + userId);
+  const handlerPortfolio = (personId?: number) => {
+    if (!personId) return;
+    route.push("Portfolio?userId=" + personId);
   };
 
   return {

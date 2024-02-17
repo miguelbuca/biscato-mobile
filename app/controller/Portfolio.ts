@@ -57,6 +57,8 @@ export const usePortfolioController = () => {
   ]);
   const portfolioInfo = useBetterState<Portfolio | undefined>(undefined);
 
+  console.log(personId);
+
   const loadUserInfo = useCallback(async (userId: number | string) => {
     const { data } = await Api.user.findUser(userId);
     user.value = data;

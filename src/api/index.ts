@@ -16,11 +16,8 @@ import {
 import axios from "axios";
 
 import * as Constants from "expo-constants";
-import { Socket } from "socket.io-client";
 
-const { url, port } = Constants.default.expoConfig?.extra?.api;
-
-export const baseURL = `${url}:${port["http-https"]}`
+export const baseURL = Constants.default.expoConfig?.extra?.api?.url
 
 axios.defaults.baseURL = baseURL;
 axios.defaults.headers.common["Content-Type"] = "application/json";
@@ -36,7 +33,7 @@ export const Api = {
   address: AddressFunction(axios),
   persson: PersonFunction(axios),
   portfolio: PortfolioFunction(axios),
-  chat: (socket: Socket) => ChatFunction(axios, socket),
+  chat: ()=>{},
   external: {
     google: GoogleFunction(
       Constants.default.expoConfig?.extra?.googleMapsApiKey
