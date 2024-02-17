@@ -70,7 +70,7 @@ const CandidatesList = () => {
               ? "rounded-bl-lg rounded-br-lg mb-52"
               : "border-b border-b-slate-100 dark:border-b-[#111]"
           }`}
-          onPress={() => handlerPortfolio(item.user?.id)}
+          onPress={() => handlerPortfolio(item.user?.persons?.[0].id)}
           key={index}
         >
           <View className="flex-1 flex-col">

@@ -35,6 +35,9 @@ export const usePageController = () => {
           if (skillType.length < 3) {
             replace("Skill");
           } else {
+
+            console.log(data.persons?.[0])
+
             dispatch(setSelectedPersonIndex(0));
             replace("root/main");
           }

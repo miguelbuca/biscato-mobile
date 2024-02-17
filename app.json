@@ -5,15 +5,11 @@
     "web": {
       "bundler": "metro"
     },
-    "name": "biscato",
+    "name": "Biscato",
     "slug": "Biscato",
     "extra": {
       "api": {
-        "url": "http://192.168.1.103",
-        "port": {
-          "http-https": 4000,
-          "ws": 4000
-        }
+        "url": "http://172.20.10.4:4000"
       },
       "googleMapsApiKey": "AIzaSyBfIDbTw5k_MUF_v4zYbvoMBau3ervHPZg",
       "eas": {
@@ -22,7 +18,8 @@
     },
     "ios": {
       "bundleIdentifier": "com.biscato.app",
-      "supportsTablet": true
+      "supportsTablet": true,
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "package": "com.biscato.app",
@@ -53,6 +50,7 @@
       ]
     },
     "plugins": [
+      "@react-native-firebase/app",
       [
         "expo-build-properties",
         {
