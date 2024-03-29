@@ -5,11 +5,11 @@
     "web": {
       "bundler": "metro"
     },
-    "name": "Biscato",
+    "name": "biscato",
     "slug": "Biscato",
     "extra": {
       "api": {
-        "url": "http://172.20.10.4:4000"
+        "url": "http://192.168.0.250:4000"
       },
       "googleMapsApiKey": "AIzaSyBfIDbTw5k_MUF_v4zYbvoMBau3ervHPZg",
       "eas": {

@@ -12,6 +12,11 @@ platform :ios, podfile_properties['ios.deploymentTarget'] || '13.0'
 install! 'cocoapods',
   :deterministic_uuids => false
 
+pod 'Firebase', :modular_headers => true
+pod 'FirebaseCoreInternal', :modular_headers => true
+pod 'GoogleUtilities', :modular_headers => true
+pod 'FirebaseCore', :modular_headers => true
+
 prepare_react_native_project!
 
 # If you are using a `react-native-flipper` your iOS build will fail when `NO_FLIPPER=1` is set.
@@ -38,17 +43,12 @@ elsif podfile_properties.key?('ios.flipper') then
   end
 end
 
-target 'Biscato' do
+target 'biscato' do
   use_expo_modules!
   config = use_native_modules!
 
   use_frameworks! :linkage => podfile_properties['ios.useFrameworks'].to_sym if podfile_properties['ios.useFrameworks']
   use_frameworks! :linkage => ENV['USE_FRAMEWORKS'].to_sym if ENV['USE_FRAMEWORKS']
-
-  pod 'Firebase', :modular_headers => true
-  pod 'FirebaseCoreInternal', :modular_headers => true
-  pod 'GoogleUtilities', :modular_headers => true
-  pod 'FirebaseCore', :modular_headers => true
 
   # Flags change depending on the env values.
   flags = get_default_flags()
