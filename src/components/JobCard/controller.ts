@@ -5,7 +5,7 @@ import { useColorScheme } from "nativewind";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 
-export const useJobCardController = (id?: number) => {
+export const useJobCardController = () => {
   const { navigate }: any = useNavigation();
   const dispatch = useDispatch();
   const { colorScheme } = useColorScheme();

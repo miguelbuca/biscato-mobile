@@ -2,7 +2,7 @@ import { Person } from "./Person";
 import { PortfolioItem } from "./PortfolioItem";
 
 export class Portfolio {
-  id?: number;
+  id?: string;
 
   title?: string;
 

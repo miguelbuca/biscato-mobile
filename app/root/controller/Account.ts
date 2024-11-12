@@ -12,7 +12,7 @@ export const useAccountController = () => {
   const user: User = useSelector(AuthSelectors).user;
   const selectedPersonIndex: number =
     useSelector(AuthSelectors).selectedPersonIndex;
-  const person = user.persons?.[selectedPersonIndex];
+  const person = user?.Person;
   const dispatch = useDispatch();
 
   const editInput = useBetterState<string>("");

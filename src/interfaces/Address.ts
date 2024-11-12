@@ -1,7 +1,7 @@
 import { Work } from "./Work";
 
 export interface Address {
-  id?: number;
+  id?: string;
 
   lat?: number;
 

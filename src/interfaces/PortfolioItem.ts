@@ -1,5 +1,5 @@
 export class PortfolioItem {
-  id?: number;
+  id?: string;
 
   title?: string;
 

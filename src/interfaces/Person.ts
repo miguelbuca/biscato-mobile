@@ -3,7 +3,7 @@ import { Portfolio } from "./Portfolio";
 import { User } from "./User";
 
 export interface Person {
-  id: number;
+  id: string;
   phoneNumber?: string;
   avatar?: string;
   nif: string;

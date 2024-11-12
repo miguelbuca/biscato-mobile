@@ -39,7 +39,7 @@ const Account = () => {
                   letters={`${user?.firstName?.[0] && user?.firstName?.[0]} ${
                     user?.lastName?.[0] && user?.lastName?.[0]
                   }`}
-                  image={`${baseURL}/${user.persons?.[selectedPersonIndex]?.avatar}`}
+                  image={`${baseURL}/${user.Person?.avatar}`}
                   className="h-[90px] w-[90px] border-[transparent]"
                 />
               </View>

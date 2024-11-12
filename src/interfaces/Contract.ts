@@ -2,11 +2,11 @@ import { User } from "./User";
 import { Work } from "./Work";
 
 export interface Contract {
-  id: number;
+  id: string;
 
-  workId?: number;
+  workId?: string;
   work?: Work;
 
-  hiredId?: number;
+  hiredId?: string;
   hired?: User;
 }

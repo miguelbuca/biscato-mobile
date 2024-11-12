@@ -4,7 +4,7 @@ import { SkillType } from "./SkillType";
 import { User } from "./User";
 
 export interface Work {
-  id?: number;
+  id?: string;
 
   title?: string;
 

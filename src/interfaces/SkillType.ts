@@ -1,5 +1,5 @@
 export interface SkillType {
-  id?: number;
+  id?: string;
   name?: string;
   svgXml?: string;
   background?: string;

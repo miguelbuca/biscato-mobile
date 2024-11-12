@@ -30,7 +30,7 @@ const Portfolio = () => {
                     borderRadius: 50,
                   }}
                   source={{
-                    uri: `${baseURL}/${user.value?.persons?.[0].avatar}`,
+                    uri: `${baseURL}/${user.value?.Person?.avatar}`,
                   }}
                 />
               </View>

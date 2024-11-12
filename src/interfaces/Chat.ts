@@ -1,11 +1,11 @@
 import { User } from "./User";
 
 export interface Chat {
-  id?: number;
+  id?: string;
   socket_id?: string;
-  fromAccount?: number;
+  fromAccount?: string;
   sender?: User;
-  toAccount?: number;
+  toAccount?: string;
   receiver?: User;
   content?: string;
   createdAt?: string;

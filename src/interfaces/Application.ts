@@ -22,9 +22,9 @@ export interface Application {
     | "BLOCKED"
     | "RELEASED"
     | "UNDER_MAINTENANCE";
-  id?: number;
+  id?: string;
   user?: User;
 
-  workId: number;
+  workId: string;
   work?: Work;
 }

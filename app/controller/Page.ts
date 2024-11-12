@@ -31,12 +31,12 @@ export const usePageController = () => {
 
         dispatch(setCurrentUser(data));
 
-        if (data.persons?.length) {
+        if (data?.Person) {
           if (skillType.length < 3) {
             replace("Skill");
           } else {
 
-            console.log(data.persons?.[0])
+            console.log(data?.Person)
 
             dispatch(setSelectedPersonIndex(0));
             replace("root/main");

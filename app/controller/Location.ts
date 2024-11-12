@@ -14,20 +14,20 @@ export const useLocationController = () => {
   const location = useBetterState<LocationObject | null>(null);
   const address = useBetterState<Address | null>(null);
   const { work } = useLocalSearchParams<any>();
-  const { replace }   = useRouter()
+  const { replace } = useRouter();
 
   const handlerCancel = () => {
     address.value = null;
     handlerCreate();
   };
-  const handlerCreate = useCallback( () => {
+  const handlerCreate = useCallback(() => {
     try {
       dispatch(isLoading(true));
       Api.work
         .create({
           ...work,
           costPerHour: parseFloat(`${work?.costPerHour}`),
-          skillTypeId: parseInt(`${work?.skillTypeId}`),
+          skillTypeId: work?.skillTypeId,
           totalTime: parseInt(`${work?.totalTime}`),
           address: address.value
             ? {
@@ -35,8 +35,8 @@ export const useLocationController = () => {
               }
             : undefined,
         })
-        .then(({ data })=>{
-          replace('./root/main/Home')
+        .then(({ data }) => {
+          replace("./root/main/Home");
         })
         .finally(() => {
           dispatch(isLoading(false));

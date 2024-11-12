@@ -41,7 +41,7 @@ const Chat = () => {
           <View className="flex flex-row items-center justify-self-start w-full">
             <View>
               <Avatar
-                image={`${baseURL}/${otherAccount.value?.persons?.[0]?.avatar}`}
+                image={`${baseURL}/${otherAccount.value?.Person?.avatar}`}
                 imageStyle={{
                   height: normalize(35),
                   width: normalize(35),

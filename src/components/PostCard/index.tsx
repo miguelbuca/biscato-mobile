@@ -35,7 +35,7 @@ export const PostCard = ({ data }: PostCardProps) => {
               />
             </View>
           </View>
-          <View className="flex flex-col">
+          <View className="flex flex-col flex-1">
             <View>
               <Text className="font-black max-w-[200px] dark:text-white">
                 {data.title}

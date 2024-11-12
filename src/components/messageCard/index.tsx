@@ -47,8 +47,8 @@ const MessageCard = ({ isSender, data }: MessageCardProps) => {
         <Avatar
           image={`${Constants.default.expoConfig?.extra?.api}/${
             isSender
-              ? data.sender?.persons?.[0].avatar
-              : data.sender?.persons?.[0].avatar
+              ? data.sender?.Person.avatar
+              : data.sender?.Person.avatar
           }`}
           imageStyle={{
             height: normalize(35),

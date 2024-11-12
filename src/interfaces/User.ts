@@ -1,10 +1,10 @@
 import { Person } from "./Person";
 
 export interface User {
-  id?: number;
+  id?: string;
   firstName?: string;
   lastName?: string;
   email?: string;
   password?: string;
-  persons?: Person[];
+  Person?: Person;
 }

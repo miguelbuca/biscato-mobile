@@ -37,7 +37,7 @@ export const AvatarNotificationController = (data: Notification) => {
       default:
         if (data.extra?.userId) {
           Api.user.findUser(data.extra?.userId).then(({ data }) => {
-            img.value = `${baseURL}/${data.persons?.[0]?.avatar}`;
+            img.value = `${baseURL}/${data?.Person?.avatar}`;
           });
 
           isSVG.value = false;

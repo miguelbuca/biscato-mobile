@@ -20,7 +20,7 @@ const AuthSlice = createSlice({
     setCurrentUser(state, action) {
       state.user = action.payload;
 
-      const person = state?.user?.persons?.[0];
+      const person = state?.user?.Person;
 
       if (person) {
         state.activePerson = {
@@ -30,7 +30,7 @@ const AuthSlice = createSlice({
       }
     },
     setSelectedPersonIndex(state, action) {
-      const person = state?.user?.persons?.[action.payload];
+      const person = state?.user?.Person;
 
       if (person) {
         state.activePerson = {

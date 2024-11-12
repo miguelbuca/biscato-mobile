@@ -27,7 +27,7 @@ export const JobCard = ({
   applicationId,
 }: JobCardProps) => {
   const { handlerRemoveApplication, navigate, colorScheme } =
-    useJobCardController(data?.id);
+    useJobCardController();
 
   return (
     <Pressable
@@ -65,12 +65,14 @@ export const JobCard = ({
                   {data?.title}
                 </Text>
               </View>
-              <View className="flex flex-row justify-between">
-                <TouchableOpacity>
-                  <Text className="text-xs dark:text-white">
-                    {data?.skillType?.name}
-                  </Text>
-                </TouchableOpacity>
+              <View className="flex flex-row">
+                <View className="flex-1">
+                  <TouchableOpacity>
+                    <Text className="text-xs dark:text-white">
+                      {data?.skillType?.name}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
                 <Text className="text-primary font-semibold">
                   {format().amount(data?.costPerHour || 0)}/hr
                 </Text>

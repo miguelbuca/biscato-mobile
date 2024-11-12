@@ -1,7 +1,7 @@
 export class Follow {
   id?: string;
 
-  followerId?: number;
+  followerId?: string;
 
-  personId?: number;
+  personId?: string;
 }

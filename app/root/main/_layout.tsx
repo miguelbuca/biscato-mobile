@@ -153,6 +153,9 @@ const Layout = () => {
         <Tabs.Screen
           options={{
             title: "notificações",
+            tabBarItemStyle: {
+              display: "none",
+            },
             tabBarIcon: ({ color, size }) => (
               <View className="relative">
                 <BellSvg height={size - SUB_VALUE} fill={color} />
@@ -167,6 +170,20 @@ const Layout = () => {
             ),
           }}
           name="Notification"
+        />
+        <Tabs.Screen
+          options={{
+            title: "Mensagens",
+            tabBarIcon: ({ color, size }) => (
+              <View className="relative">
+                <ChatSvg height={size - SUB_VALUE} fill={color} />
+                <View className="absolute min-w-[18px] h-[18px] rounded-full items-center justify-center bg-primary -top-[7px] -right-[8px]">
+                  <Text className="text-[9px] text-white font-bold">2</Text>
+                </View>
+              </View>
+            ),
+          }}
+          name="Chats"
         />
       </Tabs>
       <StatusBar style={colorScheme !== "light" ? "light" : "dark"} />
